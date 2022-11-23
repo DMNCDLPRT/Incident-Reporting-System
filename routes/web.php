@@ -33,6 +33,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
 
         Route::get('/portal', 'index')->name('portal');
-        Route::post('/portal/submit-report');
     });
 });

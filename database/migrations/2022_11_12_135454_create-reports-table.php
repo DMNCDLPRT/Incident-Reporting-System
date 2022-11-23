@@ -17,11 +17,13 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
 
+            $table->string('userId')->references('id')->users();
             $table->string('reportType');
             $table->string('teamid')->references('id')->on('teams'); // based on what department expept if it is SOS
-            $table->string('location')->references('location')->on('portal'); // based on what portal the user connected with - each portal has different location
+            $table->string('location'); // based on what portal the user connected with - each portal has different location
             $table->string('specificLocation');
-            $table->string('status');
+            $table->string('files')->nullable();
+            $table->string('status')->default('active');
 
             $table->dateTime(Reports::CREATED_AT);
         });

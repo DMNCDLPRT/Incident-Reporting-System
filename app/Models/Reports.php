@@ -24,12 +24,7 @@ class Reports extends Model
     protected $table = 'reports';
     protected $primaryKey = 'id';
 
-    /* 
-    Gaslighting myself into thingking
-    i'm okay because honestly,
-    i'm just tired of breaking down.
-    */
-
+    
     /**
     * The attributes that are mass assignable.
     *
@@ -41,14 +36,19 @@ class Reports extends Model
         'location',
         'specificLocation',
         'status',
+        'files',
     ];
 }
 
 
 /* 
-id number
-type of report
-date
-location
-status
+    id number
+    type of report
+    date
+    location
+    status
+
+    Gaslighting myself into thingking
+    i'm okay because honestly,
+    i'm just tired of breaking down.
 */
