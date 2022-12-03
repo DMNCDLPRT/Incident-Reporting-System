@@ -6,77 +6,109 @@
       {{ __('You can Submit a report here. Just make sure to inclue the specific location, so that our responders can locate the incident quickly') }}
   </x-slot>
   <x-slot name="form">
+
     {{-- Selection of which type of inccident occurs --}}
-    <label for="incidentType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select type of Incident</label>
-    <select id="incidentType" wire.model="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option disabled>Select Type of Incident</option>
-        <option value="Traffic Accident">Traffic Accident</option>
-        <option value="Fire incident">Fire incident</option>
-        <option value="Shooting Incident">Shooting Incident</option>
-        <option value="Hacking Incident">Hacking Incident</option>
-        <option value="Stabbing Incident">Stabbing Incident</option>
-        <option value="Alarm and Scandal">Alarm and Scandal</option>
-        <option value="Ambush">Ambush</option>
-        <option value="Carnapping/Motornapping">Carnapping/Motornapping</option>
-        <option value="Cellphone Snatching">Cellphone Snatching</option>
-        <option value="Flood - Natural Disaster">Flood - Natural Disaster</option>
-        <option value="Rape Incident">Rape Incident</option>
-        <option value="Suicide">Suicide</option>
-        <option value="Theft/Robbery">Theft/Robbery</option>
+
+    @error('reportType')
+      <span class="m" role="alert">
+        <strong class="mt-4 text-red-600"><i class="fa-light fa-circle-exclamation"></i>{{ $message }}</strong>
+      </span>
+    @enderror
+
+    <label for="reportType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select type of Incident</label>
+    <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  wire:model="reportType" autocomplete="reportType" autofocus>
+        <option disabled selected>Select Type of Incident</option>
+        <option name="reportType" value="Traffic Accident">Traffic Accident</option>
+        <option name="reportType" value="Fire incident">Fire incident</option>
+        <option name="reportType" value="Shooting Incident">Shooting Incident</option>
+        <option name="reportType" value="Hacking Incident">Hacking Incident</option>
+        <option name="reportType" value="Stabbing Incident">Stabbing Incident</option>
+        <option name="reportType" value="Alarm and Scandal">Alarm and Scandal</option>
+        <option name="reportType" value="Ambush">Ambush</option>
+        <option name="reportType" value="Carnapping/Motornapping">Carnapping/Motornapping</option>
+        <option name="reportType" value="Cellphone Snatching">Cellphone Snatching</option>
+        <option name="reportType" value="Flood - Natural Disaster">Flood - Natural Disaster</option>
+        <option name="reportType" value="Rape Incident">Rape Incident</option>
+        <option name="reportType" value="Suicide">Suicide</option>
+        <option name="reportType" value="Theft/Robbery">Theft/Robbery</option>
     </select>
-    {{-- end of type of incident --
+    {{-- end of type of incident --}} 
+
     {{-- Selection of where the incident take place --}}
+
+    @error('location')
+    <div class="mt-4"></div>
+      <span class="text-red-100 mt-5" role="alert">
+        <strong class="text-red-600"><i class="fa-light fa-circle-exclamation"></i>{{ $message }}</strong>
+      </span>
+    @enderror
+
     <label for="location" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Location/Barangay</label>
-    <select id="location" wire.model="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option disabled>Select Location</option>
-        <option value="Cabadiangan">Cabadiangan</option>
-        <option value="Bocboc">Bocboc</option>
-        <option value="Buyot">Buyot</option>
-        <option value="Calaocalao">Calaocalao</option>
-        <option value="Don Carlos Norte">Don Carlos Norte</option>
-        <option value="Embayao">Embayao</option>
-        <option value="Kalubihon">Kalubihon</option>
-        <option value="Kasigkot">Kasigkot</option>
-        <option value="Kawilihan">Kawilihan</option>
-        <option value="Kiara">Kiara</option>
-        <option value="Kibatang">Kibatang</option>
-        <option value="Mahayahay">Mahayahay</option>
-        <option value="Manlamonay">Manlamonay</option>
-        <option value="Maraymaray">Maraymaray</option>
-        <option value="Mauswagon">Mauswagon</option>
-        <option value="Minsalagan">Minsalagan</option>
-        <option value="New Nongnongan - Masimag">New Nongnongan - Masimag</option>
-        <option value="New Visayas">New Visayas</option>
-        <option value="Old Nongnongan">Old Nongnongan</option>
-        <option value="Pinamaloy">Pinamaloy</option>
-        <option value="Don Carlos Sur - Poblacion">Don Carlos Sur - Poblacion</option>
-        <option value="Pualas">Pualas</option>
-        <option value="San Antonio East">San Antonio East</option>
-        <option value="San Antonio West">San Antonio West</option>
-        <option value="San Francisco">San Francisco</option>
-        <option value="San Nicolas - Banban">San Nicolas - Banban</option>
-        <option value="San Roque">San Roque</option>
-        <option value="Sinangguyan">Sinangguyan</option>
-        <option value="Bismartz">Bismartz</option>
+    <select id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="location" autocomplete="location" autofocus>
+        <option disabled selected>Select Location</option>
+        <option name="location" value="Cabadiangan">Cabadiangan</option>
+        <option name="location" value="Bocboc">Bocboc</option>
+        <option name="location" value="Buyot">Buyot</option>
+        <option name="location" value="Calaocalao">Calaocalao</option>
+        <option name="location" value="Don Carlos Norte">Don Carlos Norte</option>
+        <option name="location" value="Embayao">Embayao</option>
+        <option name="location" value="Kalubihon">Kalubihon</option>
+        <option name="location" value="Kasigkot">Kasigkot</option>
+        <option name="location" value="Kawilihan">Kawilihan</option>
+        <option name="location" value="Kiara">Kiara</option>
+        <option name="location" value="Kibatang">Kibatang</option>
+        <option name="location" value="Mahayahay">Mahayahay</option>
+        <option name="location" value="Manlamonay">Manlamonay</option>
+        <option name="location" value="Maraymaray">Maraymaray</option>
+        <option name="location" value="Mauswagon">Mauswagon</option>
+        <option name="location" value="Minsalagan">Minsalagan</option>
+        <option name="location" value="New Nongnongan - Masimag">New Nongnongan - Masimag</option>
+        <option name="location" value="New Visayas">New Visayas</option>
+        <option name="location" value="Old Nongnongan">Old Nongnongan</option>
+        <option name="location" value="Pinamaloy">Pinamaloy</option>
+        <option name="location" value="Don Carlos Sur - Poblacion">Don Carlos Sur - Poblacion</option>
+        <option name="location" value="Pualas">Pualas</option>
+        <option name="location" value="San Antonio East">San Antonio East</option>
+        <option name="location" value="San Antonio West">San Antonio West</option>
+        <option name="location" value="San Francisco">San Francisco</option>
+        <option name="location" value="San Nicolas - Banban">San Nicolas - Banban</option>
+        <option name="location" value="San Roque">San Roque</option>
+        <option name="location" value="Sinangguyan">Sinangguyan</option>
+        <option name="location" value="Bismartz">Bismartz</option>
     </select>
     {{-- end of selection of location --}}
 
     {{-- textfield for specific location of the incident --}}
+    @error('specificLocation')
+      <div class="mt-4 "></div>
+      <span class="text-red-100 mt-5" role="alert">
+        <strong class="text-red-600"><i class="fa-light fa-circle-exclamation"></i>{{ $message }}</strong>
+      </span>
+    @enderror
+
     <div>
       <label for="message" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Specific location</label>
-      <textarea id="message" rows="4" wire.type="specificLocation" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Specific location of the incident..."></textarea>
+      <textarea id="specificLocation" rows="4" wire.model="specificLocation" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="specificLocation" placeholder="Specific location of the incident..." autocomplete="specificLocation"></textarea>
+
     </div>  
     {{-- end of textfield --}}  
 
     {{-- upload file --}} 
+
+    @error('file')
+      <div class="mt-4 "></div>
+      <span class="text-red-100 mt-5" role="alert">
+        <strong class="text-red-600"><i class="fa-light fa-circle-exclamation"></i>{{ $message }}</strong>
+      </span>
+    @enderror
     <div class="mb-6 pt-4">
         <label class="mb-5 block text-xl font-semibold text-[#07074D]">
           Upload File
         </label>
       
         <div class="mb-8">
-          <input type="file" name="file" wire.model="file" id="file" class="sr-only" />
-          <label for="file" class="relative flex min-h-[100px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-5 text-center">
+          <input type="file" name="files" wire:model="files" id="files" class="sr-only" />
+          <label for="files" class="relative flex min-h-[100px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-5 text-center">
             <div>
               <span class="mb-2 block text-xl font-semibold text-[#07074D]">
                 Use Camera
@@ -90,17 +122,13 @@
             </div>
           </label>
         </div>
-        @error('photo') <span class="error">{{ $message }}</span> @enderror 
-        {{-- <div wire:loading wire:taget="file" wire:key="file">  
-          <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-          Uploading...
-        </div> --}} 
-        @if ($file)
+        
+        @if ($files)
         <div class="mb-5 rounded-md bg-[#F5F7FB] py-4 px-8">
           <div class="flex items-center justify-between">
-            <img src="{{ $file->temporaryUrl() }}" alt="" height="70" class="p-2">
+            <img src="{{ $files->temporaryUrl() }}" alt="" height="70" class="p-2">
             <span class="truncate pr-3 text-base font-medium text-[#07074D]">
-              {{ $file->temporaryUrl() }}
+              {{ $files->temporaryUrl() }}
             </span>
             <button class="text-[#07074D]">
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,13 +140,11 @@
         </div>
         @endif
     </div>
+      <x-slot name="actions">
+        <x-jet-button wire:loading.attr="disabled">
+            {{ __('Report Incident') }}
+        </x-jet-button>
+      </x-slot>
     {{-- end of upload file --}}
   </x-slot>
-
-  <x-slot name="actions">
-      <x-jet-button wire:loading >
-          {{ __('Report incident') }}
-      </x-jet-button>
-  </x-slot>
-
 </x-jet-form-section>

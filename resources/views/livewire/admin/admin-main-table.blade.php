@@ -57,7 +57,7 @@
                                         <div class="flex items-center">
                                             <div class="ml-3">
                                                 <p class="text-gray-900 whitespace-no-wrap">
-                                                    {{ $report->id }}
+                                                    {{ $report->userId }}
                                                 </p>
                                             </div>
                                         </div>
@@ -67,11 +67,11 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            {{ $report->reported_on }}
+                                            {{ $report->created_at }}
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap">
+                                        <p class="text-gray-900 whitespace-no   -wrap">
                                             {{ $report->location}}
                                         </p>
                                     </td>

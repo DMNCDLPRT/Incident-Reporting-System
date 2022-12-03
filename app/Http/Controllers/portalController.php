@@ -17,12 +17,12 @@ class portalController extends Controller
         
     }
 
-/*     public function store(ReportIncident $request)
+    public function store(ReportIncident $request)
     {
         $post = $request->validated();
         $post = Reports::create($post);
         return redirect('portal')->with('flash_message', 'Incident succesfully Reported!'); 
-    } */
+    }
 
     public function show() {
 

@@ -12,7 +12,7 @@ class AdminReportsThisDay extends Component
 
     public function mount($reports)
     {
-        $day = Reports::whereDate('reported_on', Carbon::today())->get();
+        $day = Reports::whereDate('created_at', Carbon::today())->get();
         $reports = $day;
         $this->reports = $reports;
     }

@@ -13,7 +13,7 @@ class AdminReportsThisWeek extends Component
 
     public function mount($reports)
     {
-        $week = Reports::whereDate('reported_on', Carbon::now()->startOfWeek(Carbon::MONDAY)->endOfWeek(Carbon::SATURDAY))->get();
+        $week = Reports::whereDate('created_at', Carbon::now()->startOfWeek(Carbon::MONDAY)->endOfWeek(Carbon::SATURDAY))->get();
 
         $reports = $week;
         $this->reports = $reports;

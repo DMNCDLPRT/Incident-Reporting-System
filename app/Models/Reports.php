@@ -15,10 +15,19 @@ class Reports extends Model
     *
     * @var string
     */
-    const CREATED_AT = 'reported_on';
+    const CREATED_ON = 'created_at';
+
+    /**
+    * The name of the "updated at" column.
+    *
+    * @var string
+    */
+    const UPDATED_ON = 'updated_at';
 
     public function setDateAttribute( $value ) {
-        $this->attributes['CREATED_AT'] = (new Carbon($value))->format('d/m/y');
+        $this->attributes['CREATED_ON'] = (new Carbon($value))->format('d/m/y');
+
+        $this->attributes['UPDATED_ON'] = (new Carbon($value))->format('d/m/y');
     }
 
     protected $table = 'reports';
@@ -32,23 +41,21 @@ class Reports extends Model
     */
     protected $fillable = [
         'reportType',
+        'userId',
         'teamid',
         'location',
         'specificLocation',
         'status',
         'files',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class);
+    }
 }
-
-
-/* 
-    id number
-    type of report
-    date
-    location
-    status
-
-    Gaslighting myself into thingking
-    i'm okay because honestly,
-    i'm just tired of breaking down.
-*/

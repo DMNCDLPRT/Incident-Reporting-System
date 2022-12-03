@@ -7,6 +7,7 @@
       <!-- Fonts -->
       <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
       
+      <script src="https://kit.fontawesome.com/49ffc3c21b.js" crossorigin="anonymous"></script>
       @vite(['resources/css/app.css', 'resources/js/app.js'])
 
       @livewireStyles
@@ -20,9 +21,10 @@
         <div class="h-full bg-gray-50">
 
         <!-- livewire -->
-        
-        
-
+        <!-- Page Content -->
+        <main>
+            {{ $slot }}
+        </main>
         <!-- end -->
           <div class="sticky bottom-0 w-full rounded-t-xl bg-white px-5 py-2 shadow-sm shadow-gray-300">
             
@@ -54,6 +56,7 @@
     </main>
 
     @livewireScripts
+    @livewire('livewire-ui-modal')
 
   </body>
 

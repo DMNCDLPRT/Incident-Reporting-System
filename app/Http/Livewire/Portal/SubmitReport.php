@@ -3,31 +3,73 @@
 namespace App\Http\Livewire\Portal;
 
 use App\Http\Requests\ReportIncident;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Reports;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class SubmitReport extends Component
 {
+    use AuthorizesRequests;
+
     use WithFileUploads;
 
-    public $file;
+    /**
+     * Report Type
+     *
+     * @var string
+     */
+    public $reportType;
 
-    public $incidentType;
-
+    /**
+     * Report location
+     *
+     * @var string
+     */
     public $location;
 
+    /**
+     * Report specificlocation
+     *
+     * @var string
+     */
     public $specificLocation;
 
-    /* public function mount() {
+    /**
+     * Report file
+     *
+     * @var string
+     */
+    public $files;
 
-    } */
-
-    public function submitForm(ReportIncident $request) {
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string,mixed>
+     */
+    public function rules()
+    {
+    
+        return [
+            'files' => 'required|image|max:1024',
+            'reportType' => 'required',
+            'location' => 'required',
+            'specificLocation' => 'required|string'
+        ];
         
-        $submitReport = $this->validate($request);
-        dd($submitReport);
-        $submitReport = Reports::create($submitReport); 
+    }
+
+    public function submitForm(/* ReportIncident $request */) {
+        
+        $submitReport = $this->validate();
+        $submitReport['userId'] = auth()->id();
+        $submitReport['teamid'] = auth()->user()->currentTeam->id;
+        
+        /* dd($submitReport); */
+
+        Reports::create($submitReport); 
+        
+        
     }
 
     public function render()

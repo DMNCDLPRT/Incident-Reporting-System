@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
 class ReportIncident extends FormRequest
 {
     /**
@@ -13,7 +12,7 @@ class ReportIncident extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +22,9 @@ class ReportIncident extends FormRequest
      */
     public function rules()
     {
+    
         return [
+            'files' => 'required',
             'reportType' => 'required',
             'location' => 'required',
             'specificLocation' => 'required|string|regex:/^[a-zA-ZÑñ 0-9\s]+$/]'
@@ -39,12 +40,14 @@ class ReportIncident extends FormRequest
     public function messages()
     {
         return [
-            'reportType.required' => 'Report type is required',
+            'reportType.required' => 'Report type is required!',
 
-            'location.required' => 'Location is Required',
+            'location.required' => 'Location is Required!',
 
-            'specificLocation.required' => 'Please input the specific location of the incident',
-            'specificLocation.string' => 'Please input the valid regex: a-zA-ZÑñ 0-9',
+            'specificLocation.required' => 'Please input the specific location of the incident!',
+            'specificLocation.string' => 'Please input the valid regex: a-zA-ZÑñ 0-9!',
+
+            'files.required' => 'Please insert your image proof'
         ];
     }
 }

@@ -16,6 +16,10 @@
             @csrf
 
             <div>
+                <H1 class="display-center">Login</H1>
+            </div>
+
+            <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
@@ -32,7 +36,12 @@
                 </label>
             </div>
 
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                {{ __('Don\'t have an Account?') }}
+            </a>
+
             <div class="flex items-center justify-end mt-4">
+
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
