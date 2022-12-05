@@ -32,6 +32,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
         Route::get('/portal', 'index')->name('portal');
         Route::get('/user', 'user')->name('user-Profile');
-        Route::get('/statistics', 'reports')->name('statistics');
+        Route::get('/reports', 'reports')->name('reports');
     });
 });

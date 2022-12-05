@@ -24,6 +24,16 @@ class portalController extends Controller
         return view ('portal.userProfile', ['data' => $data]);
     }
 
+    public function reports() {
+        $reports = Reports::all();
+
+        $sort = $reports->sortBy('reportType');
+
+        dd($sort);
+
+        return view ('portal.publicReports')->with('data', $data);
+    }
+
     public function store(ReportIncident $request)
     {
         $post = $request->validated();
