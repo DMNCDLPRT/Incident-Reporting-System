@@ -64,12 +64,8 @@ class SubmitReport extends Component
         $submitReport = $this->validate();
         $submitReport['userId'] = auth()->id();
         $submitReport['teamid'] = auth()->user()->currentTeam->id;
-        
-        /* dd($submitReport); */
 
         Reports::create($submitReport); 
-        
-        
     }
 
     public function render()

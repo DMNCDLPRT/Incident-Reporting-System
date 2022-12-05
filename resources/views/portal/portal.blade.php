@@ -4,9 +4,6 @@
       <h1 class="text-3xl font-semibold">Don Carlos Quick Response</h1>
     </div>
     <div class="space-y-2 text-center">
-        <div class="text-2xl font-bold tracking-wider">
-          Push SOS for Rescue
-        </div>
         <div class="text-slate-200">
             <span class="activity-header">Report an incident through this web application. When you reporting an incident the assgined responders/department will we be notified.</span>
         </div>

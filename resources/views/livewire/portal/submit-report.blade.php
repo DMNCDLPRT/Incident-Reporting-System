@@ -11,7 +11,7 @@
 
     @error('reportType')
       <span class="m" role="alert">
-        <strong class="mt-4 text-red-600"><i class="fa-light fa-circle-exclamation"></i>{{ $message }}</strong>
+        <strong class="mt-4 text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
       </span>
     @enderror
 
@@ -39,7 +39,7 @@
     @error('location')
     <div class="mt-4"></div>
       <span class="text-red-100 mt-5" role="alert">
-        <strong class="text-red-600"><i class="fa-light fa-circle-exclamation"></i>{{ $message }}</strong>
+        <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
       </span>
     @enderror
 
@@ -82,23 +82,23 @@
     @error('specificLocation')
       <div class="mt-4 "></div>
       <span class="text-red-100 mt-5" role="alert">
-        <strong class="text-red-600"><i class="fa-light fa-circle-exclamation"></i>{{ $message }}</strong>
+        <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
       </span>
     @enderror
 
     <div>
       <label for="message" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Specific location</label>
-      <textarea id="specificLocation" rows="4" wire.model="specificLocation" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="specificLocation" placeholder="Specific location of the incident..." autocomplete="specificLocation"></textarea>
+      <textarea id="specificLocation" rows="4" wire:model="specificLocation" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="specificLocation" placeholder="Specific location of the incident..." autocomplete="specificLocation"></textarea>
 
     </div>  
     {{-- end of textfield --}}  
 
     {{-- upload file --}} 
 
-    @error('file')
+    @error('files')
       <div class="mt-4 "></div>
       <span class="text-red-100 mt-5" role="alert">
-        <strong class="text-red-600"><i class="fa-light fa-circle-exclamation"></i>{{ $message }}</strong>
+        <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
       </span>
     @enderror
     <div class="mb-6 pt-4">
@@ -141,9 +141,9 @@
         @endif
     </div>
       <x-slot name="actions">
-        <x-jet-button wire:loading.attr="disabled">
+        <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm Report Incident?');">
             {{ __('Report Incident') }}
-        </x-jet-button>
+        </x-jet-button>   
       </x-slot>
     {{-- end of upload file --}}
   </x-slot>

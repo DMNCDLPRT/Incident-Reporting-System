@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reports;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,11 @@ class AdminController extends Controller
 
     public function report()
     {
-        $report = Reports::latest()->get();
+        $report = Reports::latest()->take(20)->get();
+        
+        $users = User::get($report->userId)->get();
+
+        dd($users);
         return view ('admin.adminReport')->with('report', $report);
     }
 }

@@ -13,8 +13,15 @@ class portalController extends Controller
         return view ('portal.portal');
     }
 
-    public function create(ReportIncident $report) {
-        
+    public function user()
+    {
+        $user = auth()->user();
+
+        $reports = Reports::where('userId', $user->id)->get();
+
+        $data = [$user, $reports];
+
+        return view ('portal.userProfile', ['data' => $data]);
     }
 
     public function store(ReportIncident $request)

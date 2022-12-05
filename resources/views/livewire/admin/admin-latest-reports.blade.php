@@ -11,8 +11,8 @@
           <li class="py-3 sm:py-4">
              <div class="flex items-center space-x-4">
                 <div class="flex-shrink-0">
-                   <img class="h-8 w-8 rounded-full" src="https://demo.themesberg.com/windster/images/users/neil-sims.png" alt="Neil image">
-                </div>
+                  {{-- <img src="{{ auth()->profile_photo_url }}" alt="{{ auth()->name }}" class="mx-auto rounded-full h-20 w-20 object-cover"> --}}
+                  
                 <div class="flex-1 min-w-0">
                    <p class="text-sm font-medium text-gray-900 truncate">
                       {{ $report->id }}
