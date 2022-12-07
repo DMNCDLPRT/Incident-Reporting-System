@@ -63,7 +63,7 @@
                                         </div>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap">{{ $report->reportType }}</p>
+                                        <p class="text-gray-900 whitespace-no-wrap">{{ $report->report_id }}</p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
@@ -72,7 +72,7 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no   -wrap">
-                                            {{ $report->location}}
+                                            {{ $report->location_id}}
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

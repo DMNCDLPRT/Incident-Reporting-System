@@ -22,11 +22,11 @@
                 </tr>
             </thead>
             <tbody>
-
+                
                 @forelse ($data[1] as $data)
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $data->reportType }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $data->report_id }}</p>
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">
@@ -35,7 +35,7 @@
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no   -wrap">
-                            {{ $data->location}}
+                            {{ $data->location_id}}
                         </p>
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -60,7 +60,7 @@
         <div
             class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
             <span class="text-xs xs:text-sm text-gray-900">
-                Showing {{ $data[1]->count() }} Entries
+                Showing {{ $data->count() }} Entries
             </span>
             <div class="inline-flex mt-2 xs:mt-0">
                 <button

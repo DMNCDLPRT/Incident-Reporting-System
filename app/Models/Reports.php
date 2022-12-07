@@ -26,7 +26,6 @@ class Reports extends Model
 
     public function setDateAttribute( $value ) {
         $this->attributes['CREATED_ON'] = (new Carbon($value))->format('d/m/y');
-
         $this->attributes['UPDATED_ON'] = (new Carbon($value))->format('d/m/y');
     }
 
@@ -40,10 +39,9 @@ class Reports extends Model
     * @var array
     */
     protected $fillable = [
-        'reportType',
         'userId',
-        'teamid',
-        'location',
+        'report_id',
+        'location_id',
         'specificLocation',
         'status',
         'files',
@@ -54,8 +52,13 @@ class Reports extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function team()
+    public function reports()
     {
-        return $this->belongsTo(Team::class);
+        return $this->hasMany(ReportType::class);
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
     }
 }

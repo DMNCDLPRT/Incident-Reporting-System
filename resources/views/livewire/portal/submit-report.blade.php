@@ -16,21 +16,21 @@
     @enderror
 
     <label for="reportType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select type of Incident</label>
-    <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  wire:model="reportType" autocomplete="reportType" autofocus>
+    <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  wire:model="report_id" autocomplete="reportType" autofocus>
         <option disabled selected>Select Type of Incident</option>
-        <option name="reportType" value="Traffic Accident">Traffic Accident</option>
-        <option name="reportType" value="Fire incident">Fire incident</option>
-        <option name="reportType" value="Shooting Incident">Shooting Incident</option>
-        <option name="reportType" value="Hacking Incident">Hacking Incident</option>
-        <option name="reportType" value="Stabbing Incident">Stabbing Incident</option>
-        <option name="reportType" value="Alarm and Scandal">Alarm and Scandal</option>
-        <option name="reportType" value="Ambush">Ambush</option>
-        <option name="reportType" value="Carnapping/Motornapping">Carnapping/Motornapping</option>
-        <option name="reportType" value="Cellphone Snatching">Cellphone Snatching</option>
-        <option name="reportType" value="Flood - Natural Disaster">Flood - Natural Disaster</option>
-        <option name="reportType" value="Rape Incident">Rape Incident</option>
-        <option name="reportType" value="Suicide">Suicide</option>
-        <option name="reportType" value="Theft/Robbery">Theft/Robbery</option>
+        <option name="reportType" value="1">Traffic Accident</option>
+        <option name="reportType" value="2">Fire incident</option>
+        <option name="reportType" value="3">Shooting Incident</option>
+        <option name="reportType" value="4">Hacking Incident</option>
+        <option name="reportType" value="5">Stabbing Incident</option>
+        <option name="reportType" value="6">Alarm and Scandal</option>
+        <option name="reportType" value="7">Ambush</option>
+        <option name="reportType" value="8">Carnapping/Motornapping</option>
+        <option name="reportType" value="9">Cellphone Snatching</option>
+        <option name="reportType" value="10">Flood - Natural Disaster</option>
+        <option name="reportType" value="11">Rape Incident</option>
+        <option name="reportType" value="12">Suicide</option>
+        <option name="reportType" value="13">Theft/Robbery</option>
     </select>
     {{-- end of type of incident --}} 
 
@@ -44,37 +44,37 @@
     @enderror
 
     <label for="location" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Location/Barangay</label>
-    <select id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="location" autocomplete="location" autofocus>
+    <select id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="location_id" autocomplete="location" autofocus>
         <option disabled selected>Select Location</option>
-        <option name="location" value="Cabadiangan">Cabadiangan</option>
-        <option name="location" value="Bocboc">Bocboc</option>
-        <option name="location" value="Buyot">Buyot</option>
-        <option name="location" value="Calaocalao">Calaocalao</option>
-        <option name="location" value="Don Carlos Norte">Don Carlos Norte</option>
-        <option name="location" value="Embayao">Embayao</option>
-        <option name="location" value="Kalubihon">Kalubihon</option>
-        <option name="location" value="Kasigkot">Kasigkot</option>
-        <option name="location" value="Kawilihan">Kawilihan</option>
-        <option name="location" value="Kiara">Kiara</option>
-        <option name="location" value="Kibatang">Kibatang</option>
-        <option name="location" value="Mahayahay">Mahayahay</option>
-        <option name="location" value="Manlamonay">Manlamonay</option>
-        <option name="location" value="Maraymaray">Maraymaray</option>
-        <option name="location" value="Mauswagon">Mauswagon</option>
-        <option name="location" value="Minsalagan">Minsalagan</option>
-        <option name="location" value="New Nongnongan - Masimag">New Nongnongan - Masimag</option>
-        <option name="location" value="New Visayas">New Visayas</option>
-        <option name="location" value="Old Nongnongan">Old Nongnongan</option>
-        <option name="location" value="Pinamaloy">Pinamaloy</option>
-        <option name="location" value="Don Carlos Sur - Poblacion">Don Carlos Sur - Poblacion</option>
-        <option name="location" value="Pualas">Pualas</option>
-        <option name="location" value="San Antonio East">San Antonio East</option>
-        <option name="location" value="San Antonio West">San Antonio West</option>
-        <option name="location" value="San Francisco">San Francisco</option>
-        <option name="location" value="San Nicolas - Banban">San Nicolas - Banban</option>
-        <option name="location" value="San Roque">San Roque</option>
-        <option name="location" value="Sinangguyan">Sinangguyan</option>
-        <option name="location" value="Bismartz">Bismartz</option>
+        <option name="location" value="1">Cabadiangan</option>
+        <option name="location" value="2">Bocboc</option>
+        <option name="location" value="3">Buyot</option>
+        <option name="location" value="4">Calaocalao</option>
+        <option name="location" value="5">Don Carlos Norte</option>
+        <option name="location" value="6">Embayao</option>
+        <option name="location" value="7">Kalubihon</option>
+        <option name="location" value="8">Kasigkot</option>
+        <option name="location" value="9">Kawilihan</option>
+        <option name="location" value="10">Kiara</option>
+        <option name="location" value="11">Kibatang</option>
+        <option name="location" value="12">Mahayahay</option>
+        <option name="location" value="13">Manlamonay</option>
+        <option name="location" value="14">Maraymaray</option>
+        <option name="location" value="15">Mauswagon</option>
+        <option name="location" value="16">Minsalagan</option>
+        <option name="location" value="17">New Nongnongan - Masimag</option>
+        <option name="location" value="18">New Visayas</option>
+        <option name="location" value="19">Old Nongnongan</option>
+        <option name="location" value="20">Pinamaloy</option>
+        <option name="location" value="21">Don Carlos Sur - Poblacion</option>
+        <option name="location" value="22">Pualas</option>
+        <option name="location" value="23">San Antonio East</option>
+        <option name="location" value="24">San Antonio West</option>
+        <option name="location" value="25">San Francisco</option>
+        <option name="location" value="26">San Nicolas - Banban</option>
+        <option name="location" value="27">San Roque</option>
+        <option name="location" value="28">Sinangguyan</option>
+        <option name="location" value="29">Bismartz</option>
     </select>
     {{-- end of selection of location --}}
 
@@ -138,6 +138,26 @@
             </button>
           </div>
         </div>
+        @endif
+        
+
+        @if(session()->has('message'))
+            <div>
+              <div class="max-w-xs bg-gray-800 text-sm text-white rounded-md shadow-lg dark:bg-gray-900 mb-3 ml-3" role="alert">
+                <div class="flex p-4">
+                  {{ session()->get('message') }}
+            
+                  <div class="ml-auto">
+                    <button type="button" class="inline-flex flex-shrink-0 justify-center items-center h-4 w-4 rounded-md text-white/[.5] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-gray-600 transition-all text-sm dark:focus:ring-offset-gray-900 dark:focus:ring-gray-800">
+                      <span class="sr-only">Close</span>
+                      <svg class="w-3.5 h-3.5" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.92524 0.687069C1.126 0.486219 1.39823 0.373377 1.68209 0.373377C1.96597 0.373377 2.2382 0.486219 2.43894 0.687069L8.10514 6.35813L13.7714 0.687069C13.8701 0.584748 13.9882 0.503105 14.1188 0.446962C14.2494 0.39082 14.3899 0.361248 14.5321 0.360026C14.6742 0.358783 14.8151 0.38589 14.9468 0.439762C15.0782 0.493633 15.1977 0.573197 15.2983 0.673783C15.3987 0.774389 15.4784 0.894026 15.5321 1.02568C15.5859 1.15736 15.6131 1.29845 15.6118 1.44071C15.6105 1.58297 15.5809 1.72357 15.5248 1.85428C15.4688 1.98499 15.3872 2.10324 15.2851 2.20206L9.61883 7.87312L15.2851 13.5441C15.4801 13.7462 15.588 14.0168 15.5854 14.2977C15.5831 14.5787 15.4705 14.8474 15.272 15.046C15.0735 15.2449 14.805 15.3574 14.5244 15.3599C14.2437 15.3623 13.9733 15.2543 13.7714 15.0591L8.10514 9.38812L2.43894 15.0591C2.23704 15.2543 1.96663 15.3623 1.68594 15.3599C1.40526 15.3574 1.13677 15.2449 0.938279 15.046C0.739807 14.8474 0.627232 14.5787 0.624791 14.2977C0.62235 14.0168 0.730236 13.7462 0.92524 13.5441L6.59144 7.87312L0.92524 2.20206C0.724562 2.00115 0.611816 1.72867 0.611816 1.44457C0.611816 1.16047 0.724562 0.887983 0.92524 0.687069Z" fill="currentColor"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
         @endif
     </div>
       <x-slot name="actions">
