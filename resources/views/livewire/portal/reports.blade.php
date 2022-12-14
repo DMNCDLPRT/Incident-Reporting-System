@@ -1,5 +1,5 @@
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-    <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Types of reports by %</h3>
+    <h3 class="text-xl h-full leading-none font-bold text-gray-900 mb-10">Types of reports by %</h3>
     <div class="block w-full overflow-x-auto">
        <table class="items-center w-full bg-transparent border-collapse">
           <thead>
@@ -12,8 +12,8 @@
           <tbody class="divide-y divide-gray-100">
             @forelse ($reports as $report)
                <tr class="text-gray-500">
-                  <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">{{ $report->report_id }}</th>
-                  <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">{{ $report->report_name }}</td>
+                  <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">{{ $report->report_name }}</th>
+                  <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">{{ $report->reports->count() }}</td>
                   <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                      <div class="flex items-center">
                         <span class="mr-2 text-xs font-medium">30%</span>

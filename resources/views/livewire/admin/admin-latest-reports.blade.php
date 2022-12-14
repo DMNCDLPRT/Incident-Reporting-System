@@ -16,13 +16,11 @@
                 <div class="flex-1 min-w-0">
                    <p class="text-sm font-medium text-gray-900 truncate">
                       {{ $report->id }}
+                      <p class="text-xs font-semibold text-gray-500">{{$report->created_at->diffForHumans()}}</p>
                    </p>
                    <p class="text-sm text-gray-500 truncate">
                       <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="17727a767e7b57607e7973646372653974787a">{{ $report->reported_on }}</a>
                    </p>
-                </div>
-                <div class="inline-flex items-center text-base font-semibold text-gray-900">
-                   {{ $report->status }}
                 </div>
              </div>
           </li>

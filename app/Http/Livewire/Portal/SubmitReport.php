@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire\Portal;
 
-use App\Http\Controllers\portalController;
-use App\Http\Requests\ReportIncident;
+use App\Http\Livewire\AssignDepartments;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Reports;
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Symfony\Component\Routing\Route;
+use App\Models\cellNumber;
+use App\Models\Departments;
 
 class SubmitReport extends Component
 {
@@ -61,34 +62,80 @@ class SubmitReport extends Component
         
     }
 
-    public function submitForm() {
-        
+
+    public function submitForm() 
+    {
         $submitReport = $this->validate();
+
         $submitReport['userId'] = auth()->id();
         $submitReport['teamid'] = auth()->user()->currentTeam->id;
-
-        Reports::create($submitReport); 
-
-        session()->flash('message', 'Incident Successfully Reported');
-
         
+        $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
+        $submitReport['files']->storeAs('public/images/',$name); // storing image to public/images folder
+        Reports::create($submitReport);
+
+        /* // function for making array into string 
+        // text message
+        $words = [$submitReport['report_id'], $submitReport['location_id'], $submitReport['specificLocation']];
+        function join_words($words) {
+            $return = [];
+            for ($i=0; $i < count($words); $i++) {
+                $return[] = implode(' ', array_slice($words, 0, $i+1));
+            }
+            return $return;
+        }
+        $result = [];
+        $result = array_merge($result, join_words($words));
+    
+        // SEMAPHORE - text messagin API
+        $ch = curl_init();
+        $parameters = array(
+            'apikey' => env('SEMAPHORE_API_KEY'), //Your API KEY
+            'number' => $contact,
+            'message' => $result[2],
+            'sendername' => 'SEMAPHORE'
+        );
+        curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
+        curl_setopt( $ch, CURLOPT_POST, 1 );
+
+        //Send the parameters set above with the request
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $parameters ) );
+
+        // Receive response from server
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        $output = curl_exec( $ch );
+        curl_close ($ch);
+
+        //Show the server response
+        // echo $output; */
+
+        session()->flash('message', /* $output */ 'Incident Succefully Reported');
     }
 
-    public function SMS()
-    {
-        $cell_num = ['639774347454', '09103634532'];
+    // 454 - globe - ako
+    // 421 - TM - mama 1
+    // 723 - smart - mama 2
 
-        if($this->report_id == 1)
-        {
-            $cell_num[1];
+    // public $contact = ['09774347454', '09532514421', '09606428723', '09103634532'];
+
+    public function contact($report_id)
+    {
+        $contact = AssignDepartments::whith('')->get;
+
+    
+        // making array of cell numbers into string
+        // contact number
+        function join_nums($cell) {
+            $return = [];
+            for ($i=0; $i < count($cell); $i++) {
+                $return[] = implode(', ', array_slice($cell, 0, $i+1));
+            }
+            return $return;
         }
-        else if($this->report_id == 2)
-        {
-            $cell_num[2];
-        } 
-        else{
-            $cell_num;
-        }
+
+        $contact = [];
+        $contact = array_merge($contact, join_nums($cell));
+        dd($contact);
     }
 
     public function render()

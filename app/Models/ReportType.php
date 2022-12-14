@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\AssignDepartments;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +12,7 @@ class ReportType extends Model
 
     protected $table = 'report_types';
     protected $primaryKey = 'id';
+
 
     public $timestamp = true;
 
@@ -23,7 +25,17 @@ class ReportType extends Model
 
     public function type()
    {
-       return $this->belongsTo(Reports::class, );
+       return $this->belongsTo(Reports::class);
    }
-    
+
+   public function assign()
+   {
+        return $this->belongsTo(AssignDepartments::class);
+   }
+
+   public function reports()
+    {
+        return $this->belongsTo(Reports::class, 'reports_id');
+    }
+ 
 }

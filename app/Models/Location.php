@@ -17,5 +17,10 @@ class Location extends Model
     *
     * @var array
     */
-    protected $fillable = ['location_id', 'location_name'];
+    protected $fillable = [/* 'location_id', */ 'location_name'];
+
+    public function loc()
+    {
+       return $this->belongsTo(Reports::class);
+    }
 }

@@ -18,11 +18,19 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             
-            $table->string('userId')->references('id')->users();
+            $table->unsignedInteger('userId')->references('id')->users();
+            
+            $table->unsignedBigInteger('report_id')->index();
+            $table->foreign('report_id')
+                ->references('id')
+                ->on('report_types')
+                ->onDelete('cascade');
 
-            $table->foreignId('report_id');
-
-            $table->foreignId('location_id');
+            $table->unsignedBigInteger('location_id')->index();
+            $table->foreign('location_id')
+                ->references('id')
+                ->on('locations')
+                ->onDelete('cascade');
 
             $table->string('specificLocation');
             $table->string('files')->nullable();

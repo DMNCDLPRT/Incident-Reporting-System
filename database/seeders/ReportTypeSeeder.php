@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Models\ReportType;
+use Illuminate\Support\Carbon;
 
 class ReportTypeSeeder extends Seeder
 {
@@ -18,23 +19,23 @@ class ReportTypeSeeder extends Seeder
     public function run()
     {
         $items = [
-            ['report_id' => 1, 'report_name' => 'Traffic Accident'],
-            ['report_id' => 2, 'report_name' => 'Fire incident'],
-            ['report_id' => 3, 'report_name' => 'Shooting Incident'],
-            ['report_id' => 4, 'report_name' => 'Hacking Incident'],
-            ['report_id' => 5, 'report_name' => 'Stabbing Incident'],
-            ['report_id' => 6, 'report_name' => 'Alarm and Scandal'],
-            ['report_id' => 7, 'report_name' => 'Ambush'],
-            ['report_id' => 8, 'report_name' => 'Carnapping/Motornapping'],
-            ['report_id' => 9, 'report_name' => 'Cellphone Snatching'],
-            ['report_id' => 10, 'report_name' => 'Flood - Natural Disaster'],
-            ['report_id' => 11, 'report_name' => 'Rape Incident'],
-            ['report_id' => 12, 'report_name' => 'Suicide'],
-            ['report_id' => 13, 'report_name' => 'Theft/Robbery'],
+            ['reports_id' => 1,'report_name' => 'Traffic Accident', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 2,'report_name' => 'Fire incident', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 3,'report_name' => 'Shooting Incident', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 4,'report_name' => 'Hacking Incident', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 5,'report_name' => 'Stabbing Incident', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 6,'report_name' => 'Alarm and Scandal', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 7,'report_name' => 'Ambush', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 8,'report_name' => 'Carnapping/Motornapping', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 9,'report_name' => 'Cellphone Snatching', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 10, 'report_name' => 'Flood - Natural Disaster', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 11, 'report_name' => 'Rape Incident', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 12, 'report_name' => 'Suicide', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
+            ['reports_id' => 13, 'report_name' => 'Theft/Robbery', 'created_at' => Carbon::now()->format('Y-m-d H:i:s'), 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')],
         ];
     
         foreach ($items as $item) {
-            DB::table('report_types')->insert($item);
+            DB::table('report_types')->insert([$item]);
         }
     }
 }

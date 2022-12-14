@@ -47,6 +47,7 @@ class Reports extends Model
         'files',
     ];
 
+
     public function user()
     {
         return $this->belongsTo(User::class);

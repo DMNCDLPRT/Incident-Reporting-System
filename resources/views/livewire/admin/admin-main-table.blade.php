@@ -47,6 +47,10 @@
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                         Status
                                     </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Action
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,16 +67,17 @@
                                         </div>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-gray-900 whitespace-no-wrap">{{ $report->report_id }}</p>
+                                        <p class="text-gray-900 whitespace-no-wrap">{{ $report->reports[0]->report_name }}</p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
                                             {{ $report->created_at->format('d/m/Y') }}
+                                            <p class="text-xs font-semibold text-gray-500">{{$report->created_at->diffForHumans()}}</p>
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no   -wrap">
-                                            {{ $report->location_id}}
+                                            {{ $report->locations[0]->location_name }}
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -88,6 +93,33 @@
                                                 class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
                                         <span class="relative"> {{ $report->status }} </span>
                                         </span>
+                                    </td>
+                                    <td>
+                                        <div class="flex flex-row items-center">
+                                            <div class="flex flex-col mb-2 ml-4 mt-1">
+                                              <x-jet-dropdown align="left" width="48">
+                                                <x-slot name="trigger">
+                                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                                                  </svg>
+                                                </x-slot>
+                                                  <x-slot name="content">
+                                                    <!-- Report Management -->
+                                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                                        {{ __('Manage report') }}
+                                                    </div>
+                                  
+                                                    <x-jet-dropdown-link href="{{ route('view.report', $report->id) }}">
+                                                        {{ __('View') }}
+                                                    </x-jet-dropdown-link>
+                                  
+                                                    <x-jet-dropdown-link href="{{ route('destroy.report', $report->id) }}">
+                                                        {{ __('Delete') }}
+                                                    </x-jet-dropdown-link>
+                                                </x-slot>
+                                              </x-jet-dropdown>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                         

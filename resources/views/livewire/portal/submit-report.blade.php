@@ -16,8 +16,8 @@
     @enderror
 
     <label for="reportType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select type of Incident</label>
-    <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  wire:model="report_id" autocomplete="reportType" autofocus>
-        <option disabled selected>Select Type of Incident</option>
+    <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Specific location of the incident..."  wire:model="report_id" autocomplete="reportType" autofocus>
+        <option @disabled(true) @selected(true)>Select Type of Incident</option>
         <option name="reportType" value="1">Traffic Accident</option>
         <option name="reportType" value="2">Fire incident</option>
         <option name="reportType" value="3">Shooting Incident</option>
@@ -45,7 +45,7 @@
 
     <label for="location" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Location/Barangay</label>
     <select id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="location_id" autocomplete="location" autofocus>
-        <option disabled selected>Select Location</option>
+        <option @disabled(true) @selected(true)>Select Location</option>
         <option name="location" value="1">Cabadiangan</option>
         <option name="location" value="2">Bocboc</option>
         <option name="location" value="3">Buyot</option>
@@ -127,8 +127,10 @@
         <div class="mb-5 rounded-md bg-[#F5F7FB] py-4 px-8">
           <div class="flex items-center justify-between">
             <img src="{{ $files->temporaryUrl() }}" alt="" height="70" class="p-2">
+          </div>
+          <div class="flex items-center justify-between bg-[#e7e8ea] p-3 rounded-md">
             <span class="truncate pr-3 text-base font-medium text-[#07074D]">
-              {{ $files->temporaryUrl() }}
+              {{ $files->getClientOriginalName() }}
             </span>
             <button class="text-[#07074D]">
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,7 +145,7 @@
 
         @if(session()->has('message'))
             <div>
-              <div class="max-w-xs bg-gray-800 text-sm text-white rounded-md shadow-lg dark:bg-gray-900 mb-3 ml-3" role="alert">
+              <div class="bg-gray-800 text-sm text-white rounded-md shadow-lg dark:bg-gray-900 mt-3" role="alert">
                 <div class="flex p-4">
                   {{ session()->get('message') }}
             
@@ -165,6 +167,6 @@
             {{ __('Report Incident') }}
         </x-jet-button>   
       </x-slot>
-    {{-- end of upload file --}}
+      
   </x-slot>
 </x-jet-form-section>

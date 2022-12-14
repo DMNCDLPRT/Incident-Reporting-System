@@ -16,10 +16,6 @@
             @csrf
 
             <div>
-                <H1 class="display-center">Login</H1>
-            </div>
-
-            <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
