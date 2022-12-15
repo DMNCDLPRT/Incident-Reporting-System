@@ -8,8 +8,8 @@ use App\Models\Reports;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Models\cellNumber;
-use App\Models\Departments;
+use App\Http\Controllers\portalController;
+
 
 class SubmitReport extends Component
 {
@@ -67,14 +67,36 @@ class SubmitReport extends Component
     {
         $submitReport = $this->validate();
 
-        $submitReport['userId'] = auth()->id();
-        $submitReport['teamid'] = auth()->user()->currentTeam->id;
+        $contact = new portalController;
+        $nums = $contact->contact($submitReport['report_id']);
+
         
+        foreach($nums as $num){
+            $array = [$num->number];
+        }
+
+        // making array of cell numbers into string
+        // contact number
+        function join_nums( $array) {
+            $return = [];
+            for ($i=0; $i < count($array); $i++) {
+                $return[] = implode(', ', array_slice( $array, 0, $i+1));
+            }
+            return $return;
+        }
+
+        $contact = [];
+        $contact = array_merge($contact, join_nums( $array));
+
+        dd($contact);
+
+        $submitReport['userId'] = auth()->id();
+       
+        Reports::create($submitReport);
         $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
         $submitReport['files']->storeAs('public/images/',$name); // storing image to public/images folder
-        Reports::create($submitReport);
 
-        /* // function for making array into string 
+        // function for making array into string 
         // text message
         $words = [$submitReport['report_id'], $submitReport['location_id'], $submitReport['specificLocation']];
         function join_words($words) {
@@ -107,7 +129,7 @@ class SubmitReport extends Component
         curl_close ($ch);
 
         //Show the server response
-        // echo $output; */
+        // echo $output;
 
         session()->flash('message', /* $output */ 'Incident Succefully Reported');
     }
@@ -117,26 +139,6 @@ class SubmitReport extends Component
     // 723 - smart - mama 2
 
     // public $contact = ['09774347454', '09532514421', '09606428723', '09103634532'];
-
-    public function contact($report_id)
-    {
-        $contact = AssignDepartments::whith('')->get;
-
-    
-        // making array of cell numbers into string
-        // contact number
-        function join_nums($cell) {
-            $return = [];
-            for ($i=0; $i < count($cell); $i++) {
-                $return[] = implode(', ', array_slice($cell, 0, $i+1));
-            }
-            return $return;
-        }
-
-        $contact = [];
-        $contact = array_merge($contact, join_nums($cell));
-        dd($contact);
-    }
 
     public function render()
     {

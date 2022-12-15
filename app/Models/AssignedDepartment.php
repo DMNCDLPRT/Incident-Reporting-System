@@ -29,11 +29,9 @@ class AssignedDepartment extends Model
         return $this->belongsTo(ReportType::class, 'incidents_id');
     }
 
-    
-
     public function contact()
     {
-        return $this->hasMany(cellNumber::class);
+        return $this->hasMany(cellNumber::class, 'department_id');
     }
 
 }

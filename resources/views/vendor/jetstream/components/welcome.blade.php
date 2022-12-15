@@ -1,10 +1,10 @@
 <!-- component -->
-<div class="antialiased w-full h-full bg-black text-gray-400 font-inter p-10">
+<div class="antialiased w-full h-full  font-inter p-10">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="container px-4 mx-auto">
             <div>
             <div id="title" class="text-center my-10">
-                <h1 class="font-bold text-4xl text-white">Quick Emergency Response</h1>
+                <h1 class="font-bold text-4xl">Quick Emergency Response</h1>
                 <p class="text-light text-gray-500 text-xl">
                     Don Carlos Bukidnon
                 </p>
@@ -12,7 +12,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-evenly gap-10 pt-10">
                 <div id="plan" class="rounded-lg text-center overflow-hidden w-full transform hover:shadow-2xl hover:scale-105 transition duration-200 ease-in">
                     <div id="title" class="w-full py-5 border-b border-gray-800">
-                    <h2 class="font-bold text-3xl text-white">Features</h2>
+                    <h2 class="font-bold text-3xl">Features</h2>
                     <h3 class="font-normal text-indigo-500 text-xl mt-2">
                         features and ****
                     </h3>
@@ -43,7 +43,7 @@
                         <li>Subdomain included</li>
                         </ul>
                         <div id="choose" class="w-full mt-10 px-6">
-                        <a href="#" class="w-full block bg-gray-900 font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover:text-white">
+                        <a href="#" class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
                             Features
                             </a>
                         </div>
@@ -52,7 +52,7 @@
                 </div>
                 <div id="plan" class="rounded-lg text-center overflow-hidden w-full transform hover:shadow-2xl hover:scale-105 transition duration-200 ease-in">
                     <div id="title" class="w-full py-5 border-b border-gray-800">
-                    <h2 class="font-bold text-3xl text-white">Portals</h2>
+                    <h2 class="font-bold text-3xl">Portals</h2>
                     <h3 class="font-normal text-indigo-500 text-xl mt-2">
                         See Active Portals
                     </h3>
@@ -83,7 +83,7 @@
                             <li>Domain included</li>
                             </ul>
                             <div id="choose" class="w-full mt-10 px-6">
-                                <a href="#" class="w-full block bg-gray-900 font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover:text-white">
+                                <a href="#" class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
                                     Locations
                                 </a>
                             </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div id="plan" class="rounded-lg text-center overflow-hidden w-full transform hover:shadow-2xl hover:scale-105 transition duration-200 ease-in">
                     <div id="title" class="w-full py-5 border-b border-gray-800">
-                    <h2 class="font-bold text-3xl text-white">How it works</h2>
+                    <h2 class="font-bold text-3xl">How it works</h2>
                     <h3 class="font-normal text-indigo-500 text-xl mt-2">
                         Tutorials and Documentation
                     </h3>
@@ -123,7 +123,7 @@
                             <li>Domain included</li>
                             </ul>
                             <div id="choose" class="w-full mt-10 px-6">
-                            <a href="#"class="w-full block bg-gray-900 font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover:text-white">
+                            <a href="#"class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
                                 Get Started!
                             </a>
                             </div>

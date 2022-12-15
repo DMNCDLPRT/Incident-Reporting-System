@@ -18,12 +18,11 @@ Route::get('/', function () {
 });
 
 
-
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
 
-    Route::prefix('admin')->controller(App\Http\Controllers\AdminController::class)->group(function () {
+    Route::middleware(['auth' => 'role:super-admin|admin'])->prefix('admin')->controller(App\Http\Controllers\AdminController::class)->group(function () {
         
         Route::get('/dashboard', 'index')->name(('adminDashboard'));
         Route::get('/admin', 'admin')->name('admin');
@@ -36,15 +35,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/view/report/{id}', 'viewReport')->name('view.report');
         Route::get('/destroy/report/{id}', 'destroyReport')->name('destroy.report');
         Route::get('/edit/report/{id}', 'editReport')->name('edit.report');
+
     });
 
-    Route::prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
+    Route::middleware(['auth' => 'role:user|admin|super-admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
 
         Route::get('/portal', 'index')->name('portal');
         Route::post('/portal', 'sendSMS')->name('portal');
         
         Route::get('/user', 'user')->name('user-Profile');
         Route::get('/reports', 'reports')->name('reports');
-
     });
 });

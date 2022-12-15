@@ -5,7 +5,7 @@
     </div>
     <div class="space-y-2 text-center">
         <div class="text-slate-200">
-            <span class="activity-header">Report an incident through this web application. When you reporting an incident the assgined responders/department will we be notified.</span>
+            <span class="activity-header">Report an incident through this web application. When you report an incident the assgined responders/department will we be notified through text message. Your Report will be collected.</span>
         </div>
     </div>
   </div>

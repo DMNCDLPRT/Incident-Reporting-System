@@ -14,13 +14,11 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $reports = Reports::with('reports')->get();
-        $reports = Reports::with('locations')->get();
+        $reports = Reports::with('reports', 'locations')->get();
+        $location = Reports::with('locations')->get();
         $incidents = Reports::withCount('reports')->get();
 
-        // dd($incidents);
-
-        return view ('admin.adminDashboard')->with(['reports' => $reports, 'incidents' => $incidents]);
+        return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
 
     public function admin()

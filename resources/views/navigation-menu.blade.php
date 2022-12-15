@@ -15,15 +15,16 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('portal') }}" :active="request()->routeIs('portal')">
+                        {{ __('Report Emergency') }}
+                    </x-jet-nav-link>
+
+                    @role('admin|super-admin')
                     <x-jet-nav-link href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
                         {{ __('Admin-Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
-                        {{ __('Settings') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('portal') }}" :active="request()->routeIs('portal')">
-                        {{ __('Portal') }}
-                    </x-jet-nav-link>
+                    @endrole
                 </div>
             </div>
 
