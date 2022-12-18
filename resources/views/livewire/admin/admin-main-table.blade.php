@@ -115,8 +115,8 @@
                                         
                                 @empty
                                     <tr>
-                                        <td>
-                                            There Are no reports yet
+                                        <td class="p-2">
+                                            There are no reports yet
                                         </td>
                                     </tr>
                                 @endforelse

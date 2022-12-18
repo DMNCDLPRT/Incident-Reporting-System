@@ -9,6 +9,7 @@ use App\Models\ReportType;
 use App\Models\cellNumber;
 use App\Models\AssignedDepartment;
 use Illuminate\Support\Facades\DB as FacadesDB;
+use Carbon\Carbon;
 
 class portalController extends Controller
 {
@@ -43,18 +44,43 @@ class portalController extends Controller
 
     public function contact($report_id)
     {
-        $new = (int)$report_id;
+        $id = (int)$report_id;
+        $assign = FacadesDB::table('assigns')->where('incidents_id', $id)->get(); 
 
-        $assign = FacadesDB::table('assigns')->where('incidents_id', $new)->get();
-        
         $cell = [];
         foreach($assign as $assigns){
-            $cell = FacadesDB::table('contacts')->where('department_id', $assigns->department_id)->get();
+            $cell[] = FacadesDB::table('contacts')->where('department_id', $assigns->department_id)->get();   
         }
-        
 
         return $cell;
     }
 
+    public function message($words)
+    {
+        $incidentId = (int)$words[0];
+        $locationId = (int)$words[1];
 
+        $incident = FacadesDB::table('report_types')->where('id', $incidentId)->get();
+        $location = FacadesDB::table('locations')->where('id', $locationId)->get();
+        $time = Carbon::now()->toDateTimeString()/* ->format('d/m/y/') */;
+
+        $words = [
+            "Incident Type: ", $incident[0]->report_name, 
+            "\nLocation: ", $location[0]->location_name,
+            "\n\nSpecific Location: ", $words[2],
+            "\nDate: ", $time
+        ];
+        function join_words($words) {
+            $return = [];
+            for ($i=0; $i < count($words); $i++) {
+                $return[] = implode(' ', array_slice($words, 0, $i+1));
+            }
+            return $return;
+        }
+        $result = [];
+        $result = array_merge($result, join_words($words));
+        $message = end($result);
+
+        return $message;
+    }
 }

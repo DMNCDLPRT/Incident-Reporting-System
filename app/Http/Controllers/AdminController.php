@@ -26,6 +26,12 @@ class AdminController extends Controller
         $numbers = Departments::with('cellnum')->get();
         $assigned = AssignedDepartment::with('incidents')->get();
         $incidents = ReportType::all();
+        $department = AssignedDepartment::with('assignedTo')->get();
+
+        foreach($department as $dept){
+            $dept_id[] = $dept->departments;
+        }
+        // dd($dept_id);
 
         return view('admin.admin')->with(['numbers' => $numbers, 'incidents' => $incidents, 'assigned' => $assigned]);
     }

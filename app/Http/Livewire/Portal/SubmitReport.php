@@ -67,55 +67,57 @@ class SubmitReport extends Component
     {
         $submitReport = $this->validate();
 
+        // dd($submitReport);
         $contact = new portalController;
         $nums = $contact->contact($submitReport['report_id']);
 
-        
+        $array = [];
         foreach($nums as $num){
-            $array = [$num->number];
+            $i = 0;
+            $array[] = $num[$i]->number;
+            $i + 1;
         }
+
+        //dd($array);
 
         // making array of cell numbers into string
         // contact number
-        function join_nums( $array) {
+        function join_nums($array) {
             $return = [];
             for ($i=0; $i < count($array); $i++) {
                 $return[] = implode(', ', array_slice( $array, 0, $i+1));
             }
             return $return;
         }
-
+        
         $contact = [];
         $contact = array_merge($contact, join_nums( $array));
+        // $contact = join_nums( $array);
 
-        dd($contact);
-
-        $submitReport['userId'] = auth()->id();
-       
-        Reports::create($submitReport);
+        if (count($array) > 1) {
+            // array is more than 0
+            $number = end($contact);
+        } else {
+            // array is 0
+            $number = $contact[0];
+        }
         $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
         $submitReport['files']->storeAs('public/images/',$name); // storing image to public/images folder
 
         // function for making array into string 
         // text message
+
+        $controller = new portalController;
         $words = [$submitReport['report_id'], $submitReport['location_id'], $submitReport['specificLocation']];
-        function join_words($words) {
-            $return = [];
-            for ($i=0; $i < count($words); $i++) {
-                $return[] = implode(' ', array_slice($words, 0, $i+1));
-            }
-            return $return;
-        }
-        $result = [];
-        $result = array_merge($result, join_words($words));
-    
+        $message = $controller->message($words);
+
         // SEMAPHORE - text messagin API
         $ch = curl_init();
         $parameters = array(
             'apikey' => env('SEMAPHORE_API_KEY'), //Your API KEY
-            'number' => $contact,
-            'message' => $result[2],
-            'sendername' => 'SEMAPHORE'
+            'number' => $number,
+            'message' => $message,
+            // 'sendername' => 'EREPORT'
         );
         curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
         curl_setopt( $ch, CURLOPT_POST, 1 );
@@ -128,10 +130,15 @@ class SubmitReport extends Component
         $output = curl_exec( $ch );
         curl_close ($ch);
 
-        //Show the server response
+        // Show the server response
         // echo $output;
 
+        $submitReport['userId'] = auth()->id(); // get the user id of the reporter
+        // Reports::create($submitReport); // create/submit report - store to database
+
+        session()->flash('output', $output);
         session()->flash('message', /* $output */ 'Incident Succefully Reported');
+
     }
 
     // 454 - globe - ako

@@ -14,11 +14,68 @@
   </head>
 
   <body class="antialiased bg-white dark:bg-gray-900">
-
     <main>
       <!-- component -->
-      <div class="mx-auto max-w-[800px]">
+      <div class="mx-auto max-w-[800px]"> 
         <div class="h-full bg-gray-50">
+          <nav class="p-2 pl-5 pr-5 flex flex-grow justify-between z-10 items-center mx-auto h-18 mb-8 bg-slate-100">
+            <div class="inline-flex">
+                <a href="/">
+                  <div class="flex justify-center items-center space-x-4">
+                    <img src="{{ asset('images/quick-reponse-logo-nb.png') }}" alt="Logo" class=" w-11 ">
+                    <h4 class="text-xl font-semibold  leading-tight truncate">Portal</h4> 
+                  </div>
+                </a>
+              </div>
+              <div class="flex-initial">
+                <div class="flex justify-end items-center relative">
+                  <div class="block flex-grow-0 flex-shrink-0">
+                  <div class="inline relative">
+                    <x-jet-dropdown>
+                      <x-slot name="trigger">
+                        <div class="flex justify-center items-center space-x-4">
+                          <h4>{{ Auth()->user()->name }}</h4>
+                          <img src="{{ Auth()->user()->profile_photo_url }}" alt="{{ Auth()->user()->name }}" class="mx-auto rounded-full h-10 w-10 object-cover">
+                        </div>
+                      </x-slot>
+                      <x-slot name="content">
+                        <!-- Account Management -->
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Manage Account') }}
+                        </div>
+      
+                        <x-jet-dropdown-link href="{{ route('user-Profile') }}">
+                            {{ __('Profile') }}
+                        </x-jet-dropdown-link>
+
+                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                          {{ __('Settings') }}
+                        </x-jet-dropdown-link>
+      
+                        @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                            <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                                {{ __('API Tokens') }}
+                            </x-jet-dropdown-link>
+                        @endif
+      
+                        <div class="border-t border-gray-100"></div>
+      
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+      
+                            <x-jet-dropdown-link href="{{ route('logout') }}"
+                                    @click.prevent="$root.submit();">
+                                {{ __('Log Out') }}
+                            </x-jet-dropdown-link>
+                        </form>
+                    </x-slot>
+                    </x-jet-dropdown>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
 
         <!-- livewire -->
         <!-- Page Content -->
@@ -34,9 +91,12 @@
                 <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
               </x-jet-nav-link>
               {{-- Button 3 --}}
-              <x-jet-nav-link  href="{{ route('portal') }}" :active="request()->routeIs('portal')">
-                <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-              </x-jet-nav-link>
+              @role('admin|super-admin')
+                <x-jet-nav-link  href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
+                  <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </x-jet-nav-link>
+              @endrole
+
               {{-- Reports --}}
               <x-jet-nav-link  href="{{ route('reports') }}" :active="request()->routeIs('reports')">
                 <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>

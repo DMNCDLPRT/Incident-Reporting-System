@@ -1,4 +1,4 @@
-<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 min-h-screen">
     <h3 class="text-xl h-full leading-none font-bold text-gray-900 mb-10">Types of reports by %</h3>
     <div class="block w-full overflow-x-auto">
        <table class="items-center w-full bg-transparent border-collapse">

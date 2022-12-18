@@ -60,7 +60,7 @@
         <div
             class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
             <span class="text-xs xs:text-sm text-gray-900">
-                Showing {{ $data->count() }} Entries
+                Showing {{ $data[1] }} Entries
             </span>
             <div class="inline-flex mt-2 xs:mt-0">
                 <button

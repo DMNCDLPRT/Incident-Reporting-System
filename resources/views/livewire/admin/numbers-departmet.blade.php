@@ -132,7 +132,7 @@
                         <p class="text-gray-900 whitespace-no-wrap">
                             
                             @forelse ($assigned as $assig)
-                                {{  $assig->assignedTo->incidents  }}
+                                {{  $assig->assignedTo/* ->incidents  */ }}
                             @empty
                                 not assigned
                             @endforelse

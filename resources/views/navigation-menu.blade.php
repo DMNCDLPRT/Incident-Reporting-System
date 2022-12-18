@@ -16,15 +16,15 @@
                         {{ __('Home') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('portal') }}" :active="request()->routeIs('portal')">
-                        {{ __('Report Emergency') }}
-                    </x-jet-nav-link>
-
                     @role('admin|super-admin')
                     <x-jet-nav-link href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
                         {{ __('Admin-Dashboard') }}
                     </x-jet-nav-link>
                     @endrole
+
+                    <x-jet-nav-link href="{{ route('portal') }}" :active="request()->routeIs('portal')">
+                        {{ __('Report Emergency') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -148,7 +148,15 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboardhehe') }}
+                {{ __('Home') }}
+            </x-jet-responsive-nav-link>
+            @role('admin|super-admin')
+                <x-jet-responsive-nav-link href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
+                    {{ __('Dashboard') }}
+                </x-jet-responsive-nav-link>
+            @endrole
+            <x-jet-responsive-nav-link href="{{ route('portal') }}" :active="request()->routeIs('portal')">
+                {{ __('Report Incident') }}
             </x-jet-responsive-nav-link>
         </div>
 
