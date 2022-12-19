@@ -12,10 +12,9 @@
                 </x-slot>
             
                 <x-slot name="content">
-                   {{ $report[0]->files }}
                    <div class="mb-5 rounded-md bg-[#F5F7FB] py-4 px-8">
-                    <div class="flex items-center justify-between">
-                      <img src="{{ $report[0]->files }}" alt="" height="70" class="p-2">
+                    <div class="items-center ">
+                      <img src="{{ asset('storage/images/quick-reponse-logo-nb.png') }}" alt="" class="p-2">
                       <span class="truncate pr-3 text-base font-medium text-[#07074D]">
                         {{ $report[0]->files }}
                       </span>

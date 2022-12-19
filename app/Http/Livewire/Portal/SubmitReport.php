@@ -102,6 +102,8 @@ class SubmitReport extends Component
             $number = $contact[0];
         }
         $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
+        $hashname = $name->hashName();
+        dd($hashname);
         $submitReport['files']->storeAs('public/images/',$name); // storing image to public/images folder
 
         // function for making array into string 
@@ -133,8 +135,10 @@ class SubmitReport extends Component
         // Show the server response
         // echo $output;
 
+        
         $submitReport['userId'] = auth()->id(); // get the user id of the reporter
-        // Reports::create($submitReport); // create/submit report - store to database
+        $submitReport['files'] = $name;
+        Reports::create($submitReport); // create/submit report - store to database
 
         session()->flash('output', $output);
         session()->flash('message', /* $output */ 'Incident Succefully Reported');

@@ -8,10 +8,14 @@ class AdminMainTable extends Component
 {
 
     public $reports;
-    
-    public function mount($reports) 
+    public $location;
+    public $incidents;
+
+    public function mount($reports, $location, $incidents) 
     {
         $this->report = $reports;
+        $this->location = $location;
+        $this->incidents = $incidents;
     }
     
 

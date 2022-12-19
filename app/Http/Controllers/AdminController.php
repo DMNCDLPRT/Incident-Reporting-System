@@ -9,14 +9,21 @@ use App\Models\Departments;
 use App\Models\Reports;
 use App\Models\ReportType;
 use App\Models\User;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class AdminController extends Controller
 {
     public function index()
     {
         $reports = Reports::with('reports', 'locations')->get();
-        $location = Reports::with('locations')->get();
-        $incidents = Reports::withCount('reports')->get();
+
+        foreach($reports as $report){
+            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->get();
+        }
+
+        foreach($reports as $report){
+            $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
+        }
 
         return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
@@ -28,10 +35,9 @@ class AdminController extends Controller
         $incidents = ReportType::all();
         $department = AssignedDepartment::with('assignedTo')->get();
 
-        foreach($department as $dept){
-            $dept_id[] = $dept->departments;
-        }
-        // dd($dept_id);
+        
+        // $assign = FacadesDB::table('assigns')->where('')->get();
+        
 
         return view('admin.admin')->with(['numbers' => $numbers, 'incidents' => $incidents, 'assigned' => $assigned]);
     }
@@ -54,7 +60,6 @@ class AdminController extends Controller
 
     public function edit($id)
     {
-        // department == null
         $numbers = cellNumber::find($id);
         if($numbers->department == null)
         {   
@@ -78,10 +83,4 @@ class AdminController extends Controller
 
         return view('admin.viewReport')->with('report', $report);
     }
-
-    public function editReport()
-    {
-
-    }
-
 }

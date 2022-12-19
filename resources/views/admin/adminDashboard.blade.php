@@ -8,13 +8,13 @@
                @livewire('admin-reports-this-day', ['reports' => $reports])
                @livewire('admin-reports-this-week', ['reports' => $reports])
                @livewire('admin-responds-this-week', ['reports' => $reports])
-            </div>
+            </div>{{-- 
             <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
                @livewire('admin-latest-reports', ['reports' => $reports])
                @livewire('admin-types-of-report-by-percent', ['reports' => $reports, 'incidents' => $incidents])
-            </div>
+            </div> --}}
          </div>
-         @livewire('admin-main-table', ['reports' => $reports])
+         @livewire('admin-main-table', ['reports' => $reports, 'location' => $location, 'incidents' => $incidents])
       </main>
       @livewire('footer')
    </div>

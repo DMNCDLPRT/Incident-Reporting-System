@@ -33,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @php($i = 0)
                                 @forelse ($reports as $report)
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -47,11 +47,8 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            @forelse ($report->reports as $incident)
-                                            {{ $incident }}
-                                            @empty
-                                                No Location Provided
-                                            @endforelse
+                                            {{ $incidents[$i][0]->report_name }}
+                                            
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -62,11 +59,8 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            @forelse ($report->locations as $location)
-                                            {{ $location->location_name }}
-                                            @empty
-                                                No Location Provided
-                                            @endforelse
+                                            {{ $location[$i][0]->location_name }}
+                                            @php($i = $i + 1)
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
