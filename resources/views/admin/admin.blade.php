@@ -6,9 +6,9 @@
         <main>
             <div class="pt-6 px-4">
                 @livewire('departments', ['numbers' => $numbers])
+                @livewire('add-incident')
                 @livewire('assign-departments', ['numbers' => $numbers, 'incidents' => $incidents])
-                @livewire('numbers-departmet', ['numbers' => $numbers, 'assigned' => $assigned])
-                
+                @livewire('numbers-departmet', ['numbers' => $numbers, 'assigns' => $assigns])
             </div>
         </main>
         @livewire('footer')

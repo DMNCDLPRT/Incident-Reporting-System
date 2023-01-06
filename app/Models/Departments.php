@@ -32,6 +32,6 @@ class Departments extends Model
 
     public function assignedTo()
     {
-        return $this->hasManyThrough(AssignedDepartment::class, ReportType::class, 'assignedTo', 'reports_id');
+        return $this->hasManyThrough(AssignedDepartment::class, ReportType::class, 'assignedTo', 'id');
     }
 }

@@ -10,7 +10,7 @@ class AdminLatestReports extends Component
     
     public function mount($reports) 
     {
-        $this->report = $reports;
+        $this->reports = $reports;
     }
 
     public function render()

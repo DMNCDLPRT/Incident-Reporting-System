@@ -18,21 +18,24 @@
     <label for="reportType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select type of Incident</label>
     <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Specific location of the incident..."  wire:model="report_id" autocomplete="reportType" autofocus>
         <option @disabled(true) @selected(true)>Select Type of Incident</option>
-        <option name="reportType" value="1">Traffic Accident</option>
-        <option name="reportType" value="2">Fire incident</option>
-        <option name="reportType" value="3">Shooting Incident</option>
-        <option name="reportType" value="4">Hacking Incident</option>
-        <option name="reportType" value="5">Stabbing Incident</option>
-        <option name="reportType" value="6">Alarm and Scandal</option>
-        <option name="reportType" value="7">Ambush</option>
-        <option name="reportType" value="8">Carnapping/Motornapping</option>
-        <option name="reportType" value="9">Cellphone Snatching</option>
-        <option name="reportType" value="10">Flood - Natural Disaster</option>
-        <option name="reportType" value="11">Rape Incident</option>
-        <option name="reportType" value="12">Suicide</option>
-        <option name="reportType" value="13">Theft/Robbery</option>
+        @foreach ($incidents as $incident)
+        <option name="{{ $incident->report_name }}" value="{{ $incident->id }}">{{ $incident->report_name }}</option>
+        @endforeach
     </select>
     {{-- end of type of incident --}} 
+
+    {{-- textfield for specific location of the incident --}}
+    @error('description')
+      <div class="mt-4 "></div>
+      <span class="text-red-100 mt-5" role="alert">
+        <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
+      </span>
+    @enderror
+
+    <div>
+      <label for="description" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Incident Description</label>
+      <textarea id="description" rows="4" wire:model="description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="description" placeholder="Describe the Incident (optional)..." autocomplete="description"></textarea>
+    </div>  
 
     {{-- Selection of where the incident take place --}}
 
@@ -46,35 +49,9 @@
     <label for="location" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Location/Barangay</label>
     <select id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="location_id" autocomplete="location" autofocus>
         <option @disabled(true) @selected(true)>Select Location</option>
-        <option name="location" value="1">Cabadiangan</option>
-        <option name="location" value="2">Bocboc</option>
-        <option name="location" value="3">Buyot</option>
-        <option name="location" value="4">Calaocalao</option>
-        <option name="location" value="5">Don Carlos Norte</option>
-        <option name="location" value="6">Embayao</option>
-        <option name="location" value="7">Kalubihon</option>
-        <option name="location" value="8">Kasigkot</option>
-        <option name="location" value="9">Kawilihan</option>
-        <option name="location" value="10">Kiara</option>
-        <option name="location" value="11">Kibatang</option>
-        <option name="location" value="12">Mahayahay</option>
-        <option name="location" value="13">Manlamonay</option>
-        <option name="location" value="14">Maraymaray</option>
-        <option name="location" value="15">Mauswagon</option>
-        <option name="location" value="16">Minsalagan</option>
-        <option name="location" value="17">New Nongnongan - Masimag</option>
-        <option name="location" value="18">New Visayas</option>
-        <option name="location" value="19">Old Nongnongan</option>
-        <option name="location" value="20">Pinamaloy</option>
-        <option name="location" value="21">Don Carlos Sur - Poblacion</option>
-        <option name="location" value="22">Pualas</option>
-        <option name="location" value="23">San Antonio East</option>
-        <option name="location" value="24">San Antonio West</option>
-        <option name="location" value="25">San Francisco</option>
-        <option name="location" value="26">San Nicolas - Banban</option>
-        <option name="location" value="27">San Roque</option>
-        <option name="location" value="28">Sinangguyan</option>
-        <option name="location" value="29">Bismartz</option>
+        @foreach ($locations as $location)
+        <option name="{{ $location->location_name }}" value="{{ $location->id }}">{{ $location->location_name }}</option>
+        @endforeach
     </select>
     {{-- end of selection of location --}}
 
@@ -89,7 +66,6 @@
     <div>
       <label for="message" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Specific location</label>
       <textarea id="specificLocation" rows="4" wire:model="specificLocation" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="specificLocation" placeholder="Specific location of the incident..." autocomplete="specificLocation"></textarea>
-
     </div>  
     {{-- end of textfield --}}  
 

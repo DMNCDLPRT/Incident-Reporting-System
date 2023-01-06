@@ -12,7 +12,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -28,9 +28,9 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'google_id', 'facebook_id'
     ];
-
+    
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -60,4 +60,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    
 }
+
+

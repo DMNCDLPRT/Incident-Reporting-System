@@ -67,7 +67,7 @@
 
             </x-jet-form-section>
         </div>
-        <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Emergency Cell numbers</h3>
+        <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Assigned Contact Numbers</h3>
         @if(session()->has('message-edit'))
             <div class="bg-gray-800 text-sm text-white rounded-md shadow-lg dark:bg-gray-900 mb-3" role="alert">
                 <div class="flex p-4">
@@ -107,7 +107,6 @@
                 <tr>
                     <th class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">Department</th>
                     <th class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">Cellphone Number</th>
-                    <th class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">Assigned Incidents</th>
                     <th class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">Created</th>
                     <th class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">Updated</th>
                     <th class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">Action</th>
@@ -122,32 +121,22 @@
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">
                             @forelse ($numbers->cellnum as $cellnum)
-                                {{ $cellnum->number }},
+                                {{ $cellnum->number }}
                             @empty
                                 empty
                             @endforelse
                         </p>
                     </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">
-                            
-                            @forelse ($assigned as $assig)
-                                {{  $assig->assignedTo/* ->incidents  */ }}
-                            @empty
-                                not assigned
-                            @endforelse
-                        </p>
+                    <td>
+                        <p class="text-xs font-semibold text-gray-500">{{ $numbers->created_at->diffForHumans() }}</p>
                     </td>
                     <td>
-                        <p class="text-xs font-semibold text-gray-500">{{$numbers->created_at->diffForHumans()}}</p>
-                    </td>
-                    <td>
-                        <p class="text-xs font-semibold text-gray-500">{{$numbers->updated_at->diffForHumans()}}</p>
+                        <p class="text-xs font-semibold text-gray-500">{{ $numbers->updated_at->diffForHumans() }}</p>
                     </td>
                     <td>
                         <div class="flex flex-row items-center">
                             <div class="flex flex-col mb-2 ml-4 mt-1">
-                              <x-jet-dropdown align="left" width="48">
+                              <x-jet-dropdown align="left" width="16">
                                 <x-slot name="trigger">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
                                     <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
@@ -156,8 +145,12 @@
                                   <x-slot name="content">
                                     <!-- Account Management -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage numbers') }}
+                                        {{ __('Manage number') }}
                                     </div>
+
+                                    <x-jet-dropdown-link href="{{ route('view', $numbers->id) }}">
+                                        {{ __('View') }}
+                                      </x-jet-dropdown-link>
                   
                                     <x-jet-dropdown-link href="{{ route('edit', $numbers->id) }}">
                                       {{ __('Edit') }}

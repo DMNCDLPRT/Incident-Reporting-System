@@ -26,13 +26,8 @@ class Departments extends Component
     public function addDepartment()
     {
         $validated = $this->validate();
-        $validated['departments_id'] = null;
 
-        ModelsDepartments::create([
-            'department' => $validated['department'],
-            'departments_id' => $validated['departments_id']
-        ]); 
-
+        ModelsDepartments::create([$validated]); 
         session()->flash('message-department', 'Emergency Department successfuly added');
     }
 

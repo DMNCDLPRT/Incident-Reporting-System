@@ -33,9 +33,10 @@ return new class extends Migration
                 ->on('locations')
                 ->onDelete('cascade');
 
-            $table->string('specificLocation');
-            $table->string('files')->nullable();
-            $table->string('status')->default('active');
+            $table->text('specificLocation');
+            
+            $table->mediumText('files')->nullable();
+            $table->string('status')->default('processing');
 
             $table->dateTime(Reports::CREATED_ON);
             $table->dateTime(Reports::UPDATED_ON);

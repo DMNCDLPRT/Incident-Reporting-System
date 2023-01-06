@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\AssignDepartments;
 use App\Models\AssignDepartment;
 use App\Models\AssignedDepartment;
 use App\Models\cellNumber;
@@ -10,19 +11,28 @@ use App\Models\Reports;
 use App\Models\ReportType;
 use App\Models\User;
 use Illuminate\Support\Facades\DB as FacadesDB;
+use PhpParser\Node\Expr\Assign;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index() 
     {
-        $reports = Reports::with('reports', 'locations')->get();
-
-        foreach($reports as $report){
-            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->get();
+        $reports = Reports::with('reports', 'locations')->latest()->get();
+        if($reports->isEmpty()) {
+            $location = [];
+            $incidents =[];
+            return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
         }
 
         foreach($reports as $report){
-            $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
+            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
+        }
+
+        foreach($reports as $report){
+            $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
         }
 
         return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
@@ -31,15 +41,19 @@ class AdminController extends Controller
     public function admin()
     {
         $numbers = Departments::with('cellnum')->get();
-        $assigned = AssignedDepartment::with('incidents')->get();
         $incidents = ReportType::all();
-        $department = AssignedDepartment::with('assignedTo')->get();
+        // $assigned = AssignedDepartment::with('incidents')->get();
 
+        // dd($numbers);
+        foreach($numbers as $number){
+           $departments[] = $number->id;
+        }
         
-        // $assign = FacadesDB::table('assigns')->where('')->get();
+        foreach($departments as $department){
+            $assigns[] = FacadesDB::table('assigns')->where('department_id', $department)->get();
+        }
         
-
-        return view('admin.admin')->with(['numbers' => $numbers, 'incidents' => $incidents, 'assigned' => $assigned]);
+        return view('admin.admin')->with(['numbers' => $numbers, 'incidents' => $incidents, 'assigns' => $assigns]);
     }
 
     public function report()
@@ -61,26 +75,185 @@ class AdminController extends Controller
     public function edit($id)
     {
         $numbers = cellNumber::find($id);
-        if($numbers->department == null)
-        {   
+        if($numbers->department == null) {   
             return session()->flash('message-edit', 'No Contact Numbers is assignd');
         }
-        else 
-        {
+        else {
             return view('admin.editNum')->with('numbers', $numbers);  
         }
     }
 
+    public function view($id)
+    {
+        $assigns = ['assign'];
+        $numbers = cellNumber::find($id);
+        $assigns = FacadesDB::table('assigns')->where('department_id', $id)->get();
+
+        foreach($assigns as $assign){
+            $incidents[] = FacadesDB::table('report_types')->where('id', $assign->incidents_id)->get(); 
+        }
+        // dd($incidents);
+
+        if($numbers->department == null){   
+            return session()->flash('message-edit', 'No Contact Numbers is assignd');
+        } 
+        else {
+            return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents]);  
+        }
+    }
+
+    // delete report - Route::middleware(rele:super-admin)->...
     public function destroyReport($id)
     {
         Reports::destroy($id);
-        return redirect('admin/dashboard')->with('flash_message', 'Post deleted successfully!');
+        return redirect('admin/dashboard')->with('flash_message', 'Post Deleted successfully!');
     }
 
     public function viewReport($id)
     {
-        $report = Reports::where('id', $id)->get();
+        $report = Reports::where('id', $id)->first();
+        // dd($report);
+        $location = FacadesDB::table('locations')->where('id', $report->location_id)->get();
+        $incident = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
+        $reporter = FacadesDB::table('users')->where('id', $report->userId)->get();
 
-        return view('admin.viewReport')->with('report', $report);
+        // dd($reporter);
+
+        if($report->status == 'processing') {
+            $report->status = 'Read';
+            $report->save();
+        }
+
+        return view('admin.viewReport')->with(['report' => $report, 'location' => $location, 'incident' => $incident, 'reporter' => $reporter]);
+    }
+
+    public function users() {
+        $users = User::all();
+
+        return view('admin.UsersRoles')->with('users', $users);
+    }
+
+    public function viewUser($id)
+    {
+        $user = User::where('id', $id)->get();
+        $count = Reports::where('userId', $id)->get();
+        $reports = Reports::with('reports', 'locations')->where('userId', $id)->latest()->get();
+
+        if($reports->isEmpty()){
+            $location = [];
+            $incidents = [];
+            return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
+        }
+
+        foreach($reports as $report){
+            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
+        }
+
+        foreach($reports as $report){
+            $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
+        }
+
+        return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
+        
+    }
+
+    // Delete User - Route::middleware(rele:super-admin)->...
+    public function deleteUser($id)
+    {
+        if(Auth()->user()->id == $id) {
+            return redirect('admin\UsersRoles')->with('flash_message', 'This action is invalid');
+        }
+        else {
+            $user = User::where('id', $id)->get();
+            $user->destroy();
+        }
+
+        return redirect('admin\UsersRoles')->with('flash_message', 'User Deleted successfully!');
+    }
+
+
+    /* 
+    --------------------------------------------------
+    Assign User Role
+    --------------------------------------------------
+    will assign the user as a Super-Admin
+    Super-Admin has Many Permissions like delete users and Reports
+    */
+
+    // Change User Role To "super-admin"
+    public function assignRoleSuperAdmin($id) {
+        $users = User::where('id', $id)->get();
+        if($id == 1){
+            return redirect('admin/all/users')->with('flash_message', 'This action is invalid');
+        }
+
+        foreach($users as $user){
+            $user->syncRoles('super-admin');
+        }
+        return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
+        
+    }
+
+    // Change User Role To "admin"
+    public function assignRoleAdmin($id) {
+        $users = User::where('id', $id)->get();
+        if($id == 1){
+            return redirect('admin/all/users')->with('flash_message', 'This action is invalid');
+        }
+        foreach($users as $user){
+            $user->syncRoles('admin');
+        }
+        return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
+    }
+
+    // Change User Role To "user"
+    public function assingRoleUser($id) {
+        $users = User::where('id', $id)->get();
+        if($id == 1){
+            return redirect('admin/all/users')->with('flash_message', 'This action is invalid');
+        }
+        
+        foreach($users as $user){
+            $user->syncRoles('user');
+        }
+        return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
+    }
+
+
+
+    /* 
+    --------------------------------------------------
+    Update Report Status Controller
+    --------------------------------------------------
+    */
+
+    // Report Status Change to "Pending"
+    public function updateStatusPending($id){
+        $report = Reports::where('id', $id)->first();
+        if($report) {
+            $report->status = 'Pending';
+            $report->save();
+            return redirect('view.report')->with('flash_message', 'Report Status Updated successfully!');
+        }
+    }
+
+    // Report Status Change to "Updated"
+    public function updateStatusProcessing($id){
+        $report = Reports::where('id', $id)->first();
+        if($report) {
+            $report->status = 'Processing';
+            $report->save();
+            return redirect('view.report')->with('flash_message', 'Report Status Updated successfully!');
+        }
+    }
+
+    // Report Status Change to "Rejected"
+    public function updateStatusRejected($id){
+        $report = Reports::where('id', $id)->first();
+        if($report) {
+            $report->status = 'Rejected';
+            $report->save();
+            return view('view.report', $id)->with('flash_message', 'Report Status Updated successfully!');
+        }
     }
 }

@@ -33,9 +33,9 @@ class ReportType extends Model
         return $this->belongsTo(AssignDepartments::class);
    }
 
-   public function reports()
+   /* public function reports()
     {
-        return $this->belongsTo(Reports::class, 'reports_id');
-    }
+        return $this->hasMany(Reports::class, 'id');
+    } */
  
 }

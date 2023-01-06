@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('report_types', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('reports_id');
+            // $table->unsignedBigInteger('reports_id');
             $table->string('report_name');
 
             $table->timestamps();

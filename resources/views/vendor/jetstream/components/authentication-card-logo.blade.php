@@ -1,1 +1,1 @@
-<img src="{{ asset('images/quick-reponse-logo-nb.png') }}" alt="Logo" class="w-40">
+<img src="{{ asset('images/report_incident_-_logo-nb.png') }}" alt="Logo" class="w-96">

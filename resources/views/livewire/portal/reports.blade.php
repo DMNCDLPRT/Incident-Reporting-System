@@ -10,10 +10,11 @@
              </tr>
           </thead>
           <tbody class="divide-y divide-gray-100">
-            @forelse ($reports as $report)
+            @php($i = 0)
+            @forelse (array_unique($incidents) as $incident)
                <tr class="text-gray-500">
-                  <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">{{ $report->report_name }}</th>
-                  <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">{{ $report->reports->count() }}</td>
+                  <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">{{ $incident[0]->report_name }}</th>
+                  <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4"></td>
                   <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
                      <div class="flex items-center">
                         <span class="mr-2 text-xs font-medium">30%</span>
@@ -25,6 +26,7 @@
                      </div>
                   </td>
             </tr>
+            @php($i = $i + 1)
             @empty
                <tr>
                   <td>

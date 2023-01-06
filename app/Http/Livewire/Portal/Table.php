@@ -6,11 +6,15 @@ use Livewire\Component;
 
 class Table extends Component
 {
-    public $data;
+    public $reports;
+    public $unique;
+    public $incident;
     
-    public function mount($data) 
+    public function mount($reports, $unique, $incident) 
     {
-        $this->user = $data;
+        $this->reports = $reports;
+        $this->unique = $unique;
+        $this->incident = $incident;
     }
 
     public function render()

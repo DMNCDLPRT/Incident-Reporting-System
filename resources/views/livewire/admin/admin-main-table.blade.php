@@ -6,15 +6,14 @@
                 <span class="text-xs">All reports</span>
             </div>
             <div class="flex items-center justify-between">
-                <div class="flex bg-gray-50 items-center p-2 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="search report...">
-                </div>
+                <form wire:submit.prevent="search">
+                    <div class="flex bg-gray-50 items-center p-2 rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                        </svg>
+                        <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" wire:model="query" placeholder="Search for users..">
+                    </div>
+                </form>
             </div>
         </div>
             <div>
@@ -24,9 +23,10 @@
                             <thead>
                                 <tr>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID number</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">type of report</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">date</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">location</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Incident</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Description</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Location</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Specific Location</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Action</th>
@@ -37,6 +37,7 @@
                                 @forelse ($reports as $report)
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <a class="hover:bg-slate-100" href="{{ route('view.user', $report->userId) }}">
                                         <div class="flex items-center">
                                             <div class="ml-3">
                                                 <p class="text-gray-900 whitespace-no-wrap">
@@ -44,11 +45,16 @@
                                                 </p>
                                             </div>
                                         </div>
+                                        </a>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
                                             {{ $incidents[$i][0]->report_name }}
-                                            
+                                        </p>
+                                    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            {{ $report->description }}
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -65,19 +71,18 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            {{ Str::limit($report->specificLocation, 20)}}
+                                            {{ Str::limit($report->specificLocation, 20)}}...
                                             {{-- Str::limit($your_string, 50) --}}
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <span
-                                            class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                            class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
+                                            <span aria-hidden class="absolute inset-0 bg-{{$report->status_color}}-200 opacity-50 rounded-full"></span>
                                         <span class="relative"> {{ $report->status }} </span>
                                         </span>
                                     </td>
-                                    <td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <div class="flex flex-row items-center">
                                             <div class="flex flex-col mb-2 ml-4 mt-1">
                                               <x-jet-dropdown align="left" width="48">
@@ -91,7 +96,7 @@
                                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                                         {{ __('Manage report') }}
                                                     </div>
-                                  
+
                                                     <x-jet-dropdown-link href="{{ route('view.report', $report->id) }}">
                                                         {{ __('View') }}
                                                     </x-jet-dropdown-link>
@@ -106,7 +111,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                        
                                 @empty
                                     <tr>
                                         <td class="p-2">
@@ -117,7 +121,7 @@
                             </tbody>
                         </table>
                         <div
-                            class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+                            class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
                             <span class="text-xs xs:text-sm text-gray-900">
                                 Showing 1 to 4 of 50 Entries
                             </span>

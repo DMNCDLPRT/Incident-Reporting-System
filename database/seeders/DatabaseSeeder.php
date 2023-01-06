@@ -25,5 +25,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
         $this->call(AdminSeeder::class);
+
+        $this->call(DepartmentSeeder::class);
+        $this->call(ContactSeeder::class);
+
+        $this->call(LocationSeeder::class);
+        $this->call(ReportTypeSeeder::class);
     }
 }

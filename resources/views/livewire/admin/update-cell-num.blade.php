@@ -1,6 +1,5 @@
 <div class="bg-white p-8 rounded-md w-full">
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-        
         <div class="block w-full overflow-x-auto">
             <div>
                 <x-jet-form-section submit="updateCellNum">
@@ -20,9 +19,8 @@
                             @enderror
                             
                             <x-jet-label for="department" value="{{ __('Department') }}" />
-                            <x-jet-input id="department" wire:model="department" class="block mt-1 w-full" type="text" name="department" value="{{ $numbers->department }}" autocomplete="department" />
+                            <x-jet-input id="department" wire:model="department" class="block mt-1 w-full" type="text" name="department" value="{{ $numbers->department->department }}" autocomplete="department" />
                         </div>
-
                         <div>
                             @error('number')
                                 <div class="mt-4"></div>

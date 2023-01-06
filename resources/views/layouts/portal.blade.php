@@ -3,7 +3,7 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Laravel</title>
+      <title> {{ config('app.name', 'Laravel') }}</title>
       <!-- Fonts -->
       <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
       
@@ -22,8 +22,8 @@
             <div class="inline-flex">
                 <a href="/">
                   <div class="flex justify-center items-center space-x-4">
-                    <img src="{{ asset('images/quick-reponse-logo-nb.png') }}" alt="Logo" class=" w-11 ">
-                    <h4 class="text-xl font-semibold  leading-tight truncate">Portal</h4> 
+                    <img src="{{ asset('images/cross -logo.png') }}" alt="Logo" class=" w-11 ">
+                    <h4 class="text-xl font-semibold  leading-tight truncate">Incident Report</h4> 
                   </div>
                 </a>
               </div>

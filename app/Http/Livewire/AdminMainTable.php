@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Location;
+use App\Models\Reports;
+use App\Models\User;
 use Livewire\Component;
 
 class AdminMainTable extends Component
@@ -13,7 +16,7 @@ class AdminMainTable extends Component
 
     public function mount($reports, $location, $incidents) 
     {
-        $this->report = $reports;
+        $this->reports = $reports;
         $this->location = $location;
         $this->incidents = $incidents;
     }

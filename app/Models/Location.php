@@ -21,6 +21,6 @@ class Location extends Model
 
     public function loc()
     {
-       return $this->belongsTo(Reports::class);
+       return $this->belongsTo(Reports::class, 'id', 'id');
     }
 }

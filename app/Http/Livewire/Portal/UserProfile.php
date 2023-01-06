@@ -7,11 +7,13 @@ use Livewire\Component;
 class UserProfile extends Component
 {
 
-    public $data;
+    public $user;
+    public $reports;
     
-    public function mount($data) 
+    public function mount($user, $reports) 
     {
-        $this->user = $data;
+        $this->user = $user;
+        $this->reports = $reports;
     }
 
     public function render()

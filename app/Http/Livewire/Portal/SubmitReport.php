@@ -25,6 +25,13 @@ class SubmitReport extends Component
     public $report_id;
 
     /**
+     * Report description
+     *
+     * @var string
+     */
+    public $description;
+
+    /**
      * Report location
      *
      * @var string
@@ -52,20 +59,20 @@ class SubmitReport extends Component
      */
     public function rules()
     {
-    
         return [
             'report_id' => 'required',
+            'description' => 'sometimes|string',
             'location_id' => 'required',
             'specificLocation' => 'required|string',
-            'files' => 'required|image|max:10240',
+            'files' => 'required|mimes:jpeg,png',
         ];
-        
     }
 
 
     public function submitForm() 
     {
         $submitReport = $this->validate();
+        // dd($submitReport);
 
         // dd($submitReport);
         $contact = new portalController;
@@ -101,25 +108,21 @@ class SubmitReport extends Component
             // array is 0
             $number = $contact[0];
         }
-        $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
-        $hashname = $name->hashName();
-        dd($hashname);
-        $submitReport['files']->storeAs('public/images/',$name); // storing image to public/images folder
-
         // function for making array into string 
         // text message
 
         $controller = new portalController;
-        $words = [$submitReport['report_id'], $submitReport['location_id'], $submitReport['specificLocation']];
+        $words = [$submitReport['report_id'], $submitReport['description'] , $submitReport['location_id'], $submitReport['specificLocation']];
         $message = $controller->message($words);
 
+        
         // SEMAPHORE - text messagin API
         $ch = curl_init();
         $parameters = array(
             'apikey' => env('SEMAPHORE_API_KEY'), //Your API KEY
             'number' => $number,
             'message' => $message,
-            // 'sendername' => 'EREPORT'
+            'sendername' => 'SEMAPHORE'
         );
         curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
         curl_setopt( $ch, CURLOPT_POST, 1 );
@@ -135,7 +138,9 @@ class SubmitReport extends Component
         // Show the server response
         // echo $output;
 
-        
+        $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
+        $submitReport['files']->storeAs('public/reports', $name);
+    
         $submitReport['userId'] = auth()->id(); // get the user id of the reporter
         $submitReport['files'] = $name;
         Reports::create($submitReport); // create/submit report - store to database
@@ -144,12 +149,20 @@ class SubmitReport extends Component
         session()->flash('message', /* $output */ 'Incident Succefully Reported');
 
     }
-
     // 454 - globe - ako
-    // 421 - TM - mama 1
+    // 421 - TM - mama 1 
     // 723 - smart - mama 2
 
     // public $contact = ['09774347454', '09532514421', '09606428723', '09103634532'];
+
+    public $incidents;
+    public $locations;
+
+    public function mount($incidents, $locations)
+    {
+       $this->incidents = $incidents;
+       $this->locations = $locations;
+    }
 
     public function render()
     {

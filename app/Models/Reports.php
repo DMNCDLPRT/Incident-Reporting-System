@@ -29,6 +29,14 @@ class Reports extends Model
         $this->attributes['UPDATED_ON'] = (new Carbon($value))->format('d/m/y');
     }
 
+    public function getStatusColorAttribute(){
+        return[
+            'Pending' => 'green',
+            'Processing' => 'blue',
+            'Rejected' => 'red',
+        ][$this->status] ?? 'gray';
+    }
+
     protected $table = 'reports';
     protected $primaryKey = 'id';
 
@@ -43,6 +51,7 @@ class Reports extends Model
         'report_id',
         'location_id',
         'specificLocation',
+        'description',
         'status',
         'files',
     ];
@@ -54,11 +63,11 @@ class Reports extends Model
 
     public function reports()
     {
-        return $this->hasMany(ReportType::class);
+        return $this->hasMany(ReportType::class, 'id');
     }
 
     public function locations()
     {
-        return $this->hasMany(Location::class);
+        return $this->hasMany(Location::class, 'id');
     }
 }

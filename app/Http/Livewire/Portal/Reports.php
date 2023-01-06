@@ -7,10 +7,12 @@ use Livewire\Component;
 class Reports extends Component
 {
     public $reports;
+    public $incidents;
 
-    public function mount($reports)
+    public function mount($reports, $incidents)
     {
-       $this->report = $reports;
+       $this->reports = $reports;
+       $this->incidents = $incidents;
     }
 
     public function render()

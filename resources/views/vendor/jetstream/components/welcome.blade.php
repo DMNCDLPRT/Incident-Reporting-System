@@ -52,7 +52,7 @@
                 </div>
                 <div id="plan" class="rounded-lg text-center overflow-hidden w-full transform hover:shadow-2xl hover:scale-105 transition duration-200 ease-in">
                     <div id="title" class="w-full py-5 border-b border-gray-800">
-                    <h2 class="font-bold text-3xl">Portals</h2>
+                    <h2 class="font-bold text-3xl">Report</h2>
                     <h3 class="font-normal text-indigo-500 text-xl mt-2">
                         See Active Portals
                     </h3>
@@ -83,8 +83,8 @@
                             <li>Domain included</li>
                             </ul>
                             <div id="choose" class="w-full mt-10 px-6">
-                                <a href="#" class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
-                                    Locations
+                                <a href="{{ route('portal') }}" class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
+                                    Report Incident
                                 </a>
                             </div>
                         </div>
