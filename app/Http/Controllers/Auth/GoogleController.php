@@ -7,9 +7,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
-// use File; 
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
 
 class GoogleController extends Controller
 {
@@ -31,14 +28,11 @@ class GoogleController extends Controller
     public function handleGoogleCallback()  // this function get user login of googlre
     {
         try {
-    
             $user = Socialite::driver('google')->user();
-            $avatar = $user->avatar_original . "&access_token={$user->token}";
-     
+
             $finduser = User::where('google_id', $user->id)->first();
      
             if($finduser){
-     
                 Auth::login($finduser);
     
                 return redirect('portal/portal');
@@ -48,19 +42,16 @@ class GoogleController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,
-                    'profile_photo_url' => $avatar,
-
-                    // 'password' => encrypt('123456dummy')
-                    //'password' => Hash::make($user['password']),
+                    'profile_photo_url' => $user->getAvatar(),
                 ])->assignRole('user');
     
                 Auth::login($newUser);
-     
+    
                 return redirect('portal/portal');
             }
     
         } catch (Exception $e) {
-            dd($e->getMessage(), );
+            dd($e->getMessage());
         }
     }
 }

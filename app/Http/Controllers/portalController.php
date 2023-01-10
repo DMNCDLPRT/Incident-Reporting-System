@@ -46,25 +46,41 @@ class portalController extends Controller
         return view('portal.userProfile')->with(['user' => $user, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
 
+    public function userViewReport($id){
+        $report = Reports::where('id', $id)->first();
+
+        $location = FacadesDB::table('locations')->where('id', $report->location_id)->get();
+        $incident = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
+        $reporter = FacadesDB::table('users')->where('id', $report->userId)->get();
+
+        return view('portal.userViewReport')->with(['report' => $report, 'location' => $location, 'incident' => $incident, 'reporter' => $reporter]);
+    }
+
     public function reports() {
         $reports = Reports::with('reports')->get();
+
+        if($reports->isEmpty()){
+            $reports = [];
+            $incidents = [];
+        }
 
         foreach($reports as $report){
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
         }
 
-        $uniques = array_unique($incidents);
-        // dd($uniques, $incidents);
+        $uniques = array_unique($incidents);     // $votes = Vote::where('vote_type',1)->where('something',$something)->count();
+      
+        // dd($uniques, $reports);
+        // $count = [];
+        $i = 0;
+        foreach($uniques as $unique){
+            $count[] = $reports->where('report_id', $unique[$i]->id)->count();
+            $i + 1;
+        }
 
-        /* foreach($uniques as $unique){
-            foreach($incidents as $incident){
-                $count[] = $unique->where('id', $incident->id)->get();
-            }
-        } */
+        $sum = array_sum($count);
 
-        //dd($count);
-
-        return view ('portal.publicReports')->with(['reports' => $reports, 'incidents' => $incidents]);
+        return view ('portal.publicReports')->with(['reports' => $reports, 'count' => $count,'incidents' => $incidents, 'sum' => $sum]);
     }
 
     public function store(ReportIncident $request)

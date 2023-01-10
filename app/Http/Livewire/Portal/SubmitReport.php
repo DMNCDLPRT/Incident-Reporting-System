@@ -68,13 +68,15 @@ class SubmitReport extends Component
         ];
     }
 
-
     public function submitForm() 
     {
-        $submitReport = $this->validate();
-        // dd($submitReport);
 
-        // dd($submitReport);
+        if(Auth()->user()->phone_verified_at == null){
+            return session()->flash('message-verify', 'Please verify your phone number before sumitting a report');
+        }
+
+        $submitReport = $this->validate();
+
         $contact = new portalController;
         $nums = $contact->contact($submitReport['report_id']);
 
@@ -84,8 +86,6 @@ class SubmitReport extends Component
             $array[] = $num[$i]->number;
             $i + 1;
         }
-
-        //dd($array);
 
         // making array of cell numbers into string
         // contact number
@@ -101,6 +101,7 @@ class SubmitReport extends Component
         $contact = array_merge($contact, join_nums( $array));
         // $contact = join_nums( $array);
 
+
         if (count($array) > 1) {
             // array is more than 0
             $number = end($contact);
@@ -108,9 +109,9 @@ class SubmitReport extends Component
             // array is 0
             $number = $contact[0];
         }
+
         // function for making array into string 
         // text message
-
         $controller = new portalController;
         $words = [$submitReport['report_id'], $submitReport['description'] , $submitReport['location_id'], $submitReport['specificLocation']];
         $message = $controller->message($words);
@@ -119,7 +120,7 @@ class SubmitReport extends Component
         // SEMAPHORE - text messagin API
         $ch = curl_init();
         $parameters = array(
-            'apikey' => env('SEMAPHORE_API_KEY'), //Your API KEY
+            'apikey' => env('SEMAPHORE_API_KEY'), // YOUR SEMAPHORE API KEY
             'number' => $number,
             'message' => $message,
             'sendername' => 'SEMAPHORE'

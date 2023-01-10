@@ -69,6 +69,11 @@ Route::prefix('auth/google')->controller(GoogleController::class)->group(functio
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+    
+    Route::controller(App\Http\Controllers\Auth\PhoneController::class)->group(function () {
+        Route::get('/user/phone/verify', 'viewVerifyPhone')->name('view.phone.verify');
+        Route::post('/user/phone/verify/code/{id}', 'verifyPhone')->name('phone.verify');
+    });
         
     Route::middleware(['auth' => 'role:super-admin|admin'])->prefix('admin')->controller(App\Http\Controllers\AdminController::class)->group(function () {
         
@@ -105,11 +110,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     });
 
-    Route::middleware(['auth' => 'role:user|admin|super-admin'], 'verifiedphone')->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
+    Route::middleware(['auth' => 'role:user|admin|super-admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
 
         Route::get('/portal', 'index')->name('portal');
         
         Route::get('/user', 'user')->name('user-Profile');
         Route::get('/reports', 'reports')->name('reports');
+        Route::get('/user/view/report/{id}', 'userViewReport')->name('user.view.report');
     });
 });

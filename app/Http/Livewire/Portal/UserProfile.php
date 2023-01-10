@@ -6,7 +6,6 @@ use Livewire\Component;
 
 class UserProfile extends Component
 {
-
     public $user;
     public $reports;
     

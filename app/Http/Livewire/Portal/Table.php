@@ -7,14 +7,14 @@ use Livewire\Component;
 class Table extends Component
 {
     public $reports;
-    public $unique;
-    public $incident;
-    
-    public function mount($reports, $unique, $incident) 
+    public $location;
+    public $incidents;
+
+    public function mount($reports, $location, $incidents)
     {
         $this->reports = $reports;
-        $this->unique = $unique;
-        $this->incident = $incident;
+        $this->location = $location;
+        $this->incidents =$incidents;
     }
 
     public function render()

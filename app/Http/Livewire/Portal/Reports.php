@@ -8,11 +8,15 @@ class Reports extends Component
 {
     public $reports;
     public $incidents;
+    public $count;
+    public $sum;
 
-    public function mount($reports, $incidents)
+    public function mount($reports, $incidents, $count, $sum)
     {
        $this->reports = $reports;
        $this->incidents = $incidents;
+       $this->count = $count;
+       $this->sum = $sum;
     }
 
     public function render()

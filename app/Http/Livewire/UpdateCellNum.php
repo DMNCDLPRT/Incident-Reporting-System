@@ -15,7 +15,7 @@ class UpdateCellNum extends Component
 
     public function mount($numbers) 
     {
-        $this->report = $numbers;
+        $this->numbers = $numbers;
     }
 
     /**

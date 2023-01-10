@@ -14,7 +14,7 @@
                 </thead>
                 <tbody>
                     @php($i = 0)
-                    @forelse ($unique as $unique)
+                    @forelse ($reports as $report)
                     <tr>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
@@ -61,15 +61,12 @@
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('Manage report') }}
                                         </div>
-
-                                        <x-jet-dropdown-link href="{{ route('view.report', $report->id) }}">
+                                        <x-jet-dropdown-link href="{{ route('user.view.report', $report->id) }}">
                                             {{ __('View') }}
                                         </x-jet-dropdown-link>
-                                        @role('super-admin')
                                         <x-jet-dropdown-link href="{{ route('destroy.report', $report->id) }}">
                                             {{ __('Delete') }}
                                         </x-jet-dropdown-link>
-                                        @endrole
                                     </x-slot>
                                   </x-jet-dropdown>
                                 </div>

@@ -19,7 +19,7 @@
                             @enderror
                             
                             <x-jet-label for="department" value="{{ __('Department') }}" />
-                            <x-jet-input id="department" wire:model="department" class="block mt-1 w-full" type="text" name="department" value="{{ $numbers->department->department }}" autocomplete="department" />
+                            <x-jet-input id="department" wire:model="department" class="block mt-1 w-full" type="text" name="department" value="{{ $numbers->department->department }}"/>
                         </div>
                         <div>
                             @error('number')
@@ -30,7 +30,7 @@
                             @enderror
                             
                             <x-jet-label for="number" value="{{ __('Cell Number') }}" />
-                            <x-jet-input id="number" wire:model="number" class="block mt-1 w-full" type="number" name="number" value="{{ $numbers->number }}" autocomplete="number"  />
+                            <x-jet-input id="number" wire:model="number" class="block mt-1 w-full" type="number" name="number" value="{{ $numbers->number }}" />
                         </div>
     
                         @if(session()->has('message'))

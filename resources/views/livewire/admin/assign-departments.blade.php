@@ -56,14 +56,12 @@
                                 @empty
                                 Please add run the DB:Seeder="ReportTypeSeeder"
                                 @endforelse
-                            
-                            
                             </ul>
                         </div>
 
                         <x-slot name="actions">
-                            <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm add Cell Number?');">
-                                {{ __('Add Emergency Department') }}
+                            <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm Assign Department?');">
+                                {{ __('Assign Department') }}
                             </x-jet-button>   
                           </x-slot>
                     </x-slot>

@@ -47,13 +47,11 @@
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('Change Report Status') }}
                                         </div>
-                                        @role('super-admin')
-                                        <x-jet-dropdown-link href="{{ route('status.processing', $report->id) }}">
-                                            {{ __('processing') }}
-                                        </x-jet-dropdown-link>
-                                        @endrole
                                         <x-jet-dropdown-link href="{{ route('status.pending', $report->id) }}">
                                             {{ __('Pending') }}
+                                        </x-jet-dropdown-link>
+                                        <x-jet-dropdown-link href="{{ route('status.processing', $report->id) }}">
+                                            {{ __('Processing') }}
                                         </x-jet-dropdown-link>
                                         <x-jet-dropdown-link href="{{ route('status.rejected', $report->id) }}">
                                             {{ __('Rejected') }}
@@ -90,7 +88,7 @@
                                 </li>
                                 <li class="flex border-b py-2 hover:bg-slate-100">
                                     <span class="font-bold w-48">Date:</span>
-                                    <span class="text-gray-700">{{$report->created_at }}</span>
+                                    <span class="text-gray-700">{{$report->created_at->format('d/m/Y') }}</span>
                                 </li>
                             </ul>
                         </div>

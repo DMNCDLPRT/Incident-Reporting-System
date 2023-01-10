@@ -33,7 +33,8 @@ class CreateNewUser implements CreatesNewUsers
             return tap(User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'password' => Hash::make($input['password'])
+                'password' => Hash::make($input['password']),
+                'google_id' => null,
             ])->assignRole('user'), function (User $user) {
                 $this->createTeam($user);
             });

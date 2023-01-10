@@ -36,12 +36,11 @@
                         </p>
                     </div>
                     <div id="contain" class="leading-8 mb-10 text-lg font-light">
-                        <ul>
-                        <li>10 hours of support</li>
-                        <li>128MB of storage</li>
-                        <li>2048MB bandwith</li>
-                        <li>Subdomain included</li>
-                        </ul>
+                        <p class="text-sm pt-2 p-5">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, ipsa. Obcaecati, error molestias ab tenetur sed corporis. Dolor eius optio explicabo mollitia dolorem dolores ab quia, fugit, accusamus voluptatem nostrum.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, ipsa. Obcaecati, error molestias ab tenetur sed corporis. Dolor eius optio explicabo mollitia dolorem dolores ab quia, fugit, accusamus voluptatem nostrum.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, ipsa. Obcaecati, error molestias ab tenetur sed corporis. Dolor eius optio explicabo mollitia dolorem dolores ab quia, fugit, accusamus voluptatem nostrum.
+                        </p>
                         <div id="choose" class="w-full mt-10 px-6">
                         <a href="#" class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
                             Features
@@ -71,17 +70,17 @@
                                 stroke-width="1"
                                 d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
                             </svg>
-                            <p class="text-gray-500 text-sm pt-2">
-                                Perfect for teams up to 12 people
+                            <p class="text-gray-500 text-sm  pt-2">
+                                Incident Report
                             </p>
                         </div>
                         <div id="contain" class="leading-8 mb-10 text-lg font-light">
-                            <ul>
-                            <li>10 hours of support</li>
-                            <li>1024MB of storage</li>
-                            <li>4GB bandwith</li>
-                            <li>Domain included</li>
-                            </ul>
+                            <p class="text-sm pt-2 p-5">
+                                The Don Carlos Incident Report System is a system for recording, and managing incidents that occur within a specific organization or facility.
+                                This system is designed to provide a consistent and structured approach to incident reporting, and implement corrective actions to prevent future incidents from occurring.
+                                The Don Carlos Incident Report System may be used in a variety of settings, including healthcare facilities, and government agencies. It is an important tool for promoting safety, quality,
+                                 and continuous improvement within the organization.
+                            </p>
                             <div id="choose" class="w-full mt-10 px-6">
                                 <a href="{{ route('portal') }}" class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
                                     Report Incident
@@ -116,12 +115,11 @@
                             </p>
                         </div>
                         <div id="contain" class="leading-8 mb-10 text-lg font-light">
-                            <ul>
-                            <li>10 hours of support</li>
-                            <li>10GB of storage</li>
-                            <li>100GB bandwith</li>
-                            <li>Domain included</li>
-                            </ul>
+                            <p class="text-sm pt-2 p-5">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, ipsa. Obcaecati, error molestias ab tenetur sed corporis. Dolor eius optio explicabo mollitia dolorem dolores ab quia, fugit, accusamus voluptatem nostrum.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, ipsa. Obcaecati, error molestias ab tenetur sed corporis. Dolor eius optio explicabo mollitia dolorem dolores ab quia, fugit, accusamus voluptatem nostrum.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, ipsa. Obcaecati, error molestias ab tenetur sed corporis. Dolor eius optio explicabo mollitia dolorem dolores ab quia, fugit, accusamus voluptatem nostrum.
+                            </p>
                             <div id="choose" class="w-full mt-10 px-6">
                             <a href="#"class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
                                 Get Started!

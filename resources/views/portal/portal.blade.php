@@ -4,7 +4,7 @@
       <h1 class="text-3xl font-semibold">Don Carlos Incident Report System</h1>
     </div>
     <div class="space-y-2 text-center">
-      <span class="activity-header">Report an incident through this web application. When you report an incident the assgined responders/department will we be notified through text message. Your Report will be collected.</span>
+      <span class="activity-header">The Don Carlos Incident Report System is a system for recording, documenting, and managing incidents that occur within Don Carlos, Bukidnon. This system is designed to provide a consistent and structured approach to incident reporting, and implement corrective actions to prevent future incidents from occurring. The Don Carlos Incident Report System may be used in a variety of settings, including healthcare facilities, and government agencies. It is an important tool for promoting safety, quality, and continuous improvement within the organization.</span>
     </div>
   </div>
   <section class="p-5 top-0 right-0">

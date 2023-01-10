@@ -23,7 +23,7 @@ class AdminController extends Controller
         $reports = Reports::with('reports', 'locations')->latest()->get();
         if($reports->isEmpty()) {
             $location = [];
-            $incidents =[];
+            $incidents = [];
             return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
         }
 
@@ -83,23 +83,23 @@ class AdminController extends Controller
         }
     }
 
+    // view assigned numbers and incidents to a department
     public function view($id)
     {
         $assigns = ['assign'];
         $numbers = cellNumber::find($id);
         $assigns = FacadesDB::table('assigns')->where('department_id', $id)->get();
 
+        if($assigns->isEmpty()){
+            $incidents = [];
+            return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents]);  
+        }
+
         foreach($assigns as $assign){
             $incidents[] = FacadesDB::table('report_types')->where('id', $assign->incidents_id)->get(); 
         }
-        // dd($incidents);
 
-        if($numbers->department == null){   
-            return session()->flash('message-edit', 'No Contact Numbers is assignd');
-        } 
-        else {
-            return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents]);  
-        }
+        return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents]);  
     }
 
     // delete report - Route::middleware(rele:super-admin)->...
@@ -230,30 +230,50 @@ class AdminController extends Controller
     // Report Status Change to "Pending"
     public function updateStatusPending($id){
         $report = Reports::where('id', $id)->first();
+        $controller = new AdminController;
+
         if($report) {
             $report->status = 'Pending';
             $report->save();
-            return redirect('view.report')->with('flash_message', 'Report Status Updated successfully!');
+            session()->flash('flash_message','Report Status Updated Sucessfully - changed to Pending');
+            return $controller->viewReport($id);
         }
+
+        session()->flash('flash_message','An error occurred while processing your request');
+        return $controller->viewReport($id);
     }
 
     // Report Status Change to "Updated"
     public function updateStatusProcessing($id){
         $report = Reports::where('id', $id)->first();
+        $controller = new AdminController;
+
         if($report) {
             $report->status = 'Processing';
             $report->save();
-            return redirect('view.report')->with('flash_message', 'Report Status Updated successfully!');
+
+            session()->flash('flash_message','Report Status Updated Sucessfully - changed to Processing');
+            return $controller->viewReport($id);
         }
+
+        session()->flash('flash_message','An error occurred while processing your request');
+        return $controller->viewReport($id);
     }
 
     // Report Status Change to "Rejected"
     public function updateStatusRejected($id){
         $report = Reports::where('id', $id)->first();
+        $controller = new AdminController;
+
         if($report) {
             $report->status = 'Rejected';
             $report->save();
-            return view('view.report', $id)->with('flash_message', 'Report Status Updated successfully!');
+
+            session()->flash('flash_message','Report Status Updated Sucessfully - changed to Rejected');
+            return $controller->viewReport($id);
         }
+
+        session()->flash('flash_message','An error occurred while processing your request');
+        return $controller->viewReport($id);
     }
 }

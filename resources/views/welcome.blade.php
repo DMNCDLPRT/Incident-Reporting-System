@@ -29,7 +29,7 @@
                             @endrole
 
                             @role('admin|super-admin')
-                            <a href="{{ url('/dashboard') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Home</a>
                             @endrole
                             @else
                             <a href="{{ route('register') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Get started</a>
@@ -56,7 +56,7 @@
                 <div class="lg:flex">
                     <div class="relative space-y-8 sm:w-10/12  lg:ml-0 sm:mx-auto text-center lg:text-left lg:mr-auto">
                         <p class="sm:text-lg text-gray-700 dark:text-gray-300 lg:w-11/12">
-                            Response to any unexpected or dangerous occurrence. The goal of this emergency response procedure is to mitigate the impact of the event on people and the environment.
+                            Response to any unexpected or dangerous occurrence. 
                         </p>
 
                         <span class="block font-semibold text-gray-500 dark:text-gray-400">Aims to save lives and make surroundings safer.</span>
@@ -69,7 +69,7 @@
                                 <a aria-label="add to zoom" href="{{ url('/dashboard') }}" class="p-4 border border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
                                     <div class="flex justify-center items-center space-x-4">
                                         <i class="fa-sharp fa-solid fa-arrow-right fa-xl text-blue-400"></i>
-                                        <span class="font-medium md:block dark:text-white">Dashboard</span>
+                                        <span class="font-medium md:block dark:text-white">Home</span>
                                     </div>
                                 </a> 
                                 @endrole
