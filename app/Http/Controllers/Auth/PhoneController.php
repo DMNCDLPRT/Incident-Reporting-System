@@ -12,10 +12,15 @@ class PhoneController extends Controller
 {
     public function viewVerifyPhone() {
         $user = Auth()->user();
+
+        if($user->phone == null){
+            return view('profile.show')->with('message', 'Please save your Phone number before clicking get verifed');
+        }
         
         if ($user->verification_code == null){
             $verify = new PhoneController;
-            $verify;
+            $verify->sendVerification();
+            return view ('auth.verify-phone');
         }
 
         if ($user->phone_verified_at !== null){

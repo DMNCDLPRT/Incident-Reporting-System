@@ -1,5 +1,5 @@
-<div id="Reports">
-    <div class="bg-white p-8 rounded-md w-full">
+<div id="Reports" class="m-4">
+    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8"> 
         <div class=" flex items-center justify-between pb-6">
             <div>
                 <h2 class="text-gray-600 font-semibold">Reports</h2>
@@ -22,7 +22,7 @@
                         <table class="min-w-full leading-normal">
                             <thead>
                                 <tr>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID number</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Reporter ID</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Incident</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Description</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
@@ -100,7 +100,7 @@
                                                     <x-jet-dropdown-link href="{{ route('view.report', $report->id) }}">
                                                         {{ __('View') }}
                                                     </x-jet-dropdown-link>
-                                                    @role('super-admin')
+                                                    @role('Admin')
                                                     <x-jet-dropdown-link href="{{ route('destroy.report', $report->id) }}">
                                                         {{ __('Delete') }}
                                                     </x-jet-dropdown-link>

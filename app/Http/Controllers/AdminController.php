@@ -21,10 +21,14 @@ class AdminController extends Controller
     public function index() 
     {
         $reports = Reports::with('reports', 'locations')->latest()->get();
+
         if($reports->isEmpty()) {
             $location = [];
             $incidents = [];
-            return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
+            $incident = [];
+            $count = [];
+            $sum = [];
+            return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum]);
         }
 
         foreach($reports as $report){
@@ -32,10 +36,14 @@ class AdminController extends Controller
         }
 
         foreach($reports as $report){
-            $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
+            $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->latest()->get();
         }
-
-        return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
+        
+        $incident = [];
+        $count = [];
+        $sum = [];
+        
+        return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum]);
     }
 
     public function admin()
@@ -69,7 +77,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         cellNumber::destroy($id);
-        return redirect('admin/admin')->with('flash_message', 'Post deleted successfully!');
+        return view('admin.admin')->with('flash_message', 'Post deleted successfully!');
     }
 
     public function edit($id)
@@ -106,7 +114,7 @@ class AdminController extends Controller
     public function destroyReport($id)
     {
         Reports::destroy($id);
-        return redirect('admin/dashboard')->with('flash_message', 'Post Deleted successfully!');
+        return view('admin.adminDashboard')->with('flash_message', 'Post Deleted successfully!');
     }
 
     public function viewReport($id)
@@ -153,22 +161,20 @@ class AdminController extends Controller
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
         }
 
-        return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
-        
+        return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]); 
     }
 
     // Delete User - Route::middleware(rele:super-admin)->...
     public function deleteUser($id)
     {
         if(Auth()->user()->id == $id) {
-            return redirect('admin\UsersRoles')->with('flash_message', 'This action is invalid');
+            return redirect('admin/all/users')->with('flash_message', 'This action is invalid');
         }
         else {
-            $user = User::where('id', $id)->get();
-            $user->destroy();
+             User::where('id', $id)->delete();
         }
 
-        return redirect('admin\UsersRoles')->with('flash_message', 'User Deleted successfully!');
+        return redirect('admin/all/users')->with('flash_message', 'User Deleted successfully!');
     }
 
 
@@ -188,10 +194,9 @@ class AdminController extends Controller
         }
 
         foreach($users as $user){
-            $user->syncRoles('super-admin');
+            $user->syncRoles('Admin');
         }
         return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
-        
     }
 
     // Change User Role To "admin"
@@ -201,7 +206,7 @@ class AdminController extends Controller
             return redirect('admin/all/users')->with('flash_message', 'This action is invalid');
         }
         foreach($users as $user){
-            $user->syncRoles('admin');
+            $user->syncRoles('Department');
         }
         return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
     }
@@ -214,12 +219,10 @@ class AdminController extends Controller
         }
         
         foreach($users as $user){
-            $user->syncRoles('user');
+            $user->syncRoles('User');
         }
         return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
     }
-
-
 
     /* 
     --------------------------------------------------

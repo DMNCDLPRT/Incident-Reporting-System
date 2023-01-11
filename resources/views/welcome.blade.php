@@ -24,17 +24,25 @@
                     <div class="flex items-center lg:order-2">
                         @if (Route::has('login'))
                             @auth
-                            @role('user')
-                            <a href="{{ url('/portal/portal') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Portal</a>
+                            @role('User')
+                            <a href="{{ url('/portal/portal') }}" class="text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Report Incident
+                            </a>
                             @endrole
 
-                            @role('admin|super-admin')
-                            <a href="{{ url('/dashboard') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Home</a>
+                            @role('Admin|Department')
+                            <a href="{{ url('/dashboard') }}" class="text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Home
+                            </a>
                             @endrole
                             @else
-                            <a href="{{ route('register') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Get started</a>
+                            <a href="{{ route('register') }}" class="text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                Sign-up
+                            </a>
                                 @if (Route::has('register'))
-                                <a href="{{ route('login') }}" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</a>
+                                <a href="{{ route('login') }}" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
+                                    Sign-in
+                                </a>
                                 @endif
                             @endauth 
                         @endif
@@ -50,101 +58,91 @@
         
         <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
 
-        <div class="bg-white relative pt-32 dark:bg-gray-900 max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white relative dark:bg-gray-900 mx-auto sm:px-6 lg:px-8">
             <div class="relative xl:container m-auto px-6 md:px-12 lg:px-6">
-                <h1 class="sm:mx-auto sm:w-10/12 md:w-2/3 font-black text-blue-900 text-4xl text-center sm:text-5xl md:text-6xl lg:w-auto lg:text-left xl:text-6xl dark:text-white">Incident Reporting System<br class="lg:block hidden"> <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">Don Carlos, Bukidnon</span>.</h1>
-                <div class="lg:flex">
-                    <div class="relative space-y-8 sm:w-10/12  lg:ml-0 sm:mx-auto text-center lg:text-left lg:mr-auto">
-                        <p class="sm:text-lg text-gray-700 dark:text-gray-300 lg:w-11/12">
-                            Response to any unexpected or dangerous occurrence. 
+                <section class="py-8 px-4 md:px-8 lg:py-16 2xl:px-60 mx-auto grid grid-cols-1 gap-8 lg:grid-cols-12 relative">
+                    <div class="col-span-6 xl:place-self-center mb-8 mt-8 xl:mt-0 lg:mb-0">
+                        <h1 class="sm:mx-auto sm:w-10/12 md:w-2/3 font-black text-blue-900 text-4xl text-center sm:text-5xl md:text-6xl lg:w-auto lg:text-left xl:text-6xl dark:text-white">Incident Reporting System<br class="lg:block hidden"> <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">Don Carlos, Bukidnon</span></h1>
+                        <p class="my-8 max-w-lg mx-auto lg:mx-0 text-center lg:text-left text-white">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis iste
+                            perspiciatis commodi consequatur praesentium accusantium? Provident,
+                            tempore dignissimos. Accusantium officiis expedita nobis rem autem ab,
+                            numquam blanditiis omnis veniam ex!
                         </p>
-
-                        <span class="block font-semibold text-gray-500 dark:text-gray-400">Aims to save lives and make surroundings safer.</span>
-
-                        {{-- Dashboard/login --}}
-                        <div class="grid grid-cols-3 space-x-4 md:space-x-6 md:flex md:justify-center lg:justify-start">
+                        <div class="flex flex-col lg:flex-row items-center">
                             @if(Route::has('login'))
                                 @auth
-                                @role('admin|super-admin')
-                                <a aria-label="add to zoom" href="{{ url('/dashboard') }}" class="p-4 border border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
-                                    <div class="flex justify-center items-center space-x-4">
-                                        <i class="fa-sharp fa-solid fa-arrow-right fa-xl text-blue-400"></i>
-                                        <span class="font-medium md:block dark:text-white">Home</span>
-                                    </div>
-                                </a> 
-                                @endrole
+                                    @role('Admin|Department')
+                                        <a href="{{ url('/dashboard') }}" type="button" class="text-white w-full lg:w-max px-4 py-3 bg-emerald-500 hover:bg-emerald-600 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0">
+                                            Home
+                                        </a>
+                                    @endrole
 
-                                @role('user')
-                                <a aria-label="add to zoom" href="{{ url('/portal/portal') }}" class="p-4 border border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
-                                    <div class="flex justify-center items-center space-x-4">
-                                        <i class="fa-sharp fa-solid fa-arrow-right fa-xl text-blue-400"></i>
-                                        <span class="font-medium md:block dark:text-white">Portal</span>
-                                    </div>
-                                </a> 
-                                @endrole
-                                
-                                @else
-                                <a aria-label="add to zoom" href="{{ route('register') }}" class="p-4 border border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
-                                    <div class="flex justify-center items-center space-x-4">
-                                        <i class="fa-sharp fa-solid fa-arrow-right fa-xl text-blue-400" alt="slack logo" loading="lazy" width="150" height="150"></i>
-                                        <span class="font-medium md:block dark:text-white">Get Started</span>
-                                    </div>
-                                </a> 
-                                    @if (Route::has('register'))
-                                    <a aria-label="add to" href="{{ route('login') }}" class="p-4 border border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
-                                        <div class="flex justify-center items-center space-x-4">
-                                            <i class="fa-solid fa-right-to-bracket fa-xl text-blue-400 " alt="slack logo" loading="lazy" width="150" height="150"></i>
-                                            <span class="font-medium md:block dark:text-white">Log in</span>
-                                        </div>
-                                    </a> 
-                                    @endif
+                                    @role('User')
+                                        <a href="{{ url('/portal/portal') }}" type="button" class="text-white w-full lg:w-max px-4 py-3 bg-emerald-500 hover:bg-emerald-600 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0">
+                                            Report Incident
+                                        </a>
+                                    @endrole 
+
+                            @else
+                                <a href="{{ route('register') }}" type="button" class="text-white w-full lg:w-max px-4 py-3 bg-emerald-500 hover:bg-emerald-600 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0">
+                                    Sign-up
+                                </a>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('login') }}" type="button" class="text-white w-full lg:w-max px-4 py-3 border border-slate-200 hover:cursor-pointer font-medium rounded inline-flex items-center justify-center">
+                                        Sign-in
+                                    </a>
+                                @endif
                                 @endauth
                             @endif
                         </div>
-                        {{-- End Dashboard/login --}}
-                        
-                        <span class="block font-semibold text-gray-500 dark:text-gray-400">Our key partners</span>
-                        <div class="grid grid-cols-4 space-x-4 md:space-x-6 md:flex md:justify-center lg:justify-start">
-                            <a aria-label="add to slack" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-lg duration-300 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-600/20 dark:hover:border-cyan-300/30">
-                                <div class="flex justify-center items-center space-x-4">
-                                    <img class="w-6 h-6" src="{{ asset('images/don carlos logo.png') }}" alt="slack logo" loading="lazy" width="150" height="150">
-                                    <span class="hidden font-medium md:block dark:text-white">Don Carlos</span>
-                                </div>
-                            </a>    
-                            <a aria-label="add to chat" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-green-400 hover:shadow-lg hover:shadow-lime-600/20 dark:hover:border-green-300/30">
-                                <div class="flex justify-center items-center space-x-4">
-                                    <img class="w-6 h-6" src="{{ asset('images/Philippine_National_Police_seal.svg') }}" alt="chat logo" loading="lazy" width="150" height="150">
-                                    <span class="hidden font-medium md:block dark:text-white">PNP</span>
-                                </div>
-                            </a>   
-                            <a aria-label="add to zoom" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
-                                <div class="flex justify-center items-center space-x-4">
-                                    <img class="w-6 h-6" src="{{ asset('images/Bureau_of_Fire_Protection.png') }}" alt="chat logo" loading="lazy" width="150" height="150">
-                                    <span class="hidden font-medium md:block dark:text-white">BBFP</span>
-                                </div>
-                            </a>    
-                            <a aria-label="add to zoom" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
-                                <div class="flex justify-center items-center space-x-4">
-                                    <img class="w-6 h-6" src="{{ asset('images/NDRRMC_logo.svg') }}" alt="chat logo" loading="lazy" width="150" height="150">
-                                    <span class="hidden font-medium md:block dark:text-white">MDRRMC</span>
-                                </div>
-                            </a>  
-                            <a aria-label="add to zoom" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
-                                <div class="flex justify-center items-center space-x-4">
-                                    <img class="w-6 h-6" src="{{ asset('images/quick-reponse-logo.png') }}" alt="chat logo" loading="lazy" width="150" height="150">
-                                    <span class="hidden font-medium md:block dark:text-white">Traffic Section</span>
-                                </div>
-                            </a>  
-                        </div>
-    
-                        <div class="dark:text-gray-300">
-                            <span>Follow us on:</span> 
-                            <a href="#" class="font-semibold text-gray-700 dark:text-gray-200">Facebook,</a>
-                            <a href="#" class="font-semibold text-gray-700 dark:text-gray-200">Instagram,</a>
-                            <a href="#" class="font-semibold text-gray-700 dark:text-gray-200">Twitter,</a>
-                            <a href="#" class="font-semibold text-gray-700 dark:text-gray-200">TickTok</a>
-                        </div>
                     </div>
+                    <div class="col-span-6 relative">
+                        <img src="{{ asset('images/don carlos logo.png') }}" alt="">
+                    </div>
+                    </section>
+                    <footer class="relative xl:container m-auto px-6 md:px-12 lg:px-6 pt-10">
+                            <div class="col-span-6 xl:place-self-center mb-8 mt-8 xl:mt-0 lg:mb-0"> 
+                                <span class="md:block font-semibold text-gray-500 dark:text-gray-400 py-10">Our key partners</span>
+                                <div class="space-x-4 md:space-x-6 md:flex md:justify-center lg:justify-start">
+                                    <span aria-label="add to slack" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800 dark:border-gray-700 rounded-lg duration-300 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-600/20 dark:hover:border-cyan-300/30">
+                                        <div class="flex justify-center items-center space-x-4">
+                                            <img class="w-6 h-6" src="{{ asset('images/don carlos logo.png') }}" alt="slack logo" loading="lazy" width="150" height="150">
+                                            <span class="hidden font-medium md:block dark:text-white">Don Carlos</span>
+                                        </div>
+                                    </span>    
+                                    <span aria-label="add to chat" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-green-400 hover:shadow-lg hover:shadow-lime-600/20 dark:hover:border-green-300/30">
+                                        <div class="flex justify-center items-center space-x-4">
+                                            <img class="w-6 h-6" src="{{ asset('images/Philippine_National_Police_seal.svg') }}" alt="chat logo" loading="lazy" width="150" height="150">
+                                            <span class="hidden font-medium md:block dark:text-white">PNP</span>
+                                        </div>
+                                    </span>   
+                                    <span aria-label="add to zoom" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
+                                        <div class="flex justify-center items-center space-x-4">
+                                            <img class="w-6 h-6" src="{{ asset('images/Bureau_of_Fire_Protection.png') }}" alt="chat logo" loading="lazy" width="150" height="150">
+                                            <span class="hidden font-medium md:block dark:text-white">BBFP</span>
+                                        </div>
+                                    </span>    
+                                    <span aria-label="add to zoom" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
+                                        <div class="flex justify-center items-center space-x-4">
+                                            <img class="w-6 h-6" src="{{ asset('images/NDRRMC_logo.svg') }}" alt="chat logo" loading="lazy" width="150" height="150">
+                                            <span class="hidden font-medium md:block dark:text-white">MDRRMC</span>
+                                        </div>
+                                    </span>  
+                                    <span aria-label="add to zoom" href="#" class="w-80 p-4 border-gray-200 dark:bg-gray-800  dark:border-gray-700 rounded-lg duration-300 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-600/20 dark:hover:border-blue-300/30">
+                                        <div class="flex justify-center items-center space-x-4">
+                                            <img class="w-6 h-6" src="{{ asset('images/quick-reponse-logo.png') }}" alt="chat logo" loading="lazy" width="150" height="150">
+                                            <span class="hidden font-medium md:block dark:text-white">2nd PMFC PNP</span>
+                                        </div>
+                                    </span>  
+                                </div>
+            
+                                <div class="dark:text-gray-300 py-10">
+                                    <span>Follow us on:</span> 
+                                    <a href="https://www.facebook.com/LGUDonCarlos" class="font-semibold text-gray-700 dark:text-gray-200">Facebook</a>
+                                </div>
+                            </div>
+                        </footer>
                 </div>
             </div>
         </div> 

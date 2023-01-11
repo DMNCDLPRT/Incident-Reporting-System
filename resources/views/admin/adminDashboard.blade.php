@@ -1,5 +1,5 @@
 <x-app-layout>
-   <div class="flex overflow-hidden bg-white">
+   <div class="flex overflow-hidden bg-emerald-500">
       @livewire('admin-side-panel')
       <div id="main-content" class="h-full w-full bg-gray-50 overflow-y-auto lg:ml-64">
          <main>
@@ -10,8 +10,8 @@
                @livewire('admin-responds-this-month', ['reports' => $reports])
             </div>
             <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
-               {{-- @livewire('admin-latest-reports', ['reports' => $reports]) --}}
-               {{-- @livewire('admin-types-of-report-by-percent', ['reports' => $reports, 'incidents' => $incidents]) --}}
+               @livewire('admin-latest-reports', ['reports' => $reports])
+               @livewire('admin-types-of-report-by-percent', ['count' => $count, 'incident' => $incident, 'sum' => $sum])
             </div>
          </div>
          @livewire('admin-main-table', ['reports' => $reports, 'location' => $location, 'incidents' => $incidents])

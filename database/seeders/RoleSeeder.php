@@ -15,8 +15,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'user']);
-        Role::create(['name' => 'super-admin']);
+        Role::create(['name' => 'Department']);
+        Role::create(['name' => 'User']);
+        Role::create(['name' => 'Admin']);
     }
 }

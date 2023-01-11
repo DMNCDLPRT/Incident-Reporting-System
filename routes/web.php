@@ -75,8 +75,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::post('/user/phone/verify/code/{id}', 'verifyPhone')->name('phone.verify');
     });
         
-    Route::middleware(['auth' => 'role:super-admin|admin'])->prefix('admin')->controller(App\Http\Controllers\AdminController::class)->group(function () {
-        
+    Route::middleware(['auth' => 'role:Admin|Department'])->prefix('admin')->controller(App\Http\Controllers\AdminController::class)->group(function () {
         Route::get('/dashboard', 'index')->name(('adminDashboard'));
         Route::get('/admin', 'admin')->name('admin');
 
@@ -93,11 +92,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         // users
         Route::get('/all/users', 'users')->name('users');
         Route::get('/all/users/view/user/{id}', 'viewUser')->name('view.user');
-        Route::get('/all/users/delete/user/{id}', 'deleteUser')->middleware('role:super-admin')->name('delete.user');
+        Route::get('/all/users/delete/user/{id}', 'deleteUser')->middleware('role:Admin')->name('delete.user');
 
         // Assign User Roles
         Route::prefix('assign/user/role')->group(function () {
-            Route::get('/super-admin/{id}', 'assignRoleSuperAdmin')->middleware('role:super-admin')->name('assign.user.superAdmin');
+            Route::get('/super-admin/{id}', 'assignRoleSuperAdmin')->middleware('role:Admin')->name('assign.user.superAdmin');
             Route::get('/admin/{id}', 'assignRoleAdmin')->name('assign.user.admin');
             Route::get('user/{id}', 'assingRoleUser')->name('assign.user.user');
         });
@@ -110,10 +109,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 
     });
 
-    Route::middleware(['auth' => 'role:user|admin|super-admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
-
+    Route::middleware(['auth' => 'role:User|Department|Admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
         Route::get('/portal', 'index')->name('portal');
-        
         Route::get('/user', 'user')->name('user-Profile');
         Route::get('/reports', 'reports')->name('reports');
         Route::get('/user/view/report/{id}', 'userViewReport')->name('user.view.report');

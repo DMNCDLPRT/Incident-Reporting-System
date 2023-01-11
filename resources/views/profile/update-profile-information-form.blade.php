@@ -85,7 +85,13 @@
         <div class="col-span-6 sm:col-span-4 mt-2">
             <div class="flex">
                 <x-jet-label for="phone" value="{{ __('Phone') }}" />
-                <i class="fa-sharp fa-solid fa-badge-check"></i>
+                @if ($this->user->phone !== null)
+                    @if ($this->user->phone_verified_at === null)
+                    <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-600 text-white rounded-full">not verified</span>
+                    @else
+                        <span class="ml-3 text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-600 text-white rounded-full">verified</span>
+                    @endif
+                @endif
             </div>
             <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" autocomplete="phone" />
             @if ($this->user->phone_verified_at == null)    

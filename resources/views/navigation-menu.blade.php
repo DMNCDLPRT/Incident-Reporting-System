@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @role('admin|super-admin')
+                    @role('Admin|Department')
                     <x-jet-nav-link href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
@@ -146,7 +146,7 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Home') }}
             </x-jet-responsive-nav-link>
-            @role('admin|super-admin')
+            @role('Admin|Department')
                 <x-jet-responsive-nav-link href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
                     {{ __('Dashboard') }}
                 </x-jet-responsive-nav-link>

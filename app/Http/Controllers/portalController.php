@@ -62,6 +62,7 @@ class portalController extends Controller
         if($reports->isEmpty()){
             $reports = [];
             $incidents = [];
+            $count = [];
         }
 
         foreach($reports as $report){
@@ -71,7 +72,7 @@ class portalController extends Controller
         $uniques = array_unique($incidents);     // $votes = Vote::where('vote_type',1)->where('something',$something)->count();
       
         // dd($uniques, $reports);
-        // $count = [];
+        
         $i = 0;
         foreach($uniques as $unique){
             $count[] = $reports->where('report_id', $unique[$i]->id)->count();
