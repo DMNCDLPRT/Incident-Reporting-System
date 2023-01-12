@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/faq', function (){
+    return view('faq');
+})->name('faq');
+
 /* 
 |--------------------------------------------------------------------------
 | Email verification Routes
@@ -105,6 +109,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             Route::get('/update-status/read/{id}', 'updateStatusPending')->name('status.pending');
             Route::get('/update-status/processing/{id}', 'updateStatusProcessing')->name('status.processing');
             Route::get('/update-status/rejected/{id}', 'updateStatusRejected')->name('status.rejected');
+        });
+
+        Route::prefix('/admin/download/pdf/')->group(function () {
+            Route::get('reports', 'exportAsPDF')->name('download.pdf.reports');
         });
 
     });

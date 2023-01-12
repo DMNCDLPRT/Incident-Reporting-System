@@ -40,8 +40,6 @@ class AdminTypesOfReportByPercent extends Component
         $this->count = $count;
         $this->sum = $sum;
     }
-    
-
     public function render()
     {
         return view('livewire.admin.admin-types-of-report-by-percent');

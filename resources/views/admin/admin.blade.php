@@ -2,9 +2,9 @@
     <div class="flex overflow-hidden bg-white">
         @livewire('admin-side-panel')
     </div>
-    <div id="main-content" class="h-full bg-gray-50 overflow-y-auto lg:ml-64">
+    <div id="main-content" class="h-full overflow-y-auto lg:ml-64 dark:bg-gray-900">
         <main>
-            <div class="pt-6 px-4">
+            <div class="pt-6 px-4 dark:bg-gray-900">
                 @livewire('departments', ['numbers' => $numbers])
                 @livewire('add-incident')
                 @livewire('assign-departments', ['numbers' => $numbers, 'incidents' => $incidents])

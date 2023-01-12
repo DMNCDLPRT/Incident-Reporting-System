@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Livewire\AssignDepartments;
-use App\Models\AssignDepartment;
-use App\Models\AssignedDepartment;
 use App\Models\cellNumber;
 use App\Models\Departments;
 use App\Models\Reports;
 use App\Models\ReportType;
 use App\Models\User;
 use Illuminate\Support\Facades\DB as FacadesDB;
-use PhpParser\Node\Expr\Assign;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -28,7 +23,9 @@ class AdminController extends Controller
             $incident = [];
             $count = [];
             $sum = [];
-            return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum]);
+            $departments = [];
+
+            return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum, 'departments' => $departments]);
         }
 
         foreach($reports as $report){
@@ -42,8 +39,9 @@ class AdminController extends Controller
         $incident = [];
         $count = [];
         $sum = [];
+        $departments = [];
         
-        return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum]);
+        return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum, 'departments' => $departments]);
     }
 
     public function admin()
@@ -278,5 +276,40 @@ class AdminController extends Controller
 
         session()->flash('flash_message','An error occurred while processing your request');
         return $controller->viewReport($id);
+    }
+
+    public function exportAsPDF()
+    {
+        $departments = Departments::all();
+
+        foreach ($departments as $department) {
+            $name[] = $department->department;
+        }
+
+        foreach($departments as $department){
+            $assigns[] = FacadesDB::table('assigns')->where('department_id', $department->id)->get();
+        }
+        $now = Carbon::now();
+        $startOfWeek = $now->startOfWeek()->format('Y-m-d H:i');
+        $endOfWeek = $now->endOfWeek()->format('Y-m-d H:i');
+
+        $reports = Reports::whereBetween('created_at', [$startOfWeek, $endOfWeek])->get();
+        
+        foreach($reports as $report){
+            $i[] = $report->report_id;
+        }
+        
+        $i = 0;
+        foreach($assigns as $assign){
+            
+            $incidents[] = $reports->where('report_id', $assign[$i]->incidents_id)->count(); 
+            $i+1;
+            
+        }
+        
+        $count = $incidents;
+
+        $pdf = FacadePdf::loadView('pdf.reports', ['departments' => $name, 'count' => $count]);
+        return $pdf->download('reports.pdf');
     }
 }

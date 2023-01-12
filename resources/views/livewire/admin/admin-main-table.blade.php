@@ -3,7 +3,7 @@
         <div class=" flex items-center justify-between pb-6">
             <div>
                 <h2 class="text-gray-600 font-semibold">Reports</h2>
-                <span class="text-xs">All reports</span>
+                <span class="text-blue-400 mb-4 text-sm font-normal whitespace-nowrap">All reports</span>
             </div>
             <div class="flex items-center justify-between">
                 <form wire:submit.prevent="search">

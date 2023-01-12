@@ -64,10 +64,7 @@
                     <div class="col-span-6 xl:place-self-center mb-8 mt-8 xl:mt-0 lg:mb-0">
                         <h1 class="sm:mx-auto sm:w-10/12 md:w-2/3 font-black text-blue-900 text-4xl text-center sm:text-5xl md:text-6xl lg:w-auto lg:text-left xl:text-6xl dark:text-white">Incident Reporting System<br class="lg:block hidden"> <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">Don Carlos, Bukidnon</span></h1>
                         <p class="my-8 max-w-lg mx-auto lg:mx-0 text-center lg:text-left text-white">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis iste
-                            perspiciatis commodi consequatur praesentium accusantium? Provident,
-                            tempore dignissimos. Accusantium officiis expedita nobis rem autem ab,
-                            numquam blanditiis omnis veniam ex!
+                            Welcome to the Incident Reporting System for Don Carlos, Bukidnon. This website is designed to provide residents and visitors of the municipality with an easy and efficient way to report incidents, such as accidents, crimes, and other emergencies, to the local authorities. By using this website, you can quickly and easily notify the appropriate parties of any incidents that occur in the area, helping to keep the community safe and secure. If you have any questions about how to use the website or need assistance with reporting an incident, please don't hesitate to contact the local authorities at the Municipal Hall of Don Carlos, Bukidnon.
                         </p>
                         <div class="flex flex-col lg:flex-row items-center">
                             @if(Route::has('login'))
@@ -100,7 +97,7 @@
                     <div class="col-span-6 relative">
                         <img src="{{ asset('images/don carlos logo.png') }}" alt="">
                     </div>
-                    </section>
+                </section>
                     <footer class="relative xl:container m-auto px-6 md:px-12 lg:px-6 pt-10">
                             <div class="col-span-6 xl:place-self-center mb-8 mt-8 xl:mt-0 lg:mb-0"> 
                                 <span class="md:block font-semibold text-gray-500 dark:text-gray-400 py-10">Our key partners</span>

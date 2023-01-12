@@ -100,10 +100,10 @@
                 </a>
             @endif
             @if (session('message'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
-            </div>
-        @endif
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
+                </div>
+            @endif
             <x-jet-input-error for="phone" class="mt-2" />
         </div>
     </x-slot>

@@ -1,7 +1,10 @@
 <div class="bg-white shadow rounded-lg p-4 sm:p-6">
-   <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Reports this week</h3>
-   <div class="rounded p-2 shadow-lg overflow-hidden">
-      <canvas class="block w-full overflow-x-auto p-2" id="chartBar"></canvas>
+   <div class="grid justify-items-center">
+      <h3 class="text-xl leading-none font-bold text-gray-900">Incidents Reported This Week</h3>
+      <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 mb-4">Total of reports this week by days</p>
+   </div>
+   <div class="rounded p-2 bg-slate-100 overflow-hidden">
+      <canvas class="block w-full overflow-x-auto p-2" id="chartLine"></canvas>
    </div>
 
    <?php
@@ -18,17 +21,17 @@
    
    <!-- Chart bar -->
    <script>
-      const labelsBarChart = [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursdat",
-      "Friday",
-      "Saturday",
-      "Sunday",
+      const labels = [
+         "Monday",
+         "Tuesday",
+         "Wednesday",
+         "Thursdat",
+         "Friday",
+         "Saturday",
+         "Sunday",
       ];
-      const dataBarChart = {
-         labels: labelsBarChart,
+      const data = {
+         labels: labels,
          datasets: [
             {
                label: "Incident",
@@ -47,15 +50,15 @@
          ],
          };
       
-         const configBarChart = {
-         type: "bar",
-         data: dataBarChart,
+         const configLineChart = {
+         type: "line",
+         data,
          options: {},
       };
    
-      var chartBar = new Chart(
-         document.getElementById("chartBar"),
-         configBarChart
+      var chartLine = new Chart(
+         document.getElementById("chartLine"),
+         configLineChart
       );
    </script>
 </div>
