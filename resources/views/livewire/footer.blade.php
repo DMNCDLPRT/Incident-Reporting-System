@@ -2,6 +2,7 @@
     <ul class="flex items-center flex-wrap mb-6 md:mb-0">
        <li><a href="{{ route('terms.show') }}" class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6">Terms and conditions</a></li>
        <li><a href="{{ route('policy.show') }}" class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6">Privacy Policy</a></li>
+       <li><a href="{{ route('faq') }}" class="text-sm font-normal text-gray-500 hover:underline mr-4 md:mr-6">FAQ</a></li>
        <li><a href="https://www.facebook.com/LGUDonCarlos" class="text-sm font-normal text-gray-500 hover:underline">Contact</a></li>
     </ul>
     <div class="flex sm:justify-center space-x-6">

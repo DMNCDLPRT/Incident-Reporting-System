@@ -10,12 +10,14 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB as FacadesDB;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Carbon\Carbon;
+use Illuminate\Pagination\PaginationServiceProvider;
 
 class AdminController extends Controller
 {
     public function index() 
     {
-        $reports = Reports::with('reports', 'locations')->latest()->get();
+
+        $reports = Reports::with('reports', 'locations')->paginate(15);
 
         if($reports->isEmpty()) {
             $location = [];
