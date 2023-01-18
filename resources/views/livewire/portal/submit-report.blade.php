@@ -33,8 +33,38 @@
     @enderror
 
     <div>
-      <label for="description" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Incident Description</label>
-      <textarea id="description" rows="4" wire:model="description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="description" placeholder="Describe the Incident (optional)..." autocomplete="description"></textarea>
+      {{-- <textarea id="description" rows="4" wire:model="description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="description" placeholder="Describe the Incident (optional)..." autocomplete="description"></textarea> --}}
+      <div class="flex">
+        <div class="mr-4 grow">
+
+          <label for="suspects" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">No. of Suspect</label>
+          <select id="suspects" name="suspects" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="suspects" autocomplete="suspects" autofocus>
+            <option @disabled(true) @selected(true)>Select No. of Suspects</option>
+            <?php
+                for ($i=0; $i<=30; $i++)
+                {
+                    ?>
+                        <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                    <?php
+                }
+            ?>
+          </select>
+        </div>
+        <div class="grow">
+          <label for="victims" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">No. of Victims</label>
+          <select id="victims" name="victims" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="victims" autocomplete="location" autofocus>
+            <option @disabled(true) @selected(true)>Select No. of Victims</option>
+            <?php
+                for ($i=0; $i<=30; $i++)
+                {
+                    ?>
+                        <option value="<?php echo $i;?>"><?php echo $i;?></option>
+                    <?php
+                }
+            ?>
+          </select>
+        </div>
+      </div>
     </div>  
 
     {{-- Selection of where the incident take place --}}
@@ -50,7 +80,7 @@
     <select id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="location_id" autocomplete="location" autofocus>
         <option @disabled(true) @selected(true)>Select Location</option>
         @foreach ($locations as $location)
-        <option name="{{ $location->location_name }}" value="{{ $location->id }}">{{ $location->location_name }}</option>
+        <option name="location" value="{{ $location->id }}">{{ $location->location_name }}</option>
         @endforeach
     </select>
     {{-- end of selection of location --}}
@@ -78,15 +108,15 @@
       </span>
     @enderror
     <div class="mb-6 pt-4">
-        <label class="mb-5 block text-xl font-semibold text-[#07074D]">
-          Upload File
+        <label class="mb-5 block text-m font-semibold text-[#07074D]">
+          Upload File or use camera
         </label>
       
         <div class="mb-8">
           <input type="file" name="files" wire:model="files" id="files" class="sr-only" />
           <label for="files" class="relative flex min-h-[100px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-5 text-center">
             <div>
-              <span class="mb-2 block text-xl font-semibold text-[#07074D]">
+              <span class="mb-2 block text-m font-semibold text-[#07074D]">
                 Use Camera
               </span>
               <span class="mb-2 block text-base font-medium text-[#6B7280]">

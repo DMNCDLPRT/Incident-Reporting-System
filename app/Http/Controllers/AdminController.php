@@ -29,15 +29,9 @@ class AdminController extends Controller
 
             return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum, 'departments' => $departments]);
         }
-
-        foreach($reports as $report){
-            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
-        }
-
-        foreach($reports as $report){
-            $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->latest()->get();
-        }
         
+        $location = [];
+        $incidents = [];
         $incident = [];
         $count = [];
         $sum = [];
@@ -136,7 +130,7 @@ class AdminController extends Controller
     }
 
     public function users() {
-        $users = User::all();
+        $users = User::latest()->paginate(1);
 
         return view('admin.UsersRoles')->with('users', $users);
     }

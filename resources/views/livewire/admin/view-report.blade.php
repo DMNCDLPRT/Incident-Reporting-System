@@ -70,14 +70,16 @@
                                         <span class="text-gray-700">{{ $reporter[0]->name }}</span>
                                     </li>
                                 </a>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Type of Incident:</span>
-                                    <span class="text-gray-700">{{ $incident[0]->report_name }}</span>
-                                </li>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Description:</span>
-                                    <span class="text-gray-700">{{ $report->description }}</span>
-                                </li>
+                                <div class="flex">
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow">
+                                        <span class="font-bold w-48">No. of Victim/s:</span>
+                                        <span class="text-gray-700">{{ $report->victims }}</span>
+                                    </li>
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow">
+                                        <span class="font-bold w-48">No. of Suspect/s:</span>
+                                        <span class="text-gray-700">{{ $report->victims }}</span>
+                                    </li>
+                                </div>
                                 <li class="flex border-b py-2 hover:bg-slate-100">
                                     <span class="font-bold w-48">Location:</span>
                                     <span class="text-gray-700">{{ $location[0]->location_name }}</span>

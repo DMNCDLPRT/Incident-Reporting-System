@@ -107,7 +107,7 @@ class portalController extends Controller
     public function message($words)
     {
         $incidentId = (int)$words[0];
-        $locationId = (int)$words[2];
+        $locationId = (int)$words[3];
 
         $incident = FacadesDB::table('report_types')->where('id', $incidentId)->get();
         $location = FacadesDB::table('locations')->where('id', $locationId)->get();
@@ -115,9 +115,10 @@ class portalController extends Controller
 
         $words = [
             "Incident Type: ", $incident[0]->report_name,
-            "\nDescription: ", $words[1], 
+            "\nNumber of Victims: ", $words[1], 
+            "\nNumber of Suspects: ", $words[2], 
             "\nLocation: ", $location[0]->location_name,
-            "\n\nSpecific Location: ", $words[3],
+            "\n\nSpecific Location: ", $words[4],
             "\nDate: ", $time
         ];
 

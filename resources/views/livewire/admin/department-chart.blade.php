@@ -1,4 +1,4 @@
-<div class="bg-white shadow rounded-lg p-4 sm:p-6 mt-4">
+<div class="bg-white shadow rounded-lg p-4 sm:p-6">
   <div class="grid justify-items-center">
     <h3 class="text-xl leading-none font-bold text-gray-900">Number of Incidents Reported this week</h3>
     <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400">Incidents Reported Per Department</p>

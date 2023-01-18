@@ -51,7 +51,8 @@ class Reports extends Model
         'report_id',
         'location_id',
         'specificLocation',
-        'description',
+        'victims',
+        'suspects',
         'status',
         'files',
     ];

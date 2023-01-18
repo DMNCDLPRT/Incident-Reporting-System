@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('department_id')->nullable()->index();
-            $table->foreign('department_id')
-                ->references('id')
-                ->on('departments')
-                ->onDelete('set null');
+        Schema::table('reports', function (Blueprint $table) {
+            $table->string('suspects')->nullable();
+            $table->string('victims')->nullable();
         });
     }
 
@@ -29,7 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('reports', function (Blueprint $table) {
             //
         });
     }

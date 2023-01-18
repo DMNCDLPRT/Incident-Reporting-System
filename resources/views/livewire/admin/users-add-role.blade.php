@@ -148,6 +148,9 @@
                         @endforelse
                     </tbody>
                 </table>
+                <nav>
+                    {{ $users->links() }}
+                </nav>
             </div>
         </div>
     </div>

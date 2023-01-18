@@ -82,6 +82,13 @@
             @endif
         </div>
 
+        <!-- Address -->
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="address" value="{{ __('Address') }}" />
+            <x-jet-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" autocomplete="address" />
+            <x-jet-input-error for="address" class="mt-2" />
+        </div>
+
         <div class="col-span-6 sm:col-span-4 mt-2">
             <div class="flex">
                 <x-jet-label for="phone" value="{{ __('Phone') }}" />
@@ -106,6 +113,8 @@
             @endif
             <x-jet-input-error for="phone" class="mt-2" />
         </div>
+
+        
     </x-slot>
 
 
