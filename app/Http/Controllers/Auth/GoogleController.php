@@ -36,14 +36,13 @@ class GoogleController extends Controller
                 Auth::login($finduser);
     
                 return redirect('portal/portal');
-     
             }else{
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,
                     'profile_photo_url' => $user->getAvatar(),
-                ])->assignRole('user');
+                ])->assignRole('User');
     
                 Auth::login($newUser);
     

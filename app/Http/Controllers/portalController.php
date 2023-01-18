@@ -62,6 +62,7 @@ class portalController extends Controller
         if($reports->isEmpty()){
             $reports = [];
             $incidents = [];
+            $count = [];
         }
 
         foreach($reports as $report){
@@ -71,7 +72,7 @@ class portalController extends Controller
         $uniques = array_unique($incidents);     // $votes = Vote::where('vote_type',1)->where('something',$something)->count();
       
         // dd($uniques, $reports);
-        // $count = [];
+        
         $i = 0;
         foreach($uniques as $unique){
             $count[] = $reports->where('report_id', $unique[$i]->id)->count();
@@ -106,7 +107,7 @@ class portalController extends Controller
     public function message($words)
     {
         $incidentId = (int)$words[0];
-        $locationId = (int)$words[2];
+        $locationId = (int)$words[3];
 
         $incident = FacadesDB::table('report_types')->where('id', $incidentId)->get();
         $location = FacadesDB::table('locations')->where('id', $locationId)->get();
@@ -114,9 +115,10 @@ class portalController extends Controller
 
         $words = [
             "Incident Type: ", $incident[0]->report_name,
-            "\nDescription: ", $words[1], 
+            "\nNumber of Victims: ", $words[1], 
+            "\nNumber of Suspects: ", $words[2], 
             "\nLocation: ", $location[0]->location_name,
-            "\n\nSpecific Location: ", $words[3],
+            "\n\nSpecific Location: ", $words[4],
             "\nDate: ", $time
         ];
 

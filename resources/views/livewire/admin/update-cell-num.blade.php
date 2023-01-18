@@ -7,8 +7,9 @@
                         <x-slot name="title">
                             {{ __('Add Emergency Contact Number') }}
                         </x-slot>
+                        
                         <x-slot name="description">
-                            {{ __('You can Submit a report here. Just make sure to inclue the specific location, so that our responders can locate the incident quickly') }}
+                            {{ __('Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellendus quod exercitationem doloribus quae quam similique velit eligendi, ratione ducimus ad doloremque veritatis, ab ex modi dicta nam porro assumenda.') }}
                         </x-slot>
                         <div>
                             @error('department')

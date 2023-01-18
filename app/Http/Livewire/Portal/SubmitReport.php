@@ -29,8 +29,15 @@ class SubmitReport extends Component
      *
      * @var string
      */
-    public $description;
-
+    public $suspects;
+    
+    /**
+     * Report description
+     *
+     * @var string
+     */
+    public $victims;
+    
     /**
      * Report location
      *
@@ -61,7 +68,8 @@ class SubmitReport extends Component
     {
         return [
             'report_id' => 'required',
-            'description' => 'sometimes|string',
+            'victims' => 'string',
+            'suspects' => 'string',
             'location_id' => 'required',
             'specificLocation' => 'required|string',
             'files' => 'required|mimes:jpeg,png',
@@ -113,7 +121,7 @@ class SubmitReport extends Component
         // function for making array into string 
         // text message
         $controller = new portalController;
-        $words = [$submitReport['report_id'], $submitReport['description'] , $submitReport['location_id'], $submitReport['specificLocation']];
+        $words = [$submitReport['report_id'], $submitReport['victims'], $submitReport['suspects'], $submitReport['location_id'], $submitReport['specificLocation']];
         $message = $controller->message($words);
 
         

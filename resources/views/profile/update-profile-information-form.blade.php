@@ -82,10 +82,23 @@
             @endif
         </div>
 
+        <!-- Address -->
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="address" value="{{ __('Address') }}" />
+            <x-jet-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" autocomplete="address" />
+            <x-jet-input-error for="address" class="mt-2" />
+        </div>
+
         <div class="col-span-6 sm:col-span-4 mt-2">
             <div class="flex">
                 <x-jet-label for="phone" value="{{ __('Phone') }}" />
-                <i class="fa-sharp fa-solid fa-badge-check"></i>
+                @if ($this->user->phone !== null)
+                    @if ($this->user->phone_verified_at === null)
+                    <span class="text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-600 text-white rounded-full">not verified</span>
+                    @else
+                        <span class="ml-3 text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-600 text-white rounded-full">verified</span>
+                    @endif
+                @endif
             </div>
             <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" autocomplete="phone" />
             @if ($this->user->phone_verified_at == null)    
@@ -94,12 +107,14 @@
                 </a>
             @endif
             @if (session('message'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
-            </div>
-        @endif
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
+                </div>
+            @endif
             <x-jet-input-error for="phone" class="mt-2" />
         </div>
+
+        
     </x-slot>
 
 

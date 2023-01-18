@@ -11,12 +11,26 @@
 
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name"/>
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="phone" value="{{ __('Phone Number') }}" />
+                <x-jet-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="name" value="{{ __('Address') }}" />
+                <select id="location" name="location" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" wire:model="address" autocomplete="location" autofocus>
+                    @foreach (\App\Models\Location::all() as $location)
+                        <option name="location" value="{{ $location->location_name }}">{{ $location->location_name }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="mt-4">
@@ -72,6 +86,48 @@
           </span>
           <span>Register with Google</span>
         </a>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js"></script>
+        <!-- script type="text/javascript" src="../../jquery.ph-locations.js"></script -->
+        <script type="text/javascript" src="https://f001.backblazeb2.com/file/buonzz-assets/jquery.ph-locations.js">
+        <script type="text/javascript">
+            
+            var my_handlers = {
+
+                fill_provinces:  function(){
+
+                    var region_code = $(this).val();
+                    $('#province').ph_locations('fetch_list', [{"region_code": region_code}]);
+                    
+                },
+
+                fill_cities: function(){
+
+                    var province_code = $(this).val();
+                    $('#city').ph_locations( 'fetch_list', [{"province_code": province_code}]);
+                },
+
+
+                fill_barangays: function(){
+
+                    var city_code = $(this).val();
+                    $('#barangay').ph_locations('fetch_list', [{"city_code": city_code}]);
+                }
+            };
+
+            $(function(){
+                $('#region').on('change', my_handlers.fill_provinces);
+                $('#province').on('change', my_handlers.fill_cities);
+                $('#city').on('change', my_handlers.fill_barangays);
+
+                $('#region').ph_locations({'location_type': 'regions'});
+                $('#province').ph_locations({'location_type': 'provinces'});
+                $('#city').ph_locations({'location_type': 'cities'});
+                $('#barangay').ph_locations({'location_type': 'barangays'});
+
+                $('#region').ph_locations('fetch_list');
+            });
+        </script>
         
     </x-jet-authentication-card>
 </x-guest-layout>

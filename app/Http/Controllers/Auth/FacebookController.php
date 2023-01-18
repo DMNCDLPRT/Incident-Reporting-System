@@ -49,7 +49,7 @@ class FacebookController extends Controller
                     // 'password' => encrypt('123456dummy')
                     //'password' => Hash::make($user['password']),
                     
-                ])->assignRole('user');
+                ])->assignRole('User');
     
                 Auth::login($newUser);
      

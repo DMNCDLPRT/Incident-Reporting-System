@@ -93,13 +93,13 @@
                                           <div class="block px-4 py-2 text-xs text-gray-400">
                                               {{ __('Assign Role') }}
                                           </div>
-                                          @role('super-admin')
+                                          @role('Admin')
                                           <x-jet-dropdown-link href="{{ route('assign.user.superAdmin', $user->id) }}">
-                                                {{ __('Super Admin') }}
+                                                {{ __('Admin') }}
                                           </x-jet-dropdown-link>
                                           @endrole
                                           <x-jet-dropdown-link href="{{ route('assign.user.admin', $user->id) }}">
-                                              {{ __('Admin') }}
+                                              {{ __('Department') }}
                                           </x-jet-dropdown-link>
                                           <x-jet-dropdown-link href="{{ route('assign.user.user', $user->id) }}">
                                             {{ __('User') }}
@@ -133,7 +133,7 @@
                                         <x-jet-dropdown-link href="{{ route('view.user', $user->id) }}">
                                             {{ __('View') }}
                                         </x-jet-dropdown-link>
-                                        @role('super-admin')
+                                        @role('Admin')
                                         <x-jet-dropdown-link href="{{ route('delete.user', $user->id) }}">
                                             {{ __('Delete') }}
                                         </x-jet-dropdown-link>
@@ -148,6 +148,9 @@
                         @endforelse
                     </tbody>
                 </table>
+                <nav>
+                    {{ $users->links() }}
+                </nav>
             </div>
         </div>
     </div>

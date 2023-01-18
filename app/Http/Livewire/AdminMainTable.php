@@ -6,24 +6,66 @@ use App\Models\Location;
 use App\Models\Reports;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB as FacadesDB;
+use Livewire\WithPagination;
 
 class AdminMainTable extends Component
 {
+    use WithPagination;
 
-    public $reports;
-    public $location;
+    /* public $location;
     public $incidents;
 
-    public function mount($reports, $location, $incidents) 
+    public function mount($location, $incidents) 
     {
-        $this->reports = $reports;
+
         $this->location = $location;
         $this->incidents = $incidents;
+    } */
+
+
+    public $query;
+
+    public function search()
+    {
+        $reports = Reports::where('id', 'like', "%{$this->query}%")
+                            ->orWhere('specificLocation', 'like', "%{$this->query}%")
+                            ->orWhere('victims', 'like', "%{$this->query}%")
+                            ->orWhere('suspects', 'like', "%{$this->query}%")
+                            ->orWhere('status', 'like', "%{$this->query}%")
+                            ->orWhere('created_at', 'like', "%{$this->query}%")
+                            ->latest()
+                            ->paginate(5);;
+
+        foreach($reports as $report){
+            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
+        }
+
+        foreach($reports as $report){
+            $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->latest()->get();
+        }
+
+        return view('livewire.admin.admin-main-table', ['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
-    
+
+
+    // search bar kulang 
 
     public function render()
     {
-        return view('livewire.admin.admin-main-table');
+        if($this->query == null){
+            $reports = Reports::with('reports', 'locations')->latest()->paginate(10);
+            foreach($reports as $report){
+                $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
+            }
+    
+            foreach($reports as $report){
+                $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->latest()->get();
+            }
+            return view('livewire.admin.admin-main-table', ['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
+        } 
+
+        $query = new AdminMainTable();
+        return $query->search();
     }
 }

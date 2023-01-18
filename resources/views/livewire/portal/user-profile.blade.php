@@ -12,7 +12,7 @@
        <div class="w-0 border border-gray-300">
        </div>
        <div class="w-1/2 text-center">
-         <span class="font-bold">2.0 k</span> Following
+         <span class="font-bold">{{ $user->getRoleNames()}}</span> Role
        </div>
      </div>
   </div>

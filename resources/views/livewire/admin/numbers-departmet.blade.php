@@ -1,4 +1,4 @@
-<div class="bg-white p-8 rounded-md w-full">
+<div class="bg-white p-8 rounded-md w-full mt-4">
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     
     <div class="block w-full overflow-x-auto">
@@ -9,7 +9,7 @@
                         {{ __('Add Emergency Contact Number') }}
                     </x-slot>
                     <x-slot name="description">
-                        {{ __('You can Submit a report here. Just make sure to inclue the specific locatiodn, so that our responders can locate the incident quickly') }}
+                        {{ __('Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellendus quod exercitationem doloribus quae quam similique velit eligendi, ratione ducimus ad doloremque veritatis, ab ex modi dicta nam porro assumenda.') }}
                     </x-slot>
                     <div>
                         @if(session()->has('message'))
@@ -47,7 +47,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="mt-2">
                         @error('number')
                             <div class="mt-4"></div>
                             <span class="text-red-100 mt-5" role="alert">

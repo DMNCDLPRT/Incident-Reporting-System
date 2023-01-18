@@ -2,40 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Livewire\AssignDepartments;
-use App\Models\AssignDepartment;
-use App\Models\AssignedDepartment;
 use App\Models\cellNumber;
 use App\Models\Departments;
 use App\Models\Reports;
 use App\Models\ReportType;
 use App\Models\User;
 use Illuminate\Support\Facades\DB as FacadesDB;
-use PhpParser\Node\Expr\Assign;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Carbon\Carbon;
+use Illuminate\Pagination\PaginationServiceProvider;
 
 class AdminController extends Controller
 {
     public function index() 
     {
-        $reports = Reports::with('reports', 'locations')->latest()->get();
+
+        $reports = Reports::with('reports', 'locations')->paginate(15);
+
         if($reports->isEmpty()) {
             $location = [];
             $incidents = [];
-            return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
-        }
+            $incident = [];
+            $count = [];
+            $sum = [];
+            $departments = [];
 
-        foreach($reports as $report){
-            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
+            return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum, 'departments' => $departments]);
         }
-
-        foreach($reports as $report){
-            $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
-        }
-
-        return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
+        
+        $location = [];
+        $incidents = [];
+        $incident = [];
+        $count = [];
+        $sum = [];
+        $departments = [];
+        
+        return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum, 'departments' => $departments]);
     }
 
     public function admin()
@@ -69,7 +71,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         cellNumber::destroy($id);
-        return redirect('admin/admin')->with('flash_message', 'Post deleted successfully!');
+        return view('admin.admin')->with('flash_message', 'Post deleted successfully!');
     }
 
     public function edit($id)
@@ -106,7 +108,7 @@ class AdminController extends Controller
     public function destroyReport($id)
     {
         Reports::destroy($id);
-        return redirect('admin/dashboard')->with('flash_message', 'Post Deleted successfully!');
+        return view('admin.adminDashboard')->with('flash_message', 'Post Deleted successfully!');
     }
 
     public function viewReport($id)
@@ -128,7 +130,7 @@ class AdminController extends Controller
     }
 
     public function users() {
-        $users = User::all();
+        $users = User::latest()->paginate(1);
 
         return view('admin.UsersRoles')->with('users', $users);
     }
@@ -153,22 +155,20 @@ class AdminController extends Controller
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
         }
 
-        return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
-        
+        return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]); 
     }
 
     // Delete User - Route::middleware(rele:super-admin)->...
     public function deleteUser($id)
     {
         if(Auth()->user()->id == $id) {
-            return redirect('admin\UsersRoles')->with('flash_message', 'This action is invalid');
+            return redirect('admin/all/users')->with('flash_message', 'This action is invalid');
         }
         else {
-            $user = User::where('id', $id)->get();
-            $user->destroy();
+             User::where('id', $id)->delete();
         }
 
-        return redirect('admin\UsersRoles')->with('flash_message', 'User Deleted successfully!');
+        return redirect('admin/all/users')->with('flash_message', 'User Deleted successfully!');
     }
 
 
@@ -188,10 +188,9 @@ class AdminController extends Controller
         }
 
         foreach($users as $user){
-            $user->syncRoles('super-admin');
+            $user->syncRoles('Admin');
         }
         return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
-        
     }
 
     // Change User Role To "admin"
@@ -201,7 +200,7 @@ class AdminController extends Controller
             return redirect('admin/all/users')->with('flash_message', 'This action is invalid');
         }
         foreach($users as $user){
-            $user->syncRoles('admin');
+            $user->syncRoles('Department');
         }
         return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
     }
@@ -214,12 +213,10 @@ class AdminController extends Controller
         }
         
         foreach($users as $user){
-            $user->syncRoles('user');
+            $user->syncRoles('User');
         }
         return redirect('admin/all/users')->with('flash_message', 'User Role Updated successfully!');
     }
-
-
 
     /* 
     --------------------------------------------------
@@ -275,5 +272,40 @@ class AdminController extends Controller
 
         session()->flash('flash_message','An error occurred while processing your request');
         return $controller->viewReport($id);
+    }
+
+    public function exportAsPDF()
+    {
+        $departments = Departments::all();
+
+        foreach ($departments as $department) {
+            $name[] = $department->department;
+        }
+
+        foreach($departments as $department){
+            $assigns[] = FacadesDB::table('assigns')->where('department_id', $department->id)->get();
+        }
+        $now = Carbon::now();
+        $startOfWeek = $now->startOfWeek()->format('Y-m-d H:i');
+        $endOfWeek = $now->endOfWeek()->format('Y-m-d H:i');
+
+        $reports = Reports::whereBetween('created_at', [$startOfWeek, $endOfWeek])->get();
+        
+        foreach($reports as $report){
+            $i[] = $report->report_id;
+        }
+        
+        $i = 0;
+        foreach($assigns as $assign){
+            
+            $incidents[] = $reports->where('report_id', $assign[$i]->incidents_id)->count(); 
+            $i+1;
+            
+        }
+        
+        $count = $incidents;
+
+        $pdf = FacadePdf::loadView('pdf.reports', ['departments' => $name, 'count' => $count]);
+        return $pdf->download('reports.pdf');
     }
 }

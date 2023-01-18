@@ -1,9 +1,9 @@
-<div id="Reports">
-    <div class="bg-white p-8 rounded-md w-full">
+<div id="Reports" class="mt-4">
+    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8"> 
         <div class=" flex items-center justify-between pb-6">
             <div>
                 <h2 class="text-gray-600 font-semibold">Reports</h2>
-                <span class="text-xs">All reports</span>
+                <span class="text-blue-400 mb-4 text-sm font-normal whitespace-nowrap">All reports</span>
             </div>
             <div class="flex items-center justify-between">
                 <form wire:submit.prevent="search">
@@ -11,7 +11,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                         </svg>
-                        <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" wire:model="query" placeholder="Search for users..">
+                        <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" wire:model="query" placeholder="Search Report..">
                     </div>
                 </form>
             </div>
@@ -22,9 +22,10 @@
                         <table class="min-w-full leading-normal">
                             <thead>
                                 <tr>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID number</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Reporter ID</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Incident</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Description</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Victims</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Suspects</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Location</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Specific Location</th>
@@ -54,7 +55,12 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            {{ $report->description }}
+                                            {{ $report->victims }}
+                                        </p>
+                                    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">
+                                            {{ $report->suspects }}
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -100,7 +106,7 @@
                                                     <x-jet-dropdown-link href="{{ route('view.report', $report->id) }}">
                                                         {{ __('View') }}
                                                     </x-jet-dropdown-link>
-                                                    @role('super-admin')
+                                                    @role('Admin')
                                                     <x-jet-dropdown-link href="{{ route('destroy.report', $report->id) }}">
                                                         {{ __('Delete') }}
                                                     </x-jet-dropdown-link>
@@ -120,9 +126,8 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <div
-                            class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-                            <span class="text-xs xs:text-sm text-gray-900">
+                        <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+                            {{-- <span class="text-xs xs:text-sm text-gray-900">
                                 Showing 1 to 4 of 50 Entries
                             </span>
                             <div class="inline-flex mt-2 xs:mt-0">
@@ -135,7 +140,10 @@
                                     class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">
                                     Next
                                 </button>
-                            </div>
+                            </div> --}}
+                            <nav>
+                                {{ $reports->links() }}
+                            </nav>
                         </div>
                 </div>
             </div>

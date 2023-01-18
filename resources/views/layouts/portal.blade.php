@@ -23,7 +23,7 @@
                 <a href="/">
                   <div class="flex justify-center items-center space-x-4">
                     <img src="{{ asset('images/cross -logo.png') }}" alt="Logo" class=" w-11 ">
-                    <h4 class="text-xl font-semibold  leading-tight truncate">Incident Report</h4> 
+                    <h4 class="text-xl font-semibold  leading-tight truncate">Report Incident</h4> 
                   </div>
                 </a>
               </div>
@@ -87,22 +87,23 @@
                 <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
               </x-jet-nav-link>
               {{-- Button 3 --}}
-              @role('admin|super-admin')
+              @role('Admin|Department')
                 <x-jet-nav-link  href="{{ route('adminDashboard') }}" :active="request()->routeIs('adminDashboard')">
+                  <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                </x-jet-nav-link>
+                @endrole
+                
+                {{-- Reports --}}
+                <x-jet-nav-link  href="{{ route('reports') }}" :active="request()->routeIs('reports')">
                   <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </x-jet-nav-link>
-              @endrole
-
-              {{-- Reports --}}
-              <x-jet-nav-link  href="{{ route('reports') }}" :active="request()->routeIs('reports')">
-                <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-              </x-jet-nav-link>
-              {{-- User --}}
+                {{-- User --}}
               <x-jet-nav-link  href="{{ route('user-Profile') }}" :active="request()->routeIs('user-Profile')">
-                <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                {{-- <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
+                </svg> --}}
+                Profile
               </x-jet-nav-link>
             </nav>
             
