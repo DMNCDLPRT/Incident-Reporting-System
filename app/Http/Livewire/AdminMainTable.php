@@ -45,6 +45,11 @@ class AdminMainTable extends Component
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->latest()->get();
         }
 
+        if($reports == null) {
+            $location = [];
+            $incidents = [];
+        }
+
         return view('livewire.admin.admin-main-table', ['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
 
@@ -54,7 +59,10 @@ class AdminMainTable extends Component
     public function render()
     {
         if($this->query == null){
+
             $reports = Reports::with('reports', 'locations')->latest()->paginate(10);
+
+
             foreach($reports as $report){
                 $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
             }
@@ -62,6 +70,13 @@ class AdminMainTable extends Component
             foreach($reports as $report){
                 $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->latest()->get();
             }
+
+            if($reports->isEmpty()) {
+                $reports =[];
+                $location = [];
+                $incidents = [];
+            }
+
             return view('livewire.admin.admin-main-table', ['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
         } 
 

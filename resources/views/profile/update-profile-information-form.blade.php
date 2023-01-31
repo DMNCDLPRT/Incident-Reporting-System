@@ -84,9 +84,27 @@
 
         <!-- Address -->
         <div class="col-span-6 sm:col-span-4 mt-2">
-            <x-jet-label for="address" value="{{ __('Address') }}" />
-            <x-jet-input id="address" type="text" class="mt-1 block w-full" wire:model.defer="state.address" autocomplete="address" />
-            <x-jet-input-error for="address" class="mt-2" />
+            <x-jet-label for="region" value="{{ __('Region') }}" />
+            <x-jet-input id="region" type="text" class="mt-1 block w-full" wire:model.defer="state.region" autocomplete="region" />
+            <x-jet-input-error for="region" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="province" value="{{ __('Province') }}" />
+            <x-jet-input id="province" type="text" class="mt-1 block w-full" wire:model.defer="state.province" autocomplete="province" />
+            <x-jet-input-error for="province" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="city" value="{{ __('City') }}" />
+            <x-jet-input id="city" type="text" class="mt-1 block w-full" wire:model.defer="state.city" autocomplete="city" />
+            <x-jet-input-error for="city" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="barangay" value="{{ __('Barangay') }}" />
+            <x-jet-input id="barangay" type="text" class="mt-1 block w-full" wire:model.defer="state.barangay" autocomplete="barangay" />
+            <x-jet-input-error for="barangay" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4 mt-2">

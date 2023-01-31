@@ -22,13 +22,24 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use HasRoles;
 
+
+    protected $guarded = [];
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password', 'google_id', 'facebook_id'
+        'name',
+        'email',
+        'phone',
+        'region',
+        'province',
+        'city',
+        'barangay',
+        'password',
+        'google_id',
+        'facebook_id'
     ];
     
     /**

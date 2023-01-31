@@ -142,7 +142,11 @@
                                 </button>
                             </div> --}}
                             <nav>
-                                {{ $reports->links() }}
+                                @if (!$reports)
+                                    showing 0 out of 0
+                                @else
+                                    {{ $reports->links() }}
+                                @endif
                             </nav>
                         </div>
                 </div>

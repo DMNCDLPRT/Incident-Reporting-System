@@ -54,11 +54,11 @@ Route::post('/email/verification-notification', function (Request $request) {
 |--------------------------------------------------------------------------
 |
 */
-Route::prefix('auth/google')->controller(GoogleController::class)->group(function () {
+/* Route::prefix('auth/google')->controller(GoogleController::class)->group(function () {
     Route::get('/', 'redirectToGoogle')->name('redirectToGoogle');
     Route::get('/callback', 'handleGoogleCallback')->name('handleGoogleCallback');
 });
-
+ */
 /* 
 |--------------------------------------------------------------------------
 | Login with Facebook
@@ -68,9 +68,31 @@ Route::prefix('auth/google')->controller(GoogleController::class)->group(functio
 /* Route::prefix('auth/facebook')->controller(FacebookController::class)->group(function () {
     Route::get('/', 'redirectToFacebook')->name('redirectToFacebook');
     Route::get('/callback', 'handleFacebookCallback')->name('handleFacebookCallback');
+});
+ */
+Route::middleware('auth', 'verified')
+    ->controller(App\Http\Controllers\Auth\RegisterStepTwoController::class)
+        ->group( function() {
+            Route::get('register-step2', 'create')->name('register.step2.create');
+            Route::post('register-step2', 'store')->name('register.step2.post');;
+});
+
+/* Route::middleware('auth')
+    ->controller(App\Http\Controllers\RegisterStepThreeController::class)
+        ->group( function() {
+            Route::get('register-step3', 'create')->name('register.step3.create');
+            Route::post('register-step3', 'store')->name('register.step3.post');;
 }); */
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+
+Route::middleware(['auth' => 'role:User|Department|Admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
+    Route::get('/portal', 'index')->name('portal');
+    Route::get('/user', 'user')->name('user-Profile');
+    Route::get('/reports', 'reports')->name('reports');
+    Route::get('/user/view/report/{id}', 'userViewReport')->name('user.view.report');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'registration_completed'])->group(function () {
 
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
     
@@ -115,12 +137,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
             Route::get('reports', 'exportAsPDF')->name('download.pdf.reports');
         });
 
-    });
-
-    Route::middleware(['auth' => 'role:User|Department|Admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
-        Route::get('/portal', 'index')->name('portal');
-        Route::get('/user', 'user')->name('user-Profile');
-        Route::get('/reports', 'reports')->name('reports');
-        Route::get('/user/view/report/{id}', 'userViewReport')->name('user.view.report');
     });
 });

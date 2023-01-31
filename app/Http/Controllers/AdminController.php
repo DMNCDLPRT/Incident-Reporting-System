@@ -16,7 +16,6 @@ class AdminController extends Controller
 {
     public function index() 
     {
-
         $reports = Reports::with('reports', 'locations')->paginate(15);
 
         if($reports->isEmpty()) {
