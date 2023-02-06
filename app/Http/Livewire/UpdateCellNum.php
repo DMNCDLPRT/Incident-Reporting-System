@@ -26,7 +26,6 @@ class UpdateCellNum extends Component
     public function rules()
     {
         return [
-            'department' => 'required|unique:cell_numbers',
             'number' => 'required|max:11'
         ]; 
     }

@@ -8,24 +8,29 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\isNull;
+
 class PhoneController extends Controller
 {
     public function viewVerifyPhone() {
         $user = Auth()->user();
 
         if($user->phone == null){
+            dd('1');
             return view('profile.show')->with('message', 'Please save your Phone number before clicking get verifed');
         }
         
-        if ($user->verification_code == null){
+        if (isNull($user->verification_code)){
             $verify = new PhoneController;
             $verify->sendVerification();
             return view ('auth.verify-phone');
         }
 
         if ($user->phone_verified_at !== null){
+            dd('3');
             return view ('auth.verify-phone');
         }
+        return view ('auth.verify-phone');
     }
 
     public function sendVerification(){
@@ -73,6 +78,6 @@ class PhoneController extends Controller
             }
         }
 
-        return session('message', 'The Verification code di not match!');
+        return session('message', 'The Verification code did not match!');
     }
 }

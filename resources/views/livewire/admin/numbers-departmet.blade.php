@@ -2,7 +2,7 @@
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     
     <div class="block w-full overflow-x-auto">
-        <div>
+        <div class="mb-10">
             <x-jet-form-section submit="addCellNum">
                 <x-slot name="form">
                     <x-slot name="title">
@@ -39,7 +39,8 @@
                         <x-jet-label for="department" value="{{ __('Department') }}"/>
                         <select id="department_id" name="department_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="department_id" autocomplete="department_id" autofocus>
                             @forelse($numbers as $number)
-                                <option name="department_id" value="{{ $number->id }}"> {{ $number->department }} </option>
+                            
+                            <option name="department_id" value="{{ $number->id }}"> {{ $number->department }} </option>
                             @empty
                                 <option @disabled(true) @selected(true)>Add Emergency Department First </option>>
                             @endforelse
@@ -67,7 +68,10 @@
 
             </x-jet-form-section>
         </div>
-        <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Assigned Contact Numbers</h3>
+
+        <hr>
+
+        <h3 class="text-xl leading-none font-bold text-gray-900 mb-10 mt-10">Assigned Contact Numbers</h3>
         @if(session()->has('message-edit'))
             <div class="bg-gray-800 text-sm text-white rounded-md shadow-lg dark:bg-gray-900 mb-3" role="alert">
                 <div class="flex p-4">
@@ -116,12 +120,17 @@
                 @forelse ($numbers as $numbers)
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $numbers->department }}</p>
+                        <a href="{{ route('view', $numbers->id) }}" class="text-gray-900 whitespace-no-wrap hover:underline hover:text-blue-500">{{ $numbers->department }}</a>
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">
+                            @php($i = 1)
                             @forelse ($numbers->cellnum as $cellnum)
-                                {{ $cellnum->number }}
+                            <div class="flex">
+                                <p class="mr-2 text-gray-400">{{ $i }}.</p>
+                                <a href="{{ route('edit', $cellnum->id) }}" class="hover:underline hover:text-blue-500">{{ $cellnum->number }} </a> <br>
+                            </div>
+                            @php($i = $i + 1)
                             @empty
                                 empty
                             @endforelse
@@ -152,11 +161,7 @@
                                         {{ __('View') }}
                                       </x-jet-dropdown-link>
                   
-                                    <x-jet-dropdown-link href="{{ route('edit', $numbers->id) }}">
-                                      {{ __('Edit') }}
-                                    </x-jet-dropdown-link>
-                  
-                                    <x-jet-dropdown-link href="{{ route('delete', $numbers->id) }}">
+                                    <x-jet-dropdown-link href="{{ route('delete', $numbers->id) }}" onclick="return confirm('Are you sure you want to delete {{ $numbers->department }}?');">
                                       {{ __('Delete') }}
                                     </x-jet-dropdown-link>
                                 </x-slot>

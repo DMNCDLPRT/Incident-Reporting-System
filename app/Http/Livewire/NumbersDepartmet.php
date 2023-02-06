@@ -36,12 +36,11 @@ class NumbersDepartmet extends Component
     }
 
     public $numbers;
-
     public $assigns;
 
     public function mount($numbers, $assigns) 
     {
-        $this->report = $numbers;
+        // $this->report = $numbers;
         $this->assigns = $assigns;
     }
 

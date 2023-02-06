@@ -10,6 +10,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Http\Controllers\portalController;
 
+use function PHPUnit\Framework\isNull;
 
 class SubmitReport extends Component
 {
@@ -70,19 +71,14 @@ class SubmitReport extends Component
             'report_id' => 'required',
             'victims' => 'string',
             'suspects' => 'string',
-            'location_id' => 'required',
-            'specificLocation' => 'required|string',
+            /* 'location_id' => 'required',
+            'specificLocation' => 'required|string', */
             'files' => 'required|mimes:jpeg,png',
         ];
     }
 
     public function submitForm() 
     {
-
-        if(Auth()->user()->phone_verified_at == null){
-            return session()->flash('message-verify', 'Please verify your phone number before sumitting a report');
-        }
-
         $submitReport = $this->validate();
 
         $contact = new portalController;
@@ -109,7 +105,6 @@ class SubmitReport extends Component
         $contact = array_merge($contact, join_nums( $array));
         // $contact = join_nums( $array);
 
-
         if (count($array) > 1) {
             // array is more than 0
             $number = end($contact);
@@ -121,7 +116,7 @@ class SubmitReport extends Component
         // function for making array into string 
         // text message
         $controller = new portalController;
-        $words = [$submitReport['report_id'], $submitReport['victims'], $submitReport['suspects'], $submitReport['location_id'], $submitReport['specificLocation']];
+        $words = [$submitReport['report_id'], $submitReport['victims'], $submitReport['suspects']];
         $message = $controller->message($words);
 
         
@@ -150,7 +145,11 @@ class SubmitReport extends Component
         $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
         $submitReport['files']->storeAs('public/reports', $name);
     
-        $submitReport['userId'] = auth()->id(); // get the user id of the reporter
+        if(isNull(Auth()->user())) {
+            $submitReport['userId'] = 0;
+        } else {
+            $submitReport['userId'] = auth()->id(); // get the user id of the reporter
+        }
         $submitReport['files'] = $name;
         Reports::create($submitReport); // create/submit report - store to database
 

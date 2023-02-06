@@ -26,14 +26,6 @@ return new class extends Migration
                 ->references('id')
                 ->on('report_types')
                 ->onDelete('cascade');
-
-            $table->unsignedBigInteger('location_id')->index();
-            $table->foreign('location_id')
-                ->references('id')
-                ->on('locations')
-                ->onDelete('cascade');
-
-            $table->text('specificLocation');
             
             $table->mediumText('files')->nullable();
             $table->string('status')->default('processing');

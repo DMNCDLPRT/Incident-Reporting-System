@@ -81,14 +81,6 @@
                                     </li>
                                 </div>
                                 <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Location:</span>
-                                    <span class="text-gray-700">{{ $location[0]->location_name }}</span>
-                                </li>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Specific Location:</span>
-                                    <span class="text-gray-700">{{ $report->specificLocation }}</span>
-                                </li>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
                                     <span class="font-bold w-48">Date:</span>
                                     <span class="text-gray-700">{{$report->created_at->format('d/m/Y') }}</span>
                                 </li>

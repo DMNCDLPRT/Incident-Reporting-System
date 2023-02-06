@@ -53,7 +53,7 @@ class AdminController extends Controller
         foreach($departments as $department){
             $assigns[] = FacadesDB::table('assigns')->where('department_id', $department)->get();
         }
-        
+
         return view('admin.admin')->with(['numbers' => $numbers, 'incidents' => $incidents, 'assigns' => $assigns]);
     }
 
@@ -69,6 +69,7 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
+        
         cellNumber::destroy($id);
         return view('admin.admin')->with('flash_message', 'Post deleted successfully!');
     }
@@ -89,18 +90,19 @@ class AdminController extends Controller
     {
         $assigns = ['assign'];
         $numbers = cellNumber::find($id);
+        $cell = cellNumber::where('department_id', $id)->get();
         $assigns = FacadesDB::table('assigns')->where('department_id', $id)->get();
 
         if($assigns->isEmpty()){
             $incidents = [];
             return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents]);  
         }
-
+        
         foreach($assigns as $assign){
             $incidents[] = FacadesDB::table('report_types')->where('id', $assign->incidents_id)->get(); 
         }
 
-        return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents]);  
+        return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents, 'cell' => $cell]);  
     }
 
     // delete report - Route::middleware(rele:super-admin)->...

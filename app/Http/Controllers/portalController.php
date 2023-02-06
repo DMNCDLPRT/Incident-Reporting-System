@@ -43,6 +43,8 @@ class portalController extends Controller
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
         }
 
+        // dd($user, $reports, $location);
+
         return view('portal.userProfile')->with(['user' => $user, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
 
@@ -53,6 +55,7 @@ class portalController extends Controller
         $incident = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
         $reporter = FacadesDB::table('users')->where('id', $report->userId)->get();
 
+        // dd($report, $location, $incident);
         return view('portal.userViewReport')->with(['report' => $report, 'location' => $location, 'incident' => $incident, 'reporter' => $reporter]);
     }
 
@@ -107,18 +110,14 @@ class portalController extends Controller
     public function message($words)
     {
         $incidentId = (int)$words[0];
-        $locationId = (int)$words[3];
 
         $incident = FacadesDB::table('report_types')->where('id', $incidentId)->get();
-        $location = FacadesDB::table('locations')->where('id', $locationId)->get();
         $time = Carbon::now()->toDateTimeString()/* ->format('d/m/y/') */;
 
         $words = [
             "Incident Type: ", $incident[0]->report_name,
             "\nNumber of Victims: ", $words[1], 
-            "\nNumber of Suspects: ", $words[2], 
-            "\nLocation: ", $location[0]->location_name,
-            "\n\nSpecific Location: ", $words[4],
+            "\nNumber of Suspects: ", $words[2],
             "\nDate: ", $time
         ];
 

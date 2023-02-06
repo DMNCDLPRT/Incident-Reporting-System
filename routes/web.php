@@ -77,20 +77,15 @@ Route::middleware('auth', 'verified')
             Route::post('register-step2', 'store')->name('register.step2.post');;
 });
 
-/* Route::middleware('auth')
-    ->controller(App\Http\Controllers\RegisterStepThreeController::class)
-        ->group( function() {
-            Route::get('register-step3', 'create')->name('register.step3.create');
-            Route::post('register-step3', 'store')->name('register.step3.post');;
-}); */
-
-
-Route::middleware(['auth' => 'role:User|Department|Admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
-    Route::get('/portal', 'index')->name('portal');
-    Route::get('/user', 'user')->name('user-Profile');
-    Route::get('/reports', 'reports')->name('reports');
-    Route::get('/user/view/report/{id}', 'userViewReport')->name('user.view.report');
+Route::controller(App\Http\Controllers\portalController::class)
+    ->prefix('portal')
+        ->group(function (){
+            Route::get('/portal', 'index')
+                ->name('portal');
+            Route::get('/reports', 'reports')
+                ->name('reports');
 });
+
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'registration_completed'])->group(function () {
 
@@ -135,6 +130,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
         Route::prefix('/admin/download/pdf/')->group(function () {
             Route::get('reports', 'exportAsPDF')->name('download.pdf.reports');
+        });
+
+        Route::middleware(['auth' => 'role:User|Department|Admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
+            Route::get('/user', 'user')->name('user-Profile');
+            Route::get('/user/view/report/{id}', 'userViewReport')->name('user.view.report');
+            Route::get('/portal',  'index')->name('portal');
+            Route::get('/reports', 'reports')->name('reports');
         });
 
     });

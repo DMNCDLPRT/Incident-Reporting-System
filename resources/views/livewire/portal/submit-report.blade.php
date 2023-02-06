@@ -23,15 +23,6 @@
         @endforeach
     </select>
     {{-- end of type of incident --}} 
-
-    {{-- textfield for specific location of the incident --}}
-    @error('description')
-      <div class="mt-4 "></div>
-      <span class="text-red-100 mt-5" role="alert">
-        <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
-      </span>
-    @enderror
-
     <div>
       {{-- <textarea id="description" rows="4" wire:model="description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="description" placeholder="Describe the Incident (optional)..." autocomplete="description"></textarea> --}}
       <div class="flex">
@@ -65,39 +56,7 @@
           </select>
         </div>
       </div>
-    </div>  
-
-    {{-- Selection of where the incident take place --}}
-
-    @error('location')
-    <div class="mt-4"></div>
-      <span class="text-red-100 mt-5" role="alert">
-        <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
-      </span>
-    @enderror
-
-    <label for="location" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Location/Barangay</label>
-    <select id="location" name="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="location_id" autocomplete="location" autofocus>
-        <option @disabled(true) @selected(true)>Select Location</option>
-        @foreach ($locations as $location)
-        <option name="location" value="{{ $location->id }}">{{ $location->location_name }}</option>
-        @endforeach
-    </select>
-    {{-- end of selection of location --}}
-
-    {{-- textfield for specific location of the incident --}}
-    @error('specificLocation')
-      <div class="mt-4 "></div>
-      <span class="text-red-100 mt-5" role="alert">
-        <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
-      </span>
-    @enderror
-
-    <div>
-      <label for="message" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Specific location</label>
-      <textarea id="specificLocation" rows="4" wire:model="specificLocation" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="specificLocation" placeholder="Specific location of the incident..." autocomplete="specificLocation"></textarea>
-    </div>  
-    {{-- end of textfield --}}  
+    </div> 
 
     {{-- upload file --}} 
 

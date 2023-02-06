@@ -41,7 +41,7 @@
                         </div>
 
                         <x-slot name="actions">
-                            <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm add Cell Number?');">
+                            <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm Add Department?');">
                                 {{ __('Add Emergency Department') }}
                             </x-jet-button>   
                           </x-slot>
