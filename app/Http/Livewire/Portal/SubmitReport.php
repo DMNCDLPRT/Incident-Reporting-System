@@ -141,15 +141,18 @@ class SubmitReport extends Component
 
         // Show the server response
         // echo $output;
-
+        
         $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
         $submitReport['files']->storeAs('public/reports', $name);
-    
-        if(isNull(Auth()->user())) {
-            $submitReport['userId'] = 0;
+
+        // $submitReport['userId'] = Auth()->user();
+
+        if(Auth()->user()) {
+            $submitReport['userId'] = auth()->id();  // get the user id of the reporter
         } else {
-            $submitReport['userId'] = auth()->id(); // get the user id of the reporter
+            $submitReport['userId'] = null;
         }
+
         $submitReport['files'] = $name;
         Reports::create($submitReport); // create/submit report - store to database
 

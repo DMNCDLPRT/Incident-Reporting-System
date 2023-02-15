@@ -63,7 +63,7 @@
                             <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm Assign Department?');">
                                 {{ __('Assign Department') }}
                             </x-jet-button>   
-                          </x-slot>
+                        </x-slot>
                     </x-slot>
                 </x-jet-form-section>
             </div>

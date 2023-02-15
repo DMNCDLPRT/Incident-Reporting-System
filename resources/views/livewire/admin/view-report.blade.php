@@ -64,12 +64,20 @@
                                     <span class="font-bold w-48">Report ID:</span>
                                     <span class="text-gray-700">{{ $report->id}}</span>
                                 </li>
-                                <a class="hover:" href="{{ route('view.user', $reporter[0]->id) }}">
+                                @if ($reporter == null)
                                     <li class="flex border-b py-2 hover:bg-slate-100">
                                         <span class="font-bold w-48">Reported by:</span>
-                                        <span class="text-gray-700">{{ $reporter[0]->name }}</span>
+                                        <span class="text-gray-700">Guest</span>
                                     </li>
-                                </a>
+                                @else
+                                    
+                                    <a class="hover:" href="{{ route('view.user', $reporter[0]->id) }}">
+                                        <li class="flex border-b py-2 hover:bg-slate-100">
+                                            <span class="font-bold w-48">Reported by:</span>
+                                           <span class="text-gray-700">{{ $reporter[0]->name }}</span>
+                                       </li>
+                                    </a>
+                                @endif
                                 <div class="flex">
                                     <li class="flex border-b py-2 hover:bg-slate-100 grow">
                                         <span class="font-bold w-48">No. of Victim/s:</span>

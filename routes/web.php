@@ -29,7 +29,6 @@ Route::get('/faq', function (){
 |--------------------------------------------------------------------------
 | Email verification Routes
 |--------------------------------------------------------------------------
-|
 */
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -52,7 +51,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 |--------------------------------------------------------------------------
 | Login with Google
 |--------------------------------------------------------------------------
-|
 */
 /* Route::prefix('auth/google')->controller(GoogleController::class)->group(function () {
     Route::get('/', 'redirectToGoogle')->name('redirectToGoogle');
@@ -63,7 +61,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 |--------------------------------------------------------------------------
 | Login with Facebook
 |--------------------------------------------------------------------------
-|
 */
 /* Route::prefix('auth/facebook')->controller(FacebookController::class)->group(function () {
     Route::get('/', 'redirectToFacebook')->name('redirectToFacebook');
@@ -80,12 +77,11 @@ Route::middleware('auth', 'verified')
 Route::controller(App\Http\Controllers\portalController::class)
     ->prefix('portal')
         ->group(function (){
-            Route::get('/portal', 'index')
-                ->name('portal');
-            Route::get('/reports', 'reports')
-                ->name('reports');
+            Route::get('/portal/guest', 'index')
+                ->name('portal-guest');
+            Route::get('/reports/guest', 'reports')
+                ->name('reports-guest');
 });
-
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'registration_completed'])->group(function () {
 
@@ -132,12 +128,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
             Route::get('reports', 'exportAsPDF')->name('download.pdf.reports');
         });
 
-        Route::middleware(['auth' => 'role:User|Department|Admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
+        
+    });
+    Route::middleware(['auth' => 'role:User|Department|Admin'])->prefix('portal')->controller(App\Http\Controllers\portalController::class)->group(function () {
             Route::get('/user', 'user')->name('user-Profile');
             Route::get('/user/view/report/{id}', 'userViewReport')->name('user.view.report');
             Route::get('/portal',  'index')->name('portal');
             Route::get('/reports', 'reports')->name('reports');
         });
-
-    });
 });

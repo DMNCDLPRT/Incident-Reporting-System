@@ -17,7 +17,6 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
                                 {{ $incidents[$i][0]->report_name }}
-                                
                             </p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -59,7 +58,9 @@
                             </div>
                         </td>
                     </tr>
-                            
+
+                    @php($i = $i + 1)
+                    
                     @empty
                         <tr>
                             <td class="p-2">

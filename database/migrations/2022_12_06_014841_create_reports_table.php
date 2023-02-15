@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('userId')->index();
+            $table->unsignedBigInteger('userId')->index()->nullable();
             $table->foreign('userId')->references('id')->on('users');
             
             $table->unsignedBigInteger('report_id')->index();

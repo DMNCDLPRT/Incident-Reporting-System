@@ -12,30 +12,21 @@ use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Carbon\Carbon;
 use Illuminate\Pagination\PaginationServiceProvider;
 
+use function PHPUnit\Framework\isNull;
+
 class AdminController extends Controller
 {
     public function index() 
     {
         $reports = Reports::with('reports', 'locations')->paginate(15);
 
-        if($reports->isEmpty()) {
-            $location = [];
-            $incidents = [];
-            $incident = [];
-            $count = [];
-            $sum = [];
-            $departments = [];
-
-            return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum, 'departments' => $departments]);
-        }
-        
         $location = [];
         $incidents = [];
         $incident = [];
         $count = [];
         $sum = [];
         $departments = [];
-        
+
         return view ('admin.adminDashboard')->with(['reports' => $reports, 'location' => $location, 'incidents' => $incidents, 'incident' => $incident, 'count' => $count, 'sum' => $sum, 'departments' => $departments]);
     }
 
@@ -69,8 +60,7 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        
-        cellNumber::destroy($id);
+        Departments::destroy($id);
         return view('admin.admin')->with('flash_message', 'Post deleted successfully!');
     }
 
@@ -115,10 +105,14 @@ class AdminController extends Controller
     public function viewReport($id)
     {
         $report = Reports::where('id', $id)->first();
-        // dd($report);
         $location = FacadesDB::table('locations')->where('id', $report->location_id)->get();
         $incident = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
-        $reporter = FacadesDB::table('users')->where('id', $report->userId)->get();
+
+        if (isNull($report->userId)) {
+            $reporter = [];
+        } else {
+            $reporter = FacadesDB::table('users')->where('id', $report->userId)->get();
+        }
 
         // dd($reporter);
 

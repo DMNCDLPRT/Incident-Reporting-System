@@ -24,9 +24,13 @@
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
-                                @foreach ($cell as $number)    
-                                    <a href=" {{ route('edit', $number->id) }} " class="hover:underline hover:text-blue-700">{{ $number->number }}</a> </br>
-                                @endforeach
+                                @if ($cell == null)
+                                    @foreach ($cell as $number)    
+                                        <a href=" {{ route('edit', $number->id) }} " class="hover:underline hover:text-blue-700">{{ $number->number }}</a> </br>
+                                    @endforeach
+                                @else
+                                    <p>No Assigned<br>Emergency<br>Responders</p>
+                                @endif
                             </p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

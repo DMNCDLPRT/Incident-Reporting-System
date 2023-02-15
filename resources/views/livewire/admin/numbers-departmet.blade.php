@@ -132,7 +132,7 @@
                             </div>
                             @php($i = $i + 1)
                             @empty
-                                empty
+                                Not assigned yet
                             @endforelse
                         </p>
                     </td>
@@ -154,14 +154,14 @@
                                   <x-slot name="content">
                                     <!-- Account Management -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage number') }}
+                                        {{ __('Manage Department') }}
                                     </div>
 
                                     <x-jet-dropdown-link href="{{ route('view', $numbers->id) }}">
                                         {{ __('View') }}
                                       </x-jet-dropdown-link>
                   
-                                    <x-jet-dropdown-link href="{{ route('delete', $numbers->id) }}" onclick="return confirm('Are you sure you want to delete {{ $numbers->department }}?');">
+                                    <x-jet-dropdown-link href="{{ route('delete', $numbers->id) }}" onclick="return confirm('Are you sure you want to delete - {{ $numbers->department }}?');">
                                       {{ __('Delete') }}
                                     </x-jet-dropdown-link>
                                 </x-slot>

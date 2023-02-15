@@ -36,7 +36,11 @@
                                 @forelse ($reports as $report)
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <a class="hover:bg-slate-100" href="{{ route('view.user', $report->userId) }}">
+                                        @if ($report->userId == null)
+                                            <p class="hover:bg-slate-100">Guest</p>
+                                        @else
+                                            <a class="hover:bg-slate-100" href="{{ route('view.user', $report->userId) }}">
+                                        @endif
                                         <div class="flex items-center">
                                             <div class="ml-3">
                                                 <p class="text-gray-900 whitespace-no-wrap">
@@ -103,6 +107,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @php($i = $i + 1)
                                 @empty
                                     <tr>
                                         <td class="p-2">
