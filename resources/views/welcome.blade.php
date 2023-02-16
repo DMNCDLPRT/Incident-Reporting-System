@@ -32,7 +32,7 @@
 
                             @role('Admin|Department')
                             <a href="{{ url('/dashboard') }}" class="text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                Home
+                                Home 
                             </a>
                             @endrole
                             @else
@@ -40,8 +40,8 @@
                                 Sign-up
                             </a>
                                 @if (Route::has('register'))
-                                <a href="{{ route('login') }}" class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
-                                    Sign-in
+                                <a href="{{ route('login') }}" class="text-gray-800 dark:text-white bg-slate-400 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">
+                                    Sign-in 
                                 </a>
                                 @endif
                             @endauth 
@@ -92,7 +92,9 @@
                                 @endif
                                 @endauth
                             @endif
+                            
                         </div>
+
                     </div>
                     <div class="col-span-6 relative">
                         <img src="{{ asset('images/don carlos logo.png') }}" alt="">
@@ -134,6 +136,10 @@
                             </div>
                         </div> --}}
                     </div>
+
+                    <a href="{{ route('portal-guest') }}" type="button" class="text-white w-full lg:w-max px-4 py-3 border border-slate-200 hover:cursor-pointer font-medium rounded inline-flex items-center justify-center">
+                        Report Incident - Report as Guest
+                    </a>
                 </section>
                     
                 <footer class="bg-gray-800 md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4">
