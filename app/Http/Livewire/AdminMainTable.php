@@ -28,12 +28,13 @@ class AdminMainTable extends Component
 
     public function search()
     {
+        $model = Reports::with('reports', 'locations')->latest();
+
         $reports = Reports::where('id', 'like', "%{$this->query}%")
-                            ->orWhere('victims', 'like', "%{$this->query}%")
-                            ->orWhere('suspects', 'like', "%{$this->query}%")
-                            ->orWhere('status', 'like', "%{$this->query}%")
-                            ->orWhere('created_at', 'like', "%{$this->query}%")
-                            ->latest()->paginate(10);
+            ->orWhere('event', 'like', "%{$this->query}%")
+            ->orWhere('status', 'like', "%{$this->query}%")
+            ->orWhere('created_at', 'like', "%{$this->query}%")
+            ->latest()->paginate(10);
 
         foreach($reports as $report){
             $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
@@ -41,15 +42,10 @@ class AdminMainTable extends Component
         foreach($reports as $report){
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->latest()->get();
         }
-        if($reports == null) {
-            $location = [];
-            $incidents = [];
-        }
         
         return view('livewire.admin.admin-main-table', ['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
 
-    // search bar kulang 
     public function render()
     {
         if($this->query == null){

@@ -31,7 +31,7 @@ class Reports extends Model
 
     public function getStatusColorAttribute(){
         return[
-            'Pending' => 'green',
+            'Pending' => 'yellow',
             'Processing' => 'blue',
             'Rejected' => 'red',
         ][$this->status] ?? 'gray';
@@ -49,10 +49,11 @@ class Reports extends Model
     protected $fillable = [
         'userId',
         'report_id',
-        'location_id',
-        'specificLocation',
+        // 'location_id',
+        // 'specificLocation',
         'victims',
         'suspects',
+        'event',
         'status',
         'files',
     ];

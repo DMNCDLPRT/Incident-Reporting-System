@@ -20,7 +20,7 @@ class DepartmentChart extends Component
             $name[] = $department->department;
         }
 
-        if(!$departments) {
+        if($departments) {
             foreach($departments as $department){
                 $assigns[] = FacadesDB::table('assigns')->where('department_id', $department->id)->get();
             }
@@ -43,6 +43,8 @@ class DepartmentChart extends Component
             
             $count = $incidents;
             // dd($incidents);
+        } else {
+            $count = [];
         }
 
         $this->departments = $name;

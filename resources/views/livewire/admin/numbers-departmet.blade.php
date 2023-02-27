@@ -127,7 +127,7 @@
                             @php($i = 1)
                             @forelse ($numbers->cellnum as $cellnum)
                             <div class="flex">
-                                <p class="mr-2 text-gray-400">{{ $i }}.</p>
+                                <p class="mr-2 text-gray-500">{{ $i }}.</p>
                                 <a href="{{ route('edit', $cellnum->id) }}" class="hover:underline hover:text-blue-500">{{ $cellnum->number }} </a> <br>
                             </div>
                             @php($i = $i + 1)
@@ -137,10 +137,10 @@
                         </p>
                     </td>
                     <td>
-                        <p class="text-xs font-semibold text-gray-500">{{ $numbers->created_at->diffForHumans() }}</p>
+                        <p class="text-xs font-semibold text-gray-600">{{ $numbers->created_at->diffForHumans() }}</p>
                     </td>
                     <td>
-                        <p class="text-xs font-semibold text-gray-500">{{ $numbers->updated_at->diffForHumans() }}</p>
+                        <p class="text-xs font-semibold text-gray-600">{{ $numbers->updated_at->diffForHumans() }}</p>
                     </td>
                     <td>
                         <div class="flex flex-row items-center">
@@ -153,7 +153,7 @@
                                 </x-slot>
                                   <x-slot name="content">
                                     <!-- Account Management -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                    <div class="block px-4 py-2 text-xs text-gray-500">
                                         {{ __('Manage Department') }}
                                     </div>
 

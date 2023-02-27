@@ -12,7 +12,7 @@
           <tbody class="divide-y divide-gray-100">
             @php($i = 0)
             @forelse (array_unique($incidents) as $incident)
-               <tr class="text-gray-500">
+               <tr class="text-gray-600">
                   <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">{{ $incident[0]->report_name }}</th>
                   <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">{{ $count[$i] }}</td>
                   <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">

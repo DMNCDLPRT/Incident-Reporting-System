@@ -1,13 +1,13 @@
 <div class="bg-white p-8 rounded-md w-full">
     <div class=" flex items-center justify-between pb-6">
         <div>
-            <h2 class="text-gray-600 font-semibold">All Users</h2>
-            <span class="text-xs">All reports</span>
+            <h2 class="text-gray-600 font-semibold">Registered Users</h2>
+            <span class="text-xs">All Users</span>
         </div>
         <div class="flex items-center justify-between">
             <form wire:submit.prevent="search">
                 <div class="flex bg-gray-50 items-center p-2 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                     </svg>
                     <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" wire:model="query" placeholder="Search for users..">
@@ -92,7 +92,7 @@
                                         </x-slot>
                                             <x-slot name="content">
                                             <!-- Report Management -->
-                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                            <div class="block px-4 py-2 text-xs text-gray-500">
                                                 {{ __('Assign Role') }}
                                             </div>
                                             @role('Admin')
@@ -103,9 +103,11 @@
                                             <x-jet-dropdown-link href="{{ route('assign.user.admin', $user->id) }}">
                                                 {{ __('Department') }}
                                             </x-jet-dropdown-link>
-                                            {{-- <x-jet-dropdown-link href="{{ route('assign.user.user', $user->id) }}">
+                                            @if (Auth()->user()->role('Admin'))
+                                            <x-jet-dropdown-link href="{{ route('assign.user.user', $user->id) }}">
                                                 {{ __('User') }}
-                                            </x-jet-dropdown-link> --}}
+                                            </x-jet-dropdown-link>
+                                            @endif
                                         </x-slot>
                                         </x-jet-dropdown>
                                     </div>
@@ -129,7 +131,7 @@
                                         </x-slot>
                                         <x-slot name="content">
                                             <!-- Report Management -->
-                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                            <div class="block px-4 py-2 text-xs text-gray-500">
                                                 {{ __('Manage User') }}
                                             </div>
                                             <x-jet-dropdown-link href="{{ route('view.user', $user->id) }}">

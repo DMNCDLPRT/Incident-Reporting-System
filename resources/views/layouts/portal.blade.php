@@ -41,7 +41,7 @@
                       </x-slot>
                       <x-slot name="content">
                         <!-- Account Management -->
-                        <div class="block px-4 py-2 text-xs text-gray-400">
+                        <div class="block px-4 py-2 text-xs text-gray-500">
                             {{ __('Manage Account') }}
                         </div>
 
@@ -70,7 +70,7 @@
                     </x-jet-dropdown>
                     @endif
                     <div class="flex items-center lg:order-2">
-                      @if (Route::has('login'))
+                     {{--  @if (Route::has('login'))
                           @auth
                           @else
                           <a href="{{ route('register') }}" class="text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
@@ -82,7 +82,7 @@
                               </a>
                               @endif
                           @endauth 
-                      @endif
+                      @endif --}}
                     </div>
                   </div>
                 </div>

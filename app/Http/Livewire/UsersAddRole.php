@@ -5,8 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
-
-
 class UsersAddRole extends Component
 {
     use WithPagination;
@@ -15,22 +13,28 @@ class UsersAddRole extends Component
     public function search()
     {
         $users = User::where('name', 'like', "%{$this->query}%")
-                            ->orWhere('email', 'like', "%{$this->query}%")
-                            ->orWhere('id', 'like', "%{$this->query}%")
-                            ->latest()
-                            ->paginate(5);
+                ->orWhere('email', 'like', "%{$this->query}%")
+                ->orWhere('id', 'like', "%{$this->query}%")
+                ->latest()
+                ->paginate(10);     
 
-        return view('livewire.admin.users-add-role', ['users' => $users]);              
+                //dd($users);
+
+        return $users;
     }
 
     public function render()
     {
-        if($this->query == null){
-            $users = User::latest()->paginate(5);
-            return view('livewire.admin.users-add-role', ['users' => $users]);
+        $users = User::latest()->paginate(10);
+        
+        $query = new UsersAddRole();
+        $query->search();
+
+        // dd($query->search());
+        if($query != null) {
+            $users = $query->search();
         }
 
-        $query = new UsersAddRole();
-        return $query->search();
+        return view('livewire.admin.users-add-role', ['users' => $users]);
     }
 }

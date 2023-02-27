@@ -14,11 +14,11 @@
             <div class="px-4">
                <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4">
                   @livewire('admin-latest-reports', ['reports' => $reports])
-                  @livewire('department-chart', ['departments' => $departments, 'count' => $count, 'sum' => $sum])
+                  @livewire('admin-types-of-report-by-percent', ['count' => $count, 'incident' => $incident, 'sum' => $sum])
                </div>
                <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4">
-                  @livewire('reports-in-every-location', ['count' => $count, 'incident' => $incident, 'sum' => $sum])
-                  @livewire('admin-types-of-report-by-percent', ['count' => $count, 'incident' => $incident, 'sum' => $sum])
+                  @livewire('department-chart', ['departments' => $departments, 'count' => $count, 'sum' => $sum])
+                  {{-- @livewire('reports-in-every-location', ['count' => $count, 'incident' => $incident, 'sum' => $sum]) --}}
                </div>
             </div>
       </main>

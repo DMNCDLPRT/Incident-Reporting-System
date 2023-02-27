@@ -3,7 +3,7 @@
       {{ __('Submit a Report') }}
   </x-slot>
   <x-slot name="description">
-      {{ __('You can Submit a report here. Just make sure to inclue the specific location, so that our responders can locate the incident quickly') }}
+      {{ __('You can Submit a report here. Just make sure to inclue the important details.') }}
   </x-slot>
   <x-slot name="form">
 
@@ -15,7 +15,7 @@
       </span>
     @enderror
 
-    <label for="reportType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select type of Incident</label>
+    <label for="reportType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Select type of Incident</label>
     <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Specific location of the incident..."  wire:model="report_id" autocomplete="reportType" autofocus>
         <option @disabled(true) @selected(true)>Select Type of Incident</option>
         @foreach ($incidents as $incident)
@@ -28,7 +28,7 @@
       <div class="flex">
         <div class="mr-4 grow">
 
-          <label for="suspects" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">No. of Suspect</label>
+          <label for="suspects" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">No. of Suspect</label>
           <select id="suspects" name="suspects" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="suspects" autocomplete="suspects" autofocus>
             <option @disabled(true) @selected(true)>Select No. of Suspects</option>
             <?php
@@ -42,7 +42,7 @@
           </select>
         </div>
         <div class="grow">
-          <label for="victims" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-400">No. of Victims</label>
+          <label for="victims" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">No. of Victims</label>
           <select id="victims" name="victims" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="victims" autocomplete="location" autofocus>
             <option @disabled(true) @selected(true)>Select No. of Victims</option>
             <?php
@@ -58,6 +58,20 @@
       </div>
     </div> 
 
+   {{-- textfield for specific location of the incident --}}
+   @error('event')
+    <div class="mt-4 "></div>
+    <span class="text-red-100 mt-5" role="alert">
+      <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
+    </span>
+    @enderror
+
+    <div>
+      <label for="event" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">Description <span class="text-gray-400">(optional)</span></label>
+      <textarea id="event" rows="4" wire:model="event" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description or other details of the incident ..." autocomplete="event"></textarea>
+    </div>  
+    {{-- end of textfield --}}  
+
     {{-- upload file --}} 
 
     @error('files')
@@ -72,20 +86,20 @@
         </label>
       
         <div class="mb-8">
-          <input type="file" name="files" wire:model="files" id="files" class="sr-only" />
-          <label for="files" class="relative flex min-h-[100px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-5 text-center">
-            <div>
-              <span class="mb-2 block text-m font-semibold text-[#07074D]">
-                Use Camera
-              </span>
-              <span class="mb-2 block text-base font-medium text-[#6B7280]">
-                Or
-              </span>
-              <span class="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]">
-                Browse
-              </span>
-            </div>
-          </label>
+          <input type="file" name="files" wire:model="files" id="files" class="sr-only" >
+            <label for="files" class="relative flex min-h-[100px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-5 text-center">
+              <div>
+                <span class="mb-2 block text-m font-semibold text-[#07074D]">
+                  Use Camera
+                </span>
+                <span class="mb-2 block text-base font-medium text-[#6B7280]">
+                  Or
+                </span>
+                <span class="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D]">
+                  Browse
+                </span>
+              </div>
+            </label>
         </div>
         
         @if ($files)
@@ -152,6 +166,7 @@
           });
         </script>
     </div>
+    
       <x-slot name="actions">
         <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm Report Incident?');">
             {{ __('Report Incident') }}

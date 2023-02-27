@@ -27,7 +27,7 @@
                         @enderror
                         
                         <x-jet-label for="number" value="{{ __('Cell Number') }}" />
-                        <x-jet-input id="number" wire:model="number" class="block mt-1 w-full" type="number" name="number" value="{{ $numbers->number }}" />
+                        <x-jet-input id="number" wire:model="number" class="block mt-1 w-full" type="number" name="number" value="{{ $numbers->number }}"/>
                     </div>
 
                     @if(session()->has('message'))

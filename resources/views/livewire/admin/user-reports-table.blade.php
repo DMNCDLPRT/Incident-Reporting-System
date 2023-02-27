@@ -23,7 +23,7 @@
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
                                 {{ $report->created_at->format('d/m/Y') }}
-                                <p class="text-xs font-semibold text-gray-500">{{$report->created_at->diffForHumans()}}</p>
+                                <p class="text-xs font-semibold text-gray-600">{{$report->created_at->diffForHumans()}}</p>
                             </p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -44,7 +44,7 @@
                                     </x-slot>
                                       <x-slot name="content">
                                         <!-- Report Management -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                        <div class="block px-4 py-2 text-xs text-gray-500">
                                             {{ __('Manage report') }}
                                         </div>
 

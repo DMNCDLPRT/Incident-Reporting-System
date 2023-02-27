@@ -5,12 +5,12 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            {{ __('Before continuing, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+            {{ __('Please waif for the admin to confirm your account. this may take 1 to 3 days.') }}
         </div>
 
         @if (session('status') == 'verification-link-sent')
             <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
+                {{ __('Please wait for the aproval of your account from the admin') }}
             </div>
         @endif
 
@@ -20,7 +20,7 @@
 
                 <div>
                     <x-jet-button type="submit">
-                        {{ __('Resend Verification Email') }}
+                        {{ __('Resend request approve from the admin') }}
                     </x-jet-button>
                 </div>
             </form>

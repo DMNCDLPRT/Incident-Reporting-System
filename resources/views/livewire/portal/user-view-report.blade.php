@@ -7,7 +7,7 @@
                 <div class="flex-1 bg-white rounded-lg shadow-xl p-8">
                     <h4 class="text-xl text-gray-900 font-bold">Incident Report Info</h4>
                     <div class="flex ">
-                        <p class="text-gray-500 text-sm pr-2">
+                        <p class="text-gray-600 text-sm pr-2">
                             {{ $report->created_at->diffForHumans() }} |
                         </p>
                         <p class="text-{{$report->status_color}}-500 text-sm pr-2">

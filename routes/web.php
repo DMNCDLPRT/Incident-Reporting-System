@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\FacebookController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Middleware\OnlyAdmins;
+use Laravel\Fortify\Http\Controllers\RegisteredUserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -135,5 +138,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
             Route::get('/user/view/report/{id}', 'userViewReport')->name('user.view.report');
             Route::get('/portal',  'index')->name('portal');
             Route::get('/reports', 'reports')->name('reports');
-        });
+    });
+
 });

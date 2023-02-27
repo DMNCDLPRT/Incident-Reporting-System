@@ -54,6 +54,13 @@ class SubmitReport extends Component
     public $specificLocation;
 
     /**
+     * Report event
+     *
+     * @var string
+     */
+    public $event;
+
+    /**
      * Report file
      *
      * @var string
@@ -71,9 +78,10 @@ class SubmitReport extends Component
             'report_id' => 'required',
             'victims' => 'string',
             'suspects' => 'string',
+            'event' => 'string|nullable',
             /* 'location_id' => 'required',
             'specificLocation' => 'required|string', */
-            'files' => 'required|mimes:jpeg,png',
+            'files' => 'nullable|sometimes|image|max:10240',
         ];
     }
 
@@ -81,6 +89,9 @@ class SubmitReport extends Component
     {
         $submitReport = $this->validate();
 
+        // dd($submitReport);
+
+        // dd($submitReport['files']);
         $contact = new portalController;
         $nums = $contact->contact($submitReport['report_id']);
 
@@ -138,28 +149,33 @@ class SubmitReport extends Component
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $output = curl_exec( $ch );
         curl_close ($ch);
-
         // Show the server response
         // echo $output;
         
-        $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
-        $submitReport['files']->storeAs('public/reports', $name);
-
-        // $submitReport['userId'] = Auth()->user();
+        if($submitReport['files'] == null){
+            $submitReport['files'] = null;
+        } else {
+            $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
+            $submitReport['files']->storeAs('public/reports', $name);
+            $submitReport['files'] = $name;
+        }
 
         if(Auth()->user()) {
             $submitReport['userId'] = auth()->id();  // get the user id of the reporter
         } else {
             $submitReport['userId'] = null;
         }
+        
+        // dd($submitReport['files']);
 
-        $submitReport['files'] = $name;
         Reports::create($submitReport); // create/submit report - store to database
+
+        $this->reset(['suspects', 'victims', 'files', 'report_id', 'event']); // reset all user input
 
         session()->flash('output', $output);
         session()->flash('message', /* $output */ 'Incident Succefully Reported');
 
-    }
+        }
     // 454 - globe - ako
     // 421 - TM - mama 1 
     // 723 - smart - mama 2

@@ -2,25 +2,67 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AssignedDepartment;
-use App\Models\Departments;
 use Livewire\Component;
 
 class ViewDepartment extends Component {
-    public $numbers;
-    public $incidents;
-    public $cell;
 
-    public $incident = [];
+    public $incident_id = [];
 
-    public function EditAssign($incident) {
+    public $contact_id = [];
 
-        dd($incident);
-        foreach ($incident as $inci) {
-            AssignDepartments::destroy($inci);
-        }
-        
+    /**
+    * Get the validation rules that apply to the request.
+    *
+    * @return array<string,mixed>
+    */
+    public function incident_rules()
+    {
+        return[
+            'incident_id' => 'required'
+        ];
     }
+
+    /**
+    * Get the validation rules that apply to the request.
+    *
+    * @return array<string,mixed>
+    */
+    public function contact_rules()
+    {
+        return[
+            'contact_id' => 'required'
+        ];
+    }
+
+    public function delete_assigned_incidents() 
+    {
+        // dd($contact_id);
+        $validated = $this->validate();
+        
+        foreach ($validated['incident_id'] as $incident) {
+            AssignDepartments::destroy($incident);
+        }
+       
+        $this->reset('incident_id');
+        session()->flash('message', 'The assigned incidents are succesfully removed');
+    }
+
+    public function delete_assigned_contact() 
+    {
+        dd('hehehehehe');
+        $validated = $this->validate();
+        
+        foreach ($validated['incident_id'] as $incident) {
+            AssignDepartments::destroy($incident);
+        }
+       
+        $this->reset('incident_id');
+        session()->flash('message', 'The assigned incidents are succesfully removed');
+    }
+
+    public $numbers;
+    public $cell;
+    public $incidents;
 
     public function mount($numbers, $incidents, $cell){
         $this->numbers = $numbers;

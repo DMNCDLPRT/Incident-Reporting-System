@@ -8,10 +8,10 @@
             <div class="flex items-center justify-between">
                 <form wire:submit.prevent="search">
                     <div class="flex bg-gray-50 items-center p-2 rounded-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                         </svg>
-                        <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" wire:model="query" placeholder="Search Report..">
+                        <input class="bg-gray-50 outline-none ml-1 block transition duration-300 delay-150 hover:delay-300" type="text" name="" id="" wire:model="query" placeholder="Search Report..">
                     </div>
                 </form>
             </div>
@@ -26,6 +26,7 @@
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Incident</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Victims</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Suspects</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Description</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
                                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Action</th>
@@ -37,18 +38,18 @@
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         @if ($report->userId == null)
-                                            <p class="hover:bg-slate-100">Guest</p>
+                                            <p class="hover:text-red-400">Guest</p>
                                         @else
-                                            <a class="hover:bg-slate-100" href="{{ route('view.user', $report->userId) }}">
-                                        @endif
                                         <div class="flex items-center">
                                             <div class="ml-3">
                                                 <p class="text-gray-900 whitespace-no-wrap">
-                                                    {{ $report->userId }}
+                                                    <a class="hover:text-blue-400" href="{{ route('view.user', $report->userId) }}">
+                                                        {{ $report->userId }}
+                                                    </a>
                                                 </p>
                                             </div>
                                         </div>
-                                        </a>
+                                        @endif
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
@@ -67,8 +68,17 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
+                                            @if ($report->event == null)
+                                               <i class="text-gray-500"> no other info provided </i>
+                                            @else
+                                                {{ Str::limit($report->event, 60) }}
+                                            @endif
+                                        </p>
+                                    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                        <p class="text-gray-900 whitespace-no-wrap">
                                             {{ $report->created_at->format('d/m/Y') }}
-                                            <p class="text-xs font-semibold text-gray-500">{{$report->created_at->diffForHumans()}}</p>
+                                            <p class="text-xs font-semibold text-gray-600">{{$report->created_at->diffForHumans()}}</p>
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -89,7 +99,7 @@
                                                 </x-slot>
                                                   <x-slot name="content">
                                                     <!-- Report Management -->
-                                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                                    <div class="block px-4 py-2 text-xs text-gray-500">
                                                         {{ __('Manage report') }}
                                                     </div>
 

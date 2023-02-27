@@ -28,7 +28,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             
             $table->mediumText('files')->nullable();
-            $table->string('status')->default('processing');
+            $table->string('status')->default('Processing');
 
             $table->dateTime(Reports::CREATED_ON);
             $table->dateTime(Reports::UPDATED_ON);

@@ -5,7 +5,7 @@
             <div>
             <div id="title" class="text-center my-10">
                 <h1 class="font-bold text-4xl">Incident Reporting System</h1>
-                <p class="text-light text-gray-500 text-xl">
+                <p class="text-light text-gray-600 text-xl">
                     Don Carlos Bukidnon
                 </p>
             </div>
@@ -31,7 +31,7 @@
                                 stroke-width="1"
                                 d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
                             </svg>
-                            <p class="text-gray-500 text-sm  pt-2">
+                            <p class="text-gray-600 text-sm  pt-2">
                                 Incident Report
                             </p>
                         </div>
@@ -70,13 +70,13 @@
                             stroke-width="1"
                             d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
-                        <p class="text-gray-500 text-sm pt-2">
+                        <p class="text-gray-600 text-sm pt-2">
                             Perfect Managing the Data
                         </p>
                     </div>
                     <div id="contain" class="leading-8 mb-10 text-lg font-light">
                         <p class="text-sm pt-2 p-5">
-                            The central hub where authorized personnel can access, view, and manage all incidents reported on the website. The Dashboard allows you to quickly and easily view all reported incidents, and update their status as necessary. It also provides you with important statistics, such as the number of incidents reported in a specific time period, to help you gain a better understanding of the incidents occurring in the municipality. With this powerful tool, you can ensure that all incidents are handled in a timely and efficient manner, keeping the community safe and secure.
+                            The central hub where authorized personnel can access, view, and manage all incidents reported on the website. The Dashboard allows you to quickly and easily view all reported incidents, and update their status as necessary. It also provides you with important statistics, such as the number of incidents reported in a specific time period, to help you gain a better understanding of the incidents occurring in the municipality.Keeping the community safe and secure.
                         </p>
                         <div id="choose" class="w-full mt-10 px-6">
                         <a @role('Admin|Department')href="{{ route('adminDashboard') }}" @endrole  @role('User') href="{{ route('reports') }}" @endrole class="w-full block bg-gray-900 text-white font-medium text-xl py-4 rounded-xl hover:shadow-lg transition duration-200 ease-in-out hover:bg-indigo-600 hover">
@@ -107,7 +107,7 @@
                                 stroke-width="1"
                                 d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
                             </svg>
-                            <p class="text-gray-500 text-sm pt-2">
+                            <p class="text-gray-600 text-sm pt-2">
                                 Answers to common our Questions
                             </p>
                         </div>
