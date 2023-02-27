@@ -84,6 +84,7 @@
                                                 {{ $user->getRoleNames() }}
                                             </p>
                                         </div>
+                                        @role('Admin')
                                         <x-jet-dropdown align="left" width="48">
                                         <x-slot name="trigger">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
@@ -95,11 +96,9 @@
                                             <div class="block px-4 py-2 text-xs text-gray-500">
                                                 {{ __('Assign Role') }}
                                             </div>
-                                            @role('Admin')
                                             <x-jet-dropdown-link href="{{ route('assign.user.superAdmin', $user->id) }}">
                                                     {{ __('Admin') }}
                                             </x-jet-dropdown-link>
-                                            @endrole
                                             <x-jet-dropdown-link href="{{ route('assign.user.admin', $user->id) }}">
                                                 {{ __('Department') }}
                                             </x-jet-dropdown-link>
@@ -109,7 +108,8 @@
                                             </x-jet-dropdown-link>
                                             @endif
                                         </x-slot>
-                                        </x-jet-dropdown>
+                                    </x-jet-dropdown>
+                                    @endrole
                                     </div>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
