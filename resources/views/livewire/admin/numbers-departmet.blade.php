@@ -161,9 +161,9 @@
                                         {{ __('View') }}
                                       </x-jet-dropdown-link>
                   
-                                    <x-jet-dropdown-link href="{{ route('delete', $numbers->id) }}" onclick="return confirm('Are you sure you want to delete - {{ $numbers->department }}?');">
+                                    {{-- <x-jet-dropdown-link href="{{ route('delete', $numbers->id) }}" onclick="return confirm('Are you sure you want to delete - {{ $numbers->department }}?');">
                                       {{ __('Delete') }}
-                                    </x-jet-dropdown-link>
+                                    </x-jet-dropdown-link> --}}
                                 </x-slot>
                               </x-jet-dropdown>
                             </div>

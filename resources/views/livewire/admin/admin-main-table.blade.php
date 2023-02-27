@@ -106,11 +106,11 @@
                                                     <x-jet-dropdown-link href="{{ route('view.report', $report->id) }}">
                                                         {{ __('View') }}
                                                     </x-jet-dropdown-link>
-                                                    @role('Admin')
+                                                    {{-- @role('Admin')
                                                     <x-jet-dropdown-link href="{{ route('destroy.report', $report->id) }}">
                                                         {{ __('Delete') }}
                                                     </x-jet-dropdown-link>
-                                                    @endrole
+                                                    @endrole --}}
                                                 </x-slot>
                                               </x-jet-dropdown>
                                             </div>

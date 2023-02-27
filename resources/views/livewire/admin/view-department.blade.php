@@ -1,4 +1,4 @@
-<h3 class="text-xl leading-none font-bold text-gray-900 mb-10">View Department</h3>
+<h3 class="text-xl leading-none font-bold text-gray-900 mb-10 pl-4">View Department</h3>
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     
 
@@ -32,9 +32,9 @@
                                             </label>
                                         @endforeach
                                     @endif
-                                    <input type="text" wire:model="contact_id">
+                                   
                                 </p>
-                                <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Are you sure you want to delete the selected assigned incidents?');">
+                                <x-jet-button wire:loading.attr="disabled" class="top-0" onclick="return confirm('Are you sure you want to delete the selected cell numbers?');">
                                     {{ __('delete contact number') }}
                                 </x-jet-button>  
                             </form>
