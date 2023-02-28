@@ -37,10 +37,12 @@ class AdminMainTable extends Component
             ->latest()->paginate(10);
 
         foreach($reports as $report){
-            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
+            $location[] = FacadesDB::table('locations')
+                ->where('id', $report->location_id)->latest()->get();
         }
         foreach($reports as $report){
-            $incidents[] = FacadesDB::table('report_types')->where('id', $report->report_id)->latest()->get();
+            $incidents[] = FacadesDB::table('report_types')
+                ->where('id', $report->report_id)->latest()->get();
         }
         
         return view('livewire.admin.admin-main-table', ['reports' => $reports, 'location' => $location, 'incidents' => $incidents]);

@@ -25,6 +25,7 @@
     {{-- end of type of incident --}} 
     <div>
       {{-- <textarea id="description" rows="4" wire:model="description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="description" placeholder="Describe the Incident (optional)..." autocomplete="description"></textarea> --}}
+      
       <div class="flex">
         <div class="mr-4 grow">
 
@@ -67,8 +68,8 @@
     @enderror
 
     <div>
-      <label for="event" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">Description <span class="text-gray-400">(optional)</span></label>
-      <textarea id="event" rows="4" wire:model="event" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description or other details of the incident ..." autocomplete="event"></textarea>
+      <label for="event" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">Description <span class="text-gray-400">(optional)</span> <span class="text-[12px]">max letters 160</span></label>
+      <textarea id="event" name="event" rows="4" wire:model="event" maxlength="160" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description or other details of the incident ..." autocomplete="event"></textarea>
     </div>  
     {{-- end of textfield --}}  
 
@@ -111,18 +112,18 @@
             <span class="truncate pr-3 text-base font-medium text-[#07074D]">
               {{ $files->getClientOriginalName() }}
             </span>
-            <button class="text-[#07074D]" id="onclickFile">
+            <button class="text-[#07074D]" id="onclickFile" onclick="this.parentNode.parentNode.remove(); return false;">
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.279337 0.279338C0.651787 -0.0931121 1.25565 -0.0931121 1.6281 0.279338L9.72066 8.3719C10.0931 8.74435 10.0931 9.34821 9.72066 9.72066C9.34821 10.0931 8.74435 10.0931 8.3719 9.72066L0.279337 1.6281C-0.0931125 1.25565 -0.0931125 0.651788 0.279337 0.279338Z" fill="currentColor"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.279337 9.72066C-0.0931125 9.34821 -0.0931125 8.74435 0.279337 8.3719L8.3719 0.279338C8.74435 -0.0931127 9.34821 -0.0931123 9.72066 0.279338C10.0931 0.651787 10.0931 1.25565 9.72066 1.6281L1.6281 9.72066C1.25565 10.0931 0.651787 10.0931 0.279337 9.72066Z" fill="currentColor"/>
               </svg>
-            </button>
+            </button> 
           </div>
         </div>
         @endif
         <script>
           $( "#onclickFile" ).click(function() {
-            $files = [];
+            $files = [''];
           });
         </script>
 

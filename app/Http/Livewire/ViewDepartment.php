@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\cellNumber;
 use Livewire\Component;
 
 class ViewDepartment extends Component {
@@ -27,7 +28,7 @@ class ViewDepartment extends Component {
     *
     * @return array<string,mixed>
     */
-    public function contact_rules()
+    public function contact_rules_contact()
     {
         return[
             'contact_id' => 'required'
@@ -36,7 +37,6 @@ class ViewDepartment extends Component {
 
     public function delete_assigned_incidents() 
     {
-        // dd($contact_id);
         $validated = $this->validate();
         
         foreach ($validated['incident_id'] as $incident) {
@@ -49,11 +49,10 @@ class ViewDepartment extends Component {
 
     public function delete_assigned_contact() 
     {
-        dd('hehehehehe');
-        $validated = $this->validate();
+        $validated = $this->contact_rules_contact();
         
         foreach ($validated['incident_id'] as $incident) {
-            AssignDepartments::destroy($incident);
+            cellNumber::destroy($incident);
         }
        
         $this->reset('incident_id');
@@ -65,6 +64,7 @@ class ViewDepartment extends Component {
     public $incidents;
 
     public function mount($numbers, $incidents, $cell){
+        // dd('heheheh');
         $this->numbers = $numbers;
         $this->incidents = $incidents;
         $this->cell = $cell;

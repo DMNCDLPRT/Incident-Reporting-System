@@ -280,6 +280,7 @@ class AdminController extends Controller
         foreach($departments as $department){
             $assigns[] = FacadesDB::table('assigns')->where('department_id', $department->id)->get();
         }
+        
         $now = Carbon::now();
         $startOfWeek = $now->startOfWeek()->format('Y-m-d H:i');
         $endOfWeek = $now->endOfWeek()->format('Y-m-d H:i');
