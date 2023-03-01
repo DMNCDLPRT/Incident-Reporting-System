@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignedDepartment;
 use App\Models\cellNumber;
 use App\Models\Departments;
 use App\Models\Reports;
@@ -269,7 +270,7 @@ class AdminController extends Controller
         return $controller->viewReport($id);
     }
 
-    public function exportAsPDF()
+    /* public function exportAsPDF()
     {
         $departments = Departments::all();
 
@@ -303,5 +304,29 @@ class AdminController extends Controller
 
         $pdf = FacadePdf::loadView('pdf.reports', ['departments' => $name, 'count' => $count]);
         return $pdf->download('reports.pdf');
-    }
+    } */
+
+    public function exportAsPDF() 
+    {
+    // Get all departments and their names
+    $departments = Departments::pluck('department')->toArray();
+
+    // Get all assignments and their corresponding department IDs
+    $assigns = AssignedDepartment::with('assignedTo')->get()->groupBy('department_id');
+
+    // Get all reports created during the current week
+    $startOfWeek = Carbon::now()->startOfWeek();
+    $endOfWeek = Carbon::now()->endOfWeek();
+    $reports = Reports::whereBetween('created_at', [$startOfWeek, $endOfWeek])->get();
+
+    // Count the number of incidents for each department
+    $count = $assigns->map(function ($assignments) use ($reports) {
+        $incidentIds = $assignments->pluck('incidents_id');
+        return $reports->whereIn('report_id', $incidentIds)->count();
+    })->toArray();
+
+    // Generate and download the PDF report
+    $pdf = FacadePdf::loadView('pdf.reports', compact('departments', 'count'));
+    return $pdf->download('reports.pdf');
+}
 }
