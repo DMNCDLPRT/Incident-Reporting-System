@@ -1,5 +1,5 @@
 <x-app-layout>
-   <div class="flex overflow-hidden dark:bg-gray-900">
+   <div class="flex overflow-hidden dark:bg-gray-700">
       @livewire('admin-side-panel')
       <div id="main-content" class="h-full w-full overflow-y-auto lg:ml-64">
          <main>

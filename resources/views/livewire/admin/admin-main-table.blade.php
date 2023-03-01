@@ -158,7 +158,7 @@
                                     Next
                                 </button>
                             </div> --}}
-                            <nav>
+                            <nav id="Graphs">
                                 @if (!$reports)
                                     showing 0 out of 0
                                 @else

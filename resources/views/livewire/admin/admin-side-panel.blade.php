@@ -49,6 +49,16 @@
                      </svg>
                      <span class="ml-3">Dashboard</span>
                   </a>
+                  <div class="pl-5">
+                     <a href="{{ route('adminDashboard') }}#Main" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">
+                        <span class="ml-3 text-[14px]">Main
+                        </span>
+                     </a>
+                     <a href="{{ route('adminDashboard') }}#Graphs" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">
+                        <span class="ml-3 text-[14px]">Graphs
+                        </span>
+                     </a>
+                  </div>
                </li>
              </ul>
              <div class="space-y-2 pt-2">
