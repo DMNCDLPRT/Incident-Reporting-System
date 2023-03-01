@@ -1,6 +1,6 @@
 <div class="bg-white shadow rounded-lg p-4 sm:p-6">
    <div class="grid justify-items-center">
-      <h3 class="text-xl leading-none font-bold text-gray-900">Incidents Reported This Week</h3>
+      <h3 class="text-gray-700 font-bold text-lg">Incidents Reported This Week</h3>
       <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 mb-4">Total of reports this week by days</p>
    </div>
    <div class="rounded p-2 bg-slate-100 overflow-hidden">

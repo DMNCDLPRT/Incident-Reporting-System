@@ -2,8 +2,8 @@
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8"> 
         <div class=" flex items-center justify-between pb-6">
             <div>
-                <h2 class="text-gray-600 font-semibold">Reports</h2>
-                <span class="text-blue-400 mb-4 text-sm font-normal whitespace-nowrap">All reports</span>
+                <h2 class="text-gray-700 font-bold text-lg">Main Dashboard</h2>
+                <span class="text-blue-400 mb-4 text-sm font-normal whitespace-nowrap">Incidents Reported</span>
             </div>
             <div class="">
                 <div class="flex bg-gray-50 items-center p-2">
@@ -38,14 +38,14 @@
                         <table class="min-w-full leading-normal">
                             <thead>
                                 <tr>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Reporter ID</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Incident</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Victims</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Suspects</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Description</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Date</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-                                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Action</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Reporter ID</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Incident</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Victims</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Suspects</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Description</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Date</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Status</th>
+                                    <th class="px-5 py-3 border-b-2 border-gray-300 bg-gray-200 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

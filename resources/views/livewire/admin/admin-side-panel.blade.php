@@ -3,10 +3,10 @@
        <div class="flex-1 flex flex-col overflow-y-auto">
           <div class="flex-1 px-3 bg-white divide-y space-y-1 pt-3">
             <a href="{{ route('dashboard') }}">
-               <div class="shrink-0 flex items-center py-[4px]">
+               <div class="shrink-0 flex items-center py-[2.5px]">
                    <x-jet-application-mark class="block h-9 w-auto" />
                    <div class="flex items-center">
-                      <h1 class="text-[30px] font-black tracking-wide antialiased hover:subpixel-antialiased pl-2">UIRS</h1>
+                      <h1 class="text-[28px] font-black tracking-wide antialiased hover:subpixel-antialiased pl-2">UIRS</h1>
                       <h6 class="text-[10px] pl-1">Ubiquitous Incident Reporting System </h4>
                    </div>
                </div>
@@ -78,7 +78,7 @@
                   </a>
                   <div class="pl-5">
                      <a href="{{ route('admin') }}#numbers-department" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">
-                        <span class="ml-3 text-[14px]">Add Emergency Contact Number
+                        <span class="ml-3 text-[14px]">Add Contact Number
                         </span>
                      </a>
                      <a href="{{ route('admin') }}#Assigned-Contact-Numbers" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">

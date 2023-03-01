@@ -1,7 +1,7 @@
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
    <div class="grid justify-items-center">
-      <h3 class="text-xl leading-none font-bold text-gray-900">Types of Incident Reported by Percent</h3>
-         <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 mb-4">Total of incidents reported by incidents</p>
+      <h3 class="text-gray-700 font-bold text-lg">Incidents Reported</h3>
+         <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 mb-4">Total of Incidents Reported in each Incidents</p>
    </div>
    <div class="block w-full overflow-x-auto">
       <table class="items-center w-full bg-transparent border-collapse">
