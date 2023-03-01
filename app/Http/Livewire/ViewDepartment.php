@@ -27,7 +27,7 @@ class ViewDepartment extends Component
         dd("assigned incidents");
         AssignedDepartment::whereIn('id', $this->incident_ids)->delete();
         $this->reset(['incident_ids']);
-        session()->flash('message', 'The assigned incidents have been successfully removed.');
+        session()->flash('message_incident', 'The assigned incidents have been successfully removed.');
     }
 
     public function deleteAssignedContacts()
@@ -35,7 +35,7 @@ class ViewDepartment extends Component
         dd("contacts");
         CellNumber::whereIn('id', $this->contact_ids)->delete();
         $this->reset(['contact_ids']);
-        session()->flash('message', 'The assigned emergency contact numbers have been successfully removed.');
+        session()->flash('message_contact', 'The assigned emergency contact numbers have been successfully removed.');
     }
 
     public function render()

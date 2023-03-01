@@ -66,6 +66,29 @@
                      </svg>
                      <span class="ml-3">Settings</span>
                   </a>
+                  <div class="pl-5">
+                     <a href="{{ route('admin') }}#numbers-department" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">
+                        <span class="ml-3 text-[14px]">Add Emergency Contact Number
+                        </span>
+                     </a>
+                     <a href="{{ route('admin') }}#Assigned-Contact-Numbers" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">
+                        
+                        <span class="ml-3 text-[14px]">Assigned Contact Number</span>
+                     </a>
+                     <a href="{{ route('admin') }}#Add-Emergency-Departments" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">
+                        
+                        <span class="ml-3 text-[14px]">Add Emergency Department</span>
+                     </a>
+                     <a href="{{ route('admin') }}#Add-incident" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">
+                        
+                        <span class="ml-3 text-[14px]">Add Incident</span>
+                     </a>
+                     <a href="{{ route('admin') }}#Assign-Department" class="text-base text-gray-600 font-normal rounded-lg hover:bg-gray-200 group transition duration-75 flex items-center p-2">
+                        
+                        <span class="ml-3 text-[14px]">Assign Department</span>
+                     </a>
+                     
+                  </div>
                 @endrole
              </div>
           </div>

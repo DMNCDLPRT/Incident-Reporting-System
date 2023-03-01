@@ -1,4 +1,4 @@
-<div class="bg-white p-8 rounded-md w-full mt-4">
+<div class="bg-white p-8 rounded-md w-full mt-4" id="Add-Emergency-Departments">
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         
         <div class="block w-full overflow-x-auto">

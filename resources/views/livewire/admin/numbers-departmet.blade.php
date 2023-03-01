@@ -1,4 +1,4 @@
-<div class="bg-white p-8 rounded-md w-full">
+<div class="bg-white p-8 rounded-md w-full" id="numbers-department">
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     
     <div class="block w-full overflow-x-auto">
@@ -69,7 +69,7 @@
             </x-jet-form-section>
         </div>
 
-        <hr>
+        <hr id="Assigned-Contact-Numbers">
 
         <h3 class="text-xl leading-none font-bold text-gray-900 mb-10 mt-10">Assigned Contact Numbers</h3>
         @if(session()->has('message-edit'))
