@@ -14,7 +14,7 @@
 
   <!-- Chart bar -->
   <script>
-    const labelsBarChart =  <?php echo '["' . implode('", "', $departments) . '"]' ?>; 
+    const labelsBarChart = <?php echo '["' . implode('", "', $departments->toArray()) . '"]' ?>;
     const dataBarChart = {
       labels: labelsBarChart,
       datasets: [

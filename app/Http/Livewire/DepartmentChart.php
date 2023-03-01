@@ -13,43 +13,22 @@ class DepartmentChart extends Component
     public $departments;
     public $count;
 
-    public function mount($departments, $count){
-
-        $departments = Departments::all();
-        foreach ($departments as $department) {
-            $name[] = $department->department;
-        }
-
-        if($departments) {
-            foreach($departments as $department){
-                $assigns[] = FacadesDB::table('assigns')->where('department_id', $department->id)->get();
-            }
+    public function mount(){
+        $departments = Departments::pluck('department');
     
-            $now = Carbon::now();
-            $startOfWeek = $now->startOfWeek()->format('Y-m-d H:i');
-            $endOfWeek = $now->endOfWeek()->format('Y-m-d H:i');
+        $incidents = FacadesDB::table('assigns')
+                        ->join('reports', 'assigns.incidents_id', '=', 'reports.report_id')
+                        ->whereBetween('reports.created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+                        ->select('assigns.department_id', FacadesDB::raw('count(*) as count'))
+                        ->groupBy('assigns.department_id')
+                        ->get()
+                        ->keyBy('department_id')
+                        ->map(fn($item) => $item->count);
     
-            $reports = Reports::whereBetween('created_at', [$startOfWeek, $endOfWeek])->get();
-            
-            foreach($reports as $report){
-                $i[] = $report->report_id;
-            }
-            
-            $i = 0;
-            foreach($assigns as $assign){
-                $incidents[] = $reports->where('report_id', $assign[$i]->incidents_id)->count(); 
-                $i+1;
-            }
-            
-            $count = $incidents;
-            // dd($incidents);
-        } else {
-            $count = [];
-        }
-
-        $this->departments = $name;
-        $this->count = $count;
+        $this->departments = $departments;
+        $this->count = $incidents->values()->toArray();
     }
+    
 
     public function render()
     {

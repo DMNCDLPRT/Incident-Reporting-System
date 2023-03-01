@@ -85,7 +85,7 @@ class AdminController extends Controller
 
         if($assigns->isEmpty()){
             $incidents = [];
-            return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents]);  
+            return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents, 'cell' => $cell]);  
         }
         
         foreach($assigns as $assign){

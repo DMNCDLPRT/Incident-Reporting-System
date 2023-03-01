@@ -2,72 +2,40 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\cellNumber;
+use App\Models\AssignedDepartment;
+use App\Models\CellNumber;
 use Livewire\Component;
 
-class ViewDepartment extends Component {
-
-    public $incident_id = [];
-
-    public $contact_id = [];
-
-    /**
-    * Get the validation rules that apply to the request.
-    *
-    * @return array<string,mixed>
-    */
-    public function incident_rules()
-    {
-        return[
-            'incident_id' => 'required'
-        ];
-    }
-
-    /**
-    * Get the validation rules that apply to the request.
-    *
-    * @return array<string,mixed>
-    */
-    public function contact_rules_contact()
-    {
-        return[
-            'contact_id' => 'required'
-        ];
-    }
-
-    public function delete_assigned_incidents() 
-    {
-        $validated = $this->validate();
-        
-        foreach ($validated['incident_id'] as $incident) {
-            AssignDepartments::destroy($incident);
-        }
-       
-        $this->reset('incident_id');
-        session()->flash('message', 'The assigned incidents are succesfully removed');
-    }
-
-    public function delete_assigned_contact() 
-    {
-        $validated = $this->contact_rules_contact();
-        
-        foreach ($validated['incident_id'] as $incident) {
-            cellNumber::destroy($incident);
-        }
-       
-        $this->reset('incident_id');
-        session()->flash('message', 'The assigned incidents are succesfully removed');
-    }
+class ViewDepartment extends Component
+{
+    public $incident_ids = [];
+    public $contact_ids = [];
 
     public $numbers;
     public $cell;
     public $incidents;
 
-    public function mount($numbers, $incidents, $cell){
-        // dd('heheheh');
+    public function mount($numbers, $incidents, $cell)
+    {
         $this->numbers = $numbers;
         $this->incidents = $incidents;
         $this->cell = $cell;
+    }
+
+    public function deleteAssignedIncidents()
+    {
+        dd("assigned incidents");
+        AssignedDepartment::whereIn('id', $this->incident_ids)->delete();
+        $this->reset(['incident_ids']);
+        session()->flash('message', 'The assigned incidents have been successfully removed.');
+    }
+
+    public function deleteAssignedContacts()
+    {
+        dd("contacts");
+        CellNumber::whereIn('id', $this->contact_ids)->delete();
+        $this->reset(['contact_ids']);
+        session()->flash('message', 'The assigned emergency contact numbers have been successfully removed.');
     }
 
     public function render()

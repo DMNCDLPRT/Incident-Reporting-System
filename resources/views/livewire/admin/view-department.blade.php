@@ -2,7 +2,7 @@
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     
 
-                {{ $numbers->department->department }}
+            {{ $numbers->department->department }}
 
             <table class="items-center w-full bg-transparent border-collapse">
                 <thead>
@@ -23,7 +23,7 @@
                                             <input id="{{ $number->id }}" 
                                                 type="checkbox" 
                                                 class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" 
-                                                wire:model="contact_id"
+                                                wire:model="contact_ids"
                                                 value="{{ $number->id }}" 
                                                 name="{{ $number->id }}"
                                                 autofocus />
@@ -34,7 +34,9 @@
                                     @endif
                                    
                                 </p>
-                                <x-jet-button wire:loading.attr="disabled" class="top-0" onclick="return confirm('Are you sure you want to delete the selected cell numbers?');">
+                                <x-jet-button wire:loading.attr="disabled" class="top-0" 
+                                    wire:click.prevent="delete_assigned_contact" 
+                                    onclick="return confirm('Are you sure you want to delete the selected cell numbers?');">
                                     {{ __('delete contact number') }}
                                 </x-jet-button>  
                             </form>
@@ -54,7 +56,7 @@
                                         <input id="{{ $incident[$i]->id }}" 
                                             type="checkbox" 
                                             class="ml-3 w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" 
-                                            wire:model="incident_id"
+                                            wire:model="incident_ids"
                                             value="{{ $incident[$i]->id }}" 
                                             name="{{ $incident[$i]->id }}"
                                             autofocus
@@ -68,9 +70,8 @@
                                     @php($x = $x + 1)
                                     @endforeach 
                                 </p>
-                                <x-jet-button 
-                                    wire:loading.attr="disabled"
-                                    class=""
+                                <x-jet-button wire:loading.attr="disabled" class="" 
+                                    wire:click.prevent="delete_assigned_incidents" 
                                     onclick="return confirm('Are you sure you want to delete the selected assigned incidents?');">
                                     {{ __('delete assigned incident') }}
                                 </x-jet-button>  
@@ -79,5 +80,4 @@
                     </tr>
                 </tbody>
             </table>
-
 </div>
