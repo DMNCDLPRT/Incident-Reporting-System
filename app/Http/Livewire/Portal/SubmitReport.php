@@ -127,7 +127,7 @@ class SubmitReport extends Component
         // function for making array into string 
         // text message
         $controller = new portalController;
-        $words = [$submitReport['report_id'], $submitReport['victims'], $submitReport['suspects']];
+        $words = [$submitReport['report_id'], $submitReport['victims'], $submitReport['event'], $submitReport['suspects']];
         $message = $controller->message($words);
 
         

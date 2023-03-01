@@ -9,7 +9,7 @@
                             {{ __('Add Incident') }}
                         </x-slot>
                         <x-slot name="description">
-                            {{ __('Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellendus quod exercitationem doloribus quae quam similique velit eligendi, ratione ducimus ad doloremque veritatis, ab ex modi dicta nam porro assumenda.') }}
+                            {{ __('With the "Add Incident" feature, you can assign incidents to specific departments and ensure that any emergency department assigned to the incident will receive prompt notifications or text messages from users reporting the incident. This feature can help streamline the incident management process, enabling departments to respond quickly and efficiently to any reported incidents. By providing a clear and organized way to manage incidents, you can improve safety and security on your website, while also enhancing the overall user experience.') }}
                         </x-slot>
                         <div>
                             @if(session()->has('message-incident'))

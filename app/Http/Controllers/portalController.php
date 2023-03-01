@@ -116,8 +116,9 @@ class portalController extends Controller
 
         $words = [
             "Incident Type: ", $incident[0]->report_name,
-            "\nNumber of Victims: ", $words[1], 
-            "\nNumber of Suspects: ", $words[2],
+            "\nNumber of Victims: ", $words[1],
+            "\nIncident other info: ", $words[2], 
+            "\nNumber of Suspects: ", $words[3],
             "\nDate: ", $time
         ];
 

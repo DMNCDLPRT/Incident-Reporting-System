@@ -1,4 +1,4 @@
-<div class="bg-white p-8 rounded-md w-full mt-4">
+<div class="bg-white p-8 rounded-md w-full">
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     
     <div class="block w-full overflow-x-auto">
@@ -9,7 +9,7 @@
                         {{ __('Add Emergency Contact Number') }}
                     </x-slot>
                     <x-slot name="description">
-                        {{ __('Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellendus quod exercitationem doloribus quae quam similique velit eligendi, ratione ducimus ad doloremque veritatis, ab ex modi dicta nam porro assumenda.') }}
+                        {{ __('Assign a contact number to an emergency department, which will receive crucial information about any reported emergency on your website. This feature can help ensure that emergencies are addressed promptly, providing an added layer of safety for your users.') }}
                     </x-slot>
                     <div>
                         @if(session()->has('message'))

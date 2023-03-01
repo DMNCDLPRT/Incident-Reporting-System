@@ -1,7 +1,16 @@
-<aside id="sidebar" class="fixed hidden z-20 h-full top-0 left-0 pt-16 lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75" aria-label="Sidebar">
+<aside id="sidebar" class="fixed hidden z-20 h-full top-0 left-0 lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75" aria-label="Sidebar">
     <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
        <div class="flex-1 flex flex-col overflow-y-auto">
-          <div class="flex-1 px-3 bg-white divide-y space-y-1">
+          <div class="flex-1 px-3 bg-white divide-y space-y-1 pt-3">
+            <a href="{{ route('dashboard') }}">
+               <div class="shrink-0 flex items-center py-[4px]">
+                   <x-jet-application-mark class="block h-9 w-auto" />
+                   <div class="flex items-center">
+                      <h1 class="text-[30px] font-black tracking-wide antialiased hover:subpixel-antialiased pl-2">UIRS</h1>
+                      <h6 class="text-[10px] pl-1">Ubiquitous Incident Reporting System </h4>
+                   </div>
+               </div>
+            </a>
              <ul class="space-y-2 pb-2">
                 <li>
                    <form action="#" method="GET" class="lg:hidden">

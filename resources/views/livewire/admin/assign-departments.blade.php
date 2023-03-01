@@ -8,7 +8,7 @@
                             {{ __('Assign Department') }}
                         </x-slot>
                         <x-slot name="description">
-                            {{ __('Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore repellendus quod exercitationem doloribus quae quam similique velit eligendi, ratione ducimus ad doloremque veritatis, ab ex modi dicta nam porro assumenda.') }}
+                            {{ __('The "Assign Department" feature enables you to categorize tasks, incidents, or reports into different departments, making it easier to manage and prioritize your workflow. By assigning specific departments to each task, you can ensure that the right team or individual is responsible for handling it, streamlining the process and improving efficiency. This feature can help you stay organized and on top of your workload, while also ensuring that important tasks are not overlooked or delayed.') }}
                         </x-slot>
                         <div>
                             @if(session()->has('message'))
