@@ -98,6 +98,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::middleware(['auth' => 'role:Admin|Department'])->prefix('admin')->controller(App\Http\Controllers\AdminController::class)->group(function () {
         Route::get('/dashboard', 'index')->name(('adminDashboard'));
         Route::get('/admin', 'admin')->name('admin');
+        Route::get('/admin/remove_incident', 'deleteIncident')->name('remove.incident');
 
         //cell num action delete, update
         Route::get('/delete/{id}', 'destroy')->name('delete');

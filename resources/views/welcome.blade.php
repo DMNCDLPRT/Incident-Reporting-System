@@ -86,7 +86,7 @@
                                     Sign-up
                                 </a>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('login') }}" type="button" class="text-gray-900 dark:text-white w-full lg:w-max px-4 py-3 border border-slate-200 hover:cursor-pointer hover:bg-gray-100 hover:text-gray-900 font-medium rounded inline-flex items-center justify-center">
+                                    <a href="{{ route('login') }}" type="button" class="text-gray-900 dark:text-white w-full lg:w-max px-4 py-3 border border-slate-200 hover:cursor-pointer hover:bg-gray-100 hover:text-gray-900 font-medium rounded inline-flex items-center justify-center mr-8">
                                         Sign-in
                                     </a>
                                 @endif

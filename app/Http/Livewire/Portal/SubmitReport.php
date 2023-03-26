@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Http\Controllers\portalController;
+use App\Models\TextLog;
 
 use function PHPUnit\Framework\isNull;
 
@@ -96,9 +97,11 @@ class SubmitReport extends Component
         $nums = $contact->contact($submitReport['report_id']);
 
         $array = [];
+        $dep_id = [];
         foreach($nums as $num){
             $i = 0;
             $array[] = $num[$i]->number;
+            $dep_id[] = $num[$i]->department_id;
             $i + 1;
         }
 
@@ -165,8 +168,21 @@ class SubmitReport extends Component
         } else {
             $submitReport['userId'] = null;
         }
-        
+
         // dd($submitReport['files']);
+
+        
+        /* $x = 1;
+        foreach ($array as $key => $log_num) {
+            var_dump($dep_id[$x], $log_num, $message); // Debug output
+            if(isset($dep_id[$key])) { // check if $dep_id array has enough elements
+                TextLog::create([
+                    'department_id' => $dep_id[$key],
+                    'number' => $log_num,
+                    'log' => $message
+                ]);
+            }
+        } */
 
         Reports::create($submitReport); // create/submit report - store to database
 

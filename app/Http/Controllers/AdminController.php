@@ -79,21 +79,29 @@ class AdminController extends Controller
     // view assigned numbers and incidents to a department
     public function view($id)
     {
-        $assigns = ['assign'];
-        $numbers = cellNumber::find($id);
+        $department = departments::find($id);
         $cell = cellNumber::where('department_id', $id)->get();
         $assigns = FacadesDB::table('assigns')->where('department_id', $id)->get();
 
         if($assigns->isEmpty()){
             $incidents = [];
-            return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents, 'cell' => $cell]);  
+            $assigns = [];
+            $values = [];
+            return view('admin.viewDepartment')->with(['assigns' => $assigns, 'values' => $values, 'department' => $department, 'incidents' => $incidents, 'cell' => $cell]);  
         }
         
+        $incidents = [];
         foreach($assigns as $assign){
-            $incidents[] = FacadesDB::table('report_types')->where('id', $assign->incidents_id)->get(); 
+            $incident = ReportType::where('id', $assign->incidents_id)->first();
+            if($incident){
+                $incidents[] = $incident;
+            }
         }
 
-        return view('admin.viewDepartment')->with(['numbers' => $numbers, 'incidents' => $incidents, 'cell' => $cell]);  
+        $values = $assigns->pluck('id')->toArray();
+        
+        // dd($assigns);
+        return view('admin.viewDepartment')->with(['assigns' => $assigns, 'values' => $values, 'department' => $department, 'incidents' => $incidents, 'cell' => $cell]);  
     }
 
     // delete report - Route::middleware(rele:super-admin)->...
@@ -270,6 +278,12 @@ class AdminController extends Controller
         return $controller->viewReport($id);
     }
 
+    public function deleteIncident()
+    {
+        $incidents = ReportType::all();
+        return view('admin.deleteIncidents')->with(['incidents' => $incidents]);
+    }
+
     /* public function exportAsPDF()
     {
         $departments = Departments::all();
@@ -308,25 +322,25 @@ class AdminController extends Controller
 
     public function exportAsPDF() 
     {
-    // Get all departments and their names
-    $departments = Departments::pluck('department')->toArray();
+        // Get all departments and their names
+        $departments = Departments::pluck('department')->toArray();
 
-    // Get all assignments and their corresponding department IDs
-    $assigns = AssignedDepartment::with('assignedTo')->get()->groupBy('department_id');
+        // Get all assignments and their corresponding department IDs
+        $assigns = AssignedDepartment::with('assignedTo')->get()->groupBy('department_id');
 
-    // Get all reports created during the current week
-    $startOfWeek = Carbon::now()->startOfWeek();
-    $endOfWeek = Carbon::now()->endOfWeek();
-    $reports = Reports::whereBetween('created_at', [$startOfWeek, $endOfWeek])->get();
+        // Get all reports created during the current week
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+        $reports = Reports::whereBetween('created_at', [$startOfWeek, $endOfWeek])->get();
 
-    // Count the number of incidents for each department
-    $count = $assigns->map(function ($assignments) use ($reports) {
-        $incidentIds = $assignments->pluck('incidents_id');
-        return $reports->whereIn('report_id', $incidentIds)->count();
-    })->toArray();
+        // Count the number of incidents for each department
+        $count = $assigns->map(function ($assignments) use ($reports) {
+            $incidentIds = $assignments->pluck('incidents_id');
+            return $reports->whereIn('report_id', $incidentIds)->count();
+        })->toArray();
 
-    // Generate and download the PDF report
-    $pdf = FacadePdf::loadView('pdf.reports', compact('departments', 'count'));
-    return $pdf->download('reports.pdf');
-}
+        // Generate and download the PDF report
+        $pdf = FacadePdf::loadView('pdf.reports', compact('departments', 'count'));
+        return $pdf->download('reports.pdf');
+    }
 }

@@ -41,8 +41,15 @@
                                     <option @disabled(true) @selected(true)>Add Emergency Department First</option>>
                                 @endforelse
                             </select>
-                            
-                            <h3 class="mb-4 font-semibold text-gray-900 pt-5">Identification</h3>
+                            <div class="flex justify-between p-4">
+                                <h3 class="font-semibold text-gray-900">Incidents</h3>
+                                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
+                                    type="button"
+                                    href="{{ route("remove.incident") }}"
+                                >
+                                    Edit Incidents
+                                </a>
+                            </div>
                             <ul class=" text-sm font-medium text-gray-900 bg-white  rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                            
                                 @forelse ($incidents as $incident)

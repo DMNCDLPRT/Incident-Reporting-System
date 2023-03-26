@@ -107,6 +107,35 @@ class portalController extends Controller
         return $cell;
     }
 
+    /* public function message($words)
+    {
+        $incidentId = (int)$words[0];
+
+        $incident = FacadesDB::table('report_types')->where('id', $incidentId)->get();
+        $time = Carbon::now()->toDateTimeString(); //->format('d/m/y/')
+
+        $words = [
+            "Incident Type: ", $incident[0]->report_name,
+            "\nNumber of Victims: ", $words[1],
+            "\nIncident other info: ", $words[2], 
+            "\nNumber of Suspects: ", $words[3],
+            "\nDate: ", $time
+        ];
+
+        function join_words($words) {
+            $return = [];
+            for ($i=0; $i < count($words); $i++) {
+                $return[] = implode(' ', array_slice($words, 0, $i+1));
+            }
+            return $return;
+        }
+        $result = [];
+        $result = array_merge($result, join_words($words));
+        $message = end($result);
+
+        return $message;
+    } */
+
     public function message($words)
     {
         $incidentId = (int)$words[0];
@@ -115,7 +144,7 @@ class portalController extends Controller
         $time = Carbon::now()->toDateTimeString()/* ->format('d/m/y/') */;
 
         $words = [
-            "Incident Type: ", $incident[0]->report_name,
+            "Incident Type: ", $incident[0]->report_name ?? '',
             "\nNumber of Victims: ", $words[1],
             "\nIncident other info: ", $words[2], 
             "\nNumber of Suspects: ", $words[3],
