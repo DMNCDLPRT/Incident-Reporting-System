@@ -142,8 +142,9 @@ class portalController extends Controller
 
         $incident = FacadesDB::table('report_types')->where('id', $incidentId)->get();
         $time = Carbon::now()->toDateTimeString()/* ->format('d/m/y/') */;
+        $dateFormat = \Carbon\Carbon::parse($time)->format('F d, Y');
 
-        $words = [
+        /* $words = [
             "Incident Type: ", $incident[0]->report_name ?? '',
             "\nNumber of Victims: ", $words[1],
             "\nIncident other info: ", $words[2], 
@@ -160,8 +161,14 @@ class portalController extends Controller
         }
         $result = [];
         $result = array_merge($result, join_words($words));
-        $message = end($result);
+        $message = end($result); */
 
+        $message = "Incident Type: " . ($incident ? $incident[0]->report_name : '') . 
+            "Number of Victims: {$words[1]}" .
+            "Incident other info: {$words[2]}" .
+            "Number of Suspects: {$words[3]}" .
+            "Date: $dateFormat ";
+        
         return $message;
     }
 }

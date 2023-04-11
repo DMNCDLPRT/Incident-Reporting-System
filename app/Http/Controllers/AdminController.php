@@ -7,6 +7,7 @@ use App\Models\cellNumber;
 use App\Models\Departments;
 use App\Models\Reports;
 use App\Models\ReportType;
+use App\Models\TextLog;
 use App\Models\User;
 use Illuminate\Support\Facades\DB as FacadesDB;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
@@ -131,6 +132,14 @@ class AdminController extends Controller
         }
 
         return view('admin.viewReport')->with(['report' => $report, 'location' => $location, 'incident' => $incident, 'reporter' => $reporter]);
+    }
+
+    public function viewTextLog() {
+        // $textlogs = TextLog::paginate(15);
+    
+        $textlogs = [];
+        // dd($textlogs);
+        return view('admin.viewTextLog')->with(['textlogs' => $textlogs]);
     }
 
     public function users() {

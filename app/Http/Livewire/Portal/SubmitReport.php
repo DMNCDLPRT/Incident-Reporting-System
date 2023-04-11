@@ -68,6 +68,10 @@ class SubmitReport extends Component
      */
     public $files;
 
+    public $text_log;
+    public $number;
+    public $num_id;
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -98,7 +102,7 @@ class SubmitReport extends Component
 
         $array = [];
         $dep_id = [];
-        foreach($nums as $num){
+        foreach($nums as $key => $num){
             $i = 0;
             $array[] = $num[$i]->number;
             $dep_id[] = $num[$i]->department_id;
@@ -140,7 +144,7 @@ class SubmitReport extends Component
             'apikey' => env('SEMAPHORE_API_KEY'), // YOUR SEMAPHORE API KEY
             'number' => $number,
             'message' => $message,
-            'sendername' => 'SEMAPHORE'
+            'sendername' => 'don carlos norte'
         );
         curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
         curl_setopt( $ch, CURLOPT_POST, 1 );
@@ -154,6 +158,8 @@ class SubmitReport extends Component
         curl_close ($ch);
         // Show the server response
         // echo $output;
+
+        // End oof SEMAPHORE API Text messaging service
         
         if($submitReport['files'] == null){
             $submitReport['files'] = null;
@@ -169,26 +175,22 @@ class SubmitReport extends Component
             $submitReport['userId'] = null;
         }
 
-        // dd($submitReport['files']);
-
-        
-        /* $x = 1;
-        foreach ($array as $key => $log_num) {
-            var_dump($dep_id[$x], $log_num, $message); // Debug output
-            if(isset($dep_id[$key])) { // check if $dep_id array has enough elements
-                TextLog::create([
-                    'department_id' => $dep_id[$key],
-                    'number' => $log_num,
-                    'log' => $message
+        foreach($nums as $num){
+            foreach ($num as $log_num) {  
+                $log = TextLog::create([
+                    'department_id' => $log_num->department_id,
+                    'number' => $log_num->id,
+                    'log' => $message,
                 ]);
             }
-        } */
+        }
 
         Reports::create($submitReport); // create/submit report - store to database
 
         $this->reset(['suspects', 'victims', 'files', 'report_id', 'event']); // reset all user input
 
-        session()->flash('output', $output);
+        session()->flash('log', $log);
+        // session()->flash('output', $output);
         session()->flash('message', /* $output */ 'Incident Succefully Reported');
 
         }

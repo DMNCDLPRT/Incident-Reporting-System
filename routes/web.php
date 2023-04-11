@@ -128,6 +128,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
             Route::get('/update-status/rejected/{id}', 'updateStatusRejected')->name('status.rejected');
         });
 
+        // View Text Logs
+        Route::prefix('/admin/viewTextLogs/')->group(function (){
+            Route::get('/Logs', 'viewTextLog')->name('view.textLog');
+        });
+
         Route::prefix('/admin/download/pdf/')->group(function () {
             Route::get('reports', 'exportAsPDF')->name('download.pdf.reports');
         });

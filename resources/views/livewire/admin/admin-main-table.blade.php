@@ -93,7 +93,7 @@
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            {{ $report->created_at->format('d/m/Y') }}
+                                            {{ \Carbon\Carbon::parse($report->created_at)->format('F d, Y') }}
                                             <p class="text-xs font-semibold text-gray-600">{{$report->created_at->diffForHumans()}}</p>
                                         </p>
                                     </td>

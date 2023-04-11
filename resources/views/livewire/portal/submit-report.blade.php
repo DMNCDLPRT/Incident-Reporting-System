@@ -16,7 +16,7 @@
     @enderror
 
     <label for="reportType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-500">Select type of Incident</label>
-    <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Specific location of the incident..."  wire:model="report_id" autocomplete="reportType" autofocus>
+    <select id="reportType" name="reportType" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Specific location of the incident..."  wire:model="report_id" autocomplete="reportType" autofocus required>
         <option @disabled(true) @selected(true)>Select Type of Incident</option>
         @foreach ($incidents as $incident)
         <option name="{{ $incident->report_name }}" value="{{ $incident->id }}">{{ $incident->report_name }}</option>
@@ -30,7 +30,7 @@
         <div class="mr-4 grow">
 
           <label for="suspects" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">No. of Suspect</label>
-          <select id="suspects" name="suspects" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="suspects" autocomplete="suspects" autofocus>
+          <select id="suspects" name="suspects" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="suspects" autocomplete="suspects" autofocus required>
             <option @disabled(true) @selected(true)>Select No. of Suspects</option>
             <?php
                 for ($i=0; $i<=30; $i++)
@@ -44,7 +44,7 @@
         </div>
         <div class="grow">
           <label for="victims" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">No. of Victims</label>
-          <select id="victims" name="victims" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="victims" autocomplete="location" autofocus>
+          <select id="victims" name="victims" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="victims" autocomplete="location" autofocus required>
             <option @disabled(true) @selected(true)>Select No. of Victims</option>
             <?php
                 for ($i=0; $i<=30; $i++)

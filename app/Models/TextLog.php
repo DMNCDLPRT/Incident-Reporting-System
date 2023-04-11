@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Departments;
+use App\Models\cellNumber;
 
 class TextLog extends Model
 {
     use HasFactory;
 
-    protected $table = ['department_id', 'number','log'];
+    protected $table = 'text_log';
     protected $primaryKey = 'id';
 
     /**
@@ -17,10 +19,17 @@ class TextLog extends Model
     *
     * @var array
     */
-    protected $fillable = ['department_id', 'departments_id', 'number'];
+    protected $fillable = ['department_id', 'number', 'log'];
 
     public function department()
     {
         return $this->belongsTo(Departments::class);
     }
+
+    public function cell()
+    {
+        return $this->belongsTo(cellNumber::class, 'number');
+    }
+
+    
 }
