@@ -16,7 +16,6 @@ class PhoneController extends Controller
         $user = Auth()->user();
 
         if($user->phone == null){
-            dd('1');
             return view('profile.show')->with('message', 'Please save your Phone number before clicking get verifed');
         }
         
@@ -27,7 +26,6 @@ class PhoneController extends Controller
         }
 
         if ($user->phone_verified_at !== null){
-            dd('3');
             return view ('auth.verify-phone');
         }
         return view ('auth.verify-phone');
