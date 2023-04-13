@@ -45,12 +45,14 @@ class PhoneController extends Controller
             'verification_code' => $six_digit_random_number,
         ]);
 
+        $message = "Use this code {$six_digit_random_number}";
+
          // SEMAPHORE - text messagin API
          $ch = curl_init();
          $parameters = array(
              'apikey' => env('SEMAPHORE_API_KEY'), // YOUR SEMAPHORE API KEY
              'number' => $user->phone,
-             'message' => $six_digit_random_number,
+             'message' => $message,
              'sendername' => 'SEMAPHORE'
          );
 
