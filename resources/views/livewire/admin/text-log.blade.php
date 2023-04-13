@@ -1,6 +1,6 @@
-<div>
-    <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-        <div class=" flex items-center justify-between pb-6">
+<div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 mb-4">
+    <div class="sm-mx-4 sm:-mx-8 px-4 sm:px-8 pt-4 pb-7">
+        <div class=" flex items-center justify-between pb-2">
             <div class="w-3/5">
                 <h2 class="text-gray-700 font-bold text-lg">Text Logs</h2>
                 <span class="text-blue-400 mb-4 text-sm font-normal">Text logs of incident reports contain information such as the number of departments assigned to the incident, department names, and a description of the incident, which is essential for tracking progress and ensuring relevant parties are aware of the situation.</span>
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+        <div class="inline-block min-w-full shadow-xl shadow-gray-500/50 rounded-lg overflow-hidden">
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
@@ -29,19 +29,19 @@
                 <tbody>
                     @forelse ($textlogs as $logs)
                         <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ $logs->id }}</p>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ $logs->department->department }}</p>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ $logs->cell->number }}</p>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ $logs->log }}</p>
                             </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ \Carbon\Carbon::parse($logs->created_at)->format('F d, Y') }}</p>
                                 <p class="text-xs font-semibold text-gray-600">{{ $logs->created_at->diffForHumans() }}</p>
                             </td>

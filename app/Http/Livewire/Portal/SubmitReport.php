@@ -136,7 +136,6 @@ class SubmitReport extends Component
         $controller = new portalController;
         $words = [$submitReport['report_id'], $submitReport['victims'], $submitReport['event'], $submitReport['suspects']];
         $message = $controller->message($words);
-
         
         // SEMAPHORE - text messagin API
         $ch = curl_init();
@@ -144,7 +143,7 @@ class SubmitReport extends Component
             'apikey' => env('SEMAPHORE_API_KEY'), // YOUR SEMAPHORE API KEY
             'number' => $number,
             'message' => $message,
-            'sendername' => 'don carlos norte'
+            'sendername' => 'SEMAPHORE'
         );
         curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
         curl_setopt( $ch, CURLOPT_POST, 1 );
@@ -159,7 +158,7 @@ class SubmitReport extends Component
         // Show the server response
         // echo $output;
 
-        // End oof SEMAPHORE API Text messaging service
+        // End of SEMAPHORE API Text messaging service
         
         if($submitReport['files'] == null){
             $submitReport['files'] = null;
@@ -190,7 +189,7 @@ class SubmitReport extends Component
         $this->reset(['suspects', 'victims', 'files', 'report_id', 'event']); // reset all user input
 
         session()->flash('log', $log);
-        // session()->flash('output', $output);
+        session()->flash('output', $output);
         session()->flash('message', /* $output */ 'Incident Succefully Reported');
 
         }

@@ -7,7 +7,7 @@
      <hr class="mt-8">
      <div class="flex p-4">
        <div class="w-1/2 text-center">
-         <span class="font-bold">{{ $reports->count() }}</span> Reports
+         {{-- <span class="font-bold">{{ $reports->count() }}</span> Reports --}}
        </div>
        <div class="w-0 border border-gray-300">
        </div>

@@ -13,9 +13,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
-    <body class="antialiased bg-gray-200 dark:bg-gray-600">
-        <header>
-            <nav class="bg-gray-200 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-700">
+    <body class="antialiased bg-white dark:bg-gradient-to-r from-[#1f3d46] to-[#34694a]">
+        <header class="fixed top-0 z-10 w-full bg-transparent shadow-2xl">
+            <nav class="bg-transparent px-4 lg:px-6 py-2.5 top-0">
                 <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <a href="{{ url('/') }}" class="flex items-center">
                         <img src="{{ asset('images/cross -logo.png') }}" class="mr-3 h-6 sm:h-9" alt="Logo" />
@@ -57,9 +57,9 @@
         </header>
         
         <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
-
-        <div class="bg-white relative dark:bg-gray-600 mx-auto sm:px-6 lg:px-8">
-            <div class="relative xl:container m-auto px-6 md:px-12 lg:px-6">
+       {{--  background: linear-gradient(207deg, rgba(31,61,70,1) 0%, rgba(146,67,195,1) 34%, rgba(172,185,78,1) 78%); --}}
+        <div class="pt-10">
+            <div class="xl:container m-auto px-6 md:px-12 lg:px-6">
                 <section class="py-8 px-4 md:px-8 lg:py-16 2xl:px-60 mx-auto grid grid-cols-1 gap-8 lg:grid-cols-12 relative">
                     <div class="col-span-6 xl:place-self-center mb-8 mt-8 xl:mt-0 lg:mb-0">
                         <h1 class="sm:mx-auto sm:w-10/12 md:w-2/3 font-black text-blue-900 text-4xl text-center sm:text-5xl md:text-6xl lg:w-auto lg:text-left xl:text-6xl dark:text-white">Incident Reporting System<br class="lg:block hidden"> <span class="relative text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">Don Carlos, Bukidnon</span></h1>
@@ -82,11 +82,11 @@
                                     @endrole 
 
                             @else
-                                <a href="{{ route('register') }}" type="button" class="text-gray-900 dark:text-white w-full lg:w-max px-4 py-3 bg-emerald-500 hover:bg-emerald-600 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center">
+                                <a href="{{ route('register') }}" type="button" class="text-gray-900 dark:text-white w-full lg:w-max px-4 py-3 border bg-emerald-500 hover:bg-emerald-600 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center">
                                     Sign-up
                                 </a>
                                 @if (Route::has('register'))
-                                    <a href="{{ route('login') }}" type="button" class="text-gray-900 dark:text-white w-full lg:w-max px-4 py-3 border border-slate-200 hover:cursor-pointer hover:bg-gray-100 hover:text-gray-900 font-medium rounded inline-flex items-center justify-center mr-8">
+                                    <a href="{{ route('login') }}" type="button" class="text-gray-900 dark:text-white w-full lg:w-max px-4 py-3 border  hover:bg-emerald-600 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center">
                                         Sign-in
                                     </a>
                                 @endif
@@ -95,15 +95,13 @@
                             <a href="{{ route('portal-guest') }}" type="button" class="text-gray-900 dark:text-white w-full lg:w-max px-4 py-3 border hover:bg-gray-100 hover:text-gray-900 border-slate-200 hover:cursor-pointer font-medium rounded inline-flex items-center justify-center">
                                 Report Incident - Report as Guest
                             </a>
-                            
                         </div>
-
                     </div>
                     <div class="col-span-6 relative">
                         <img src="{{ asset('images/don carlos logo.png') }}" alt="">
                     </div>
                 </section>
-                <footer class="md:flex md:items-center md:justify-between shadow rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4 dark:bg-gray-500">
+                <footer class="md:flex md:items-center md:justify-between rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4 shadow-2xl shadow-gray-800 bg-transparent bg-slate-50">
                     <ul class="flex items-center flex-wrap mb-6 md:mb-0">
                        <li><a href="{{ route('terms.show') }}" class="text-sm font-normal text-gray-900 hover:underline mr-4 md:mr-6">Terms and conditions</a></li>
                        <li><a href="{{ route('policy.show') }}" class="text-sm font-normal text-gray-900 hover:underline mr-4 md:mr-6">Privacy Policy</a></li>
@@ -123,7 +121,7 @@
                        </a>
                     </div>
                 </footer>
-                <p class="text-center text-sm text-gray-900 my-10">
+                <p class="text-center text-sm text-white p-6">
                     &copy; 2022-2023 <a href="#" class="hover:underline" target="_blank">Quick-Respond</a>. All rights reserved.
                 </p>
                 </div>

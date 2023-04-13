@@ -1,17 +1,14 @@
 <div class="bg-white p-8 rounded-md w-full">
-    <div class=" flex items-center justify-between pb-6">
+    <div class="flex items-center justify-between">
         <div>
             <h2 class="text-gray-600 font-semibold">Registered Users</h2>
             <span class="text-xs">All Users</span>
         </div>
-        <div class="flex items-center justify-between">
-            
-            <div class="flex bg-gray-50 items-center p-2 ">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                </svg>
-                <input class="bg-gray-50 outline-none ml-1 block rounded-md" wire:model="search" type="text" placeholder="Search users...">
-            </div>
+        <div class="flex items-center p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+            <input class="outline-none ml-1 block rounded-md" wire:model="search" type="text" placeholder="Search users...">
         </div>
     </div>
     
@@ -49,8 +46,8 @@
     @endif
 
     <div>
-        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden h-96 min-h-full">
+        <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 pt-4 pb-7 overflow-x-auto">
+            <div class="inline-block min-w-full shadow-xl shadow-gray-400 rounded-lg overflow-hidden h-96 min-h-full">
                 <table class="min-w-full leading-normal">
                     <thead>
                         <tr>
@@ -65,7 +62,7 @@
                     <tbody>
                         @forelse ($users as $user)
                         <tr>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -74,7 +71,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -83,7 +80,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -92,7 +89,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3 pr-2">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -127,7 +124,7 @@
                                     @endrole
                                     </div>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -136,7 +133,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex flex-col mb-2 ml-4 mt-1">
                                     <x-jet-dropdown align="left" width="48">
                                         <x-slot name="trigger">
@@ -164,7 +161,9 @@
                             </tr>
                             @empty
                             <tr>
-                                <p class="text-gray-900 whitespace-no-wrap">No users found</p> 
+                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    No users found
+                                </td>
                             </tr>
                             @endforelse
                     </tbody>

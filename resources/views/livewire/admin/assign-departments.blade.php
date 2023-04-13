@@ -1,7 +1,7 @@
 <div class="bg-white p-8 rounded-md w-full mt-4" id="Assign-Department">
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         <div class="block w-full overflow-x-auto">
-            <div>
+            <div >
                 <x-jet-form-section submit="addDepartment">
                     <x-slot name="form">
                         <x-slot name="title">
@@ -34,15 +34,16 @@
                                 </span>
                             @enderror
                             <x-jet-label for="department" value="{{ __('Department') }}"/>
-                            <select id="department_id" wire:model="department_id" name="department_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="department_id" autocomplete="department_id" autofocus>
+                            <select required id="department_id" wire:model="department_id" name="department_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="department_id" autocomplete="department_id" autofocus>
+                                <option name="department_id" value=""> Seletect Department </option>
                                 @forelse($numbers as $number)
                                     <option name="department_id" value="{{ $number->id }}"> {{ $number->department }} </option>
                                 @empty
                                     <option @disabled(true) @selected(true)>Add Emergency Department First</option>>
                                 @endforelse
                             </select>
-                            <div class="flex justify-between p-4">
-                                <h3 class="font-semibold text-gray-900">Incidents</h3>
+                            <div class="flex items-center justify-between py-4">
+                                <h3 class="font-semibold text-gray-900">Select Incidents below</h3>
                                 <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
                                     type="button"
                                     href="{{ route("remove.incident") }}"

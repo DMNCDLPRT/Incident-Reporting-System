@@ -26,7 +26,7 @@ class portalController extends Controller
     public function user()
     {
         $user = auth()->user();
-        $reports = Reports::where('userId', $user->id)->get();
+        /* $reports = Reports::where('userId', $user->id)->get();
 
         if($reports->isEmpty())
         {
@@ -41,9 +41,13 @@ class portalController extends Controller
 
         foreach($reports as $report){
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
-        }
+        } */
+       
+        $location = [];
+        $incidents = [];
+        $reports = [];
 
-        // dd($user, $reports, $location);
+        //dd($user, $reports, $location);
 
         return view('portal.userProfile')->with(['user' => $user, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
@@ -163,10 +167,10 @@ class portalController extends Controller
         $result = array_merge($result, join_words($words));
         $message = end($result); */
 
-        $message = "Incident Type: " . ($incident ? $incident[0]->report_name : '') . 
-            "Number of Victims: {$words[1]}" .
-            "Incident other info: {$words[2]}" .
-            "Number of Suspects: {$words[3]}" .
+        $message = "Incident Type: " . ($incident ? $incident[0]->report_name : ''). "\n".
+            "Number of Victims: {$words[1]} \n" . 
+            "Incident other info: {$words[2]} \n" . 
+            "Number of Suspects: {$words[3]} \n" . 
             "Date: $dateFormat ";
         
         return $message;

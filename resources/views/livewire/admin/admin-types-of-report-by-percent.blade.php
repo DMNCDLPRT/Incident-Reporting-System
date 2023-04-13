@@ -3,8 +3,8 @@
       <h3 class="text-gray-700 font-bold text-lg">Incidents Reported</h3>
          <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 mb-4">Total of Incidents Reported in each Incidents</p>
    </div>
-   <div class="block w-full overflow-x-auto">
-      <table class="items-center w-full bg-transparent border-collapse">
+   <div class="block w-full overflow-x-auto shadow-lg rounded-md bg-slate-100">
+      <table class="items-center w-full border-collapse ">
          <thead>
             <tr>
                <th class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">Reports</th>

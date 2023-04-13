@@ -3,7 +3,7 @@
       <h3 class="text-gray-700 font-bold text-lg">Incidents Reported This Week</h3>
       <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 mb-4">Total of reports this week by days</p>
    </div>
-   <div class="rounded p-2 bg-slate-100 overflow-hidden">
+   <div class="rounded p-2 bg-slate-100 overflow-hidden shadow-lg ">
       <canvas class="block w-full overflow-x-auto p-2" id="chartLine"></canvas>
    </div>
 

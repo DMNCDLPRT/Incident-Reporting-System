@@ -1,6 +1,6 @@
 <div>
     <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-        <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+        <div class="inline-block min-w-full shadow-xl shadow-cyan-500/50 rounded-lg overflow-hidden">
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
@@ -14,25 +14,25 @@
                     @php($i = 0)
                     @forelse ($reports as $report)
                     <tr>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
-                                {{ $incidents[$i][0]->report_name }}
+                                {{$report->reports[0]->report_name}}
                             </p>
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
                                 {{ $report->created_at->format('d/m/Y') }}
                                 <p class="text-xs font-semibold text-gray-600">{{$report->created_at->diffForHumans()}}</p>
                             </p>
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                             <span
                                 class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
                                 <span aria-hidden class="absolute inset-0 bg-{{$report->status_color}}-200 opacity-50 rounded-full"></span>
                             <span class="relative"> {{ $report->status }} </span>
                             </span>
                         </td>
-                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                             <div class="flex flex-row items-center">
                                 <div class="flex flex-col mb-2 ml-4 mt-1">
                                   <x-jet-dropdown align="left" width="48">
@@ -70,7 +70,7 @@
                     @endforelse
                 </tbody>
             </table>
-            <div
+            {{-- <div
                 class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
                 <span class="text-xs xs:text-sm text-gray-900">
                     Showing 1 to 4 of 50 Entries
@@ -86,6 +86,16 @@
                         Next
                     </button>
                 </div>
+                
+            </div> --}}
+            <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+                <nav id="Graphs">
+                    @if ($reports->count() < 5)
+                        showing {{$reports->count()}} out of {{$reports->count()}}
+                    @else
+                        {{ $reports->links() }}
+                    @endif
+                </nav>
             </div>
     </div>
 </div>

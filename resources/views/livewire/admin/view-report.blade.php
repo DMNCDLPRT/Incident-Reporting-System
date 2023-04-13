@@ -59,25 +59,31 @@
                                     </x-slot>
                                 </x-jet-dropdown>
                             </div>
-                            <ul class="mt-4 text-gray-700">
-                                <li class="flex border-y py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Report ID:</span>
-                                    <span class="text-gray-700">{{ $report->id}}</span>
-                                </li>
-                                @if ($reporter == null)
-                                    <li class="flex border-b py-2 hover:bg-slate-100">
-                                        <span class="font-bold w-48">Reported by:</span>
-                                        <span class="text-gray-700">Guest</span>
+                            <ul class="mt-4 m-2 text-gray-700">
+                                <div class="flex ">
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow">
+                                        <span class="font-bold w-48">Report ID:</span>
+                                        <span class="text-gray-700">{{ $report->id}}</span>
                                     </li>
-                                @else
-                                    
-                                    <a class="hover:" href="{{ route('view.user', $reporter[0]->id) }}">
-                                        <li class="flex border-b py-2 hover:bg-slate-100">
+                                    @if ($reporter == null)
+                                        <li class="flex border-b py-2 hover:bg-slate-100 grow">
                                             <span class="font-bold w-48">Reported by:</span>
-                                           <span class="text-gray-700">{{ $reporter[0]->name }}</span>
-                                       </li>
-                                    </a>
-                                @endif
+                                            <span class="text-gray-700">Guest</span>
+                                        </li>
+                                    @else
+                                        
+                                        <a class="hover:" href="{{ route('view.user', $reporter[0]->id) }}">
+                                            <li class="flex border-b py-2 hover:bg-slate-100">
+                                                <span class="font-bold w-48">Reported by:</span>
+                                               <span class="text-gray-700">{{ $reporter[0]->name }}</span>
+                                           </li>
+                                        </a>
+                                    @endif
+                                </div>
+                                <li class="flex border-b py-2 hover:bg-slate-100 grow">
+                                    <span class="font-bold w-48">Type of Incident</span>
+                                    <span class="text-gray-700">{{ $incident[0]->report_name }}</span>
+                                </li>
                                 <div class="flex">
                                     <li class="flex border-b py-2 hover:bg-slate-100 grow">
                                         <span class="font-bold w-48">No. of Victim/s:</span>
@@ -85,7 +91,7 @@
                                     </li>
                                     <li class="flex border-b py-2 hover:bg-slate-100 grow">
                                         <span class="font-bold w-48">No. of Suspect/s:</span>
-                                        <span class="text-gray-700">{{ $report->victims }}</span>
+                                        <span class="text-gray-700">{{ $report->suspects }}</span>
                                     </li>
                                 </div>
                                 <li>

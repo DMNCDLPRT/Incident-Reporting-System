@@ -4,7 +4,7 @@
     <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400">Incidents Reported based on incidents assigned to the Department</p>
     <a class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 hover:text-blue-600 mb-4" href="{{ route('download.pdf.reports') }}">Generate PDF</a>
   </div>
-  <div class="rounded p-2 bg-slate-100 overflow-hidden">
+  <div class="rounded p-2 bg-slate-100 overflow-hidden shadow-lg ">
     <canvas class="p-4" id="chartBar"></canvas>
   </div>
 </div>

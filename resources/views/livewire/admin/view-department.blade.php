@@ -41,7 +41,7 @@
             </thead>
             <tbody lass="divide-y divide-gray-100">
                 <tr>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                         <form wire:submit.prevent="deleteAssignedContacts">
                             <p class="text-gray-900 whitespace-no-wrap">
                                 @if ($cell == null)
@@ -72,7 +72,7 @@
                         </form>
                     </td>
                     
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
                         <form wire:submit.prevent="deleteAssignedIncidents">
                             <p class="text-gray-900 whitespace-no-wrap">
                                 @php($i = 0)
