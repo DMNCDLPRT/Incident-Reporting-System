@@ -53,12 +53,12 @@
                                 @php($num = 1)
                                 @forelse ($reports as $key => $report)
                                 <tr>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
-                                        <p class="hover:text-red-400">
-                                            {{ $num }}
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm ">
+                                        <p class="hover:text-red-400 font-bold">
+                                            {{ $num }}.
                                         </p>
                                     </td>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         @if ($report->userId == null)
                                             <p class="hover:text-red-400">Guest</p>
                                         @else
@@ -73,22 +73,22 @@
                                         </div>
                                         @endif
                                     </td>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
                                             {{ $incidents[$i][0]->report_name }}
                                         </p>
                                     </td>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
                                             {{ $report->victims }}
                                         </p>
                                     </td>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
                                             {{ $report->suspects }}
                                         </p>
                                     </td>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
                                             @if ($report->event == null)
                                                <i class="text-gray-500"> no other info provided </i>
@@ -97,7 +97,7 @@
                                             @endif
                                         </p>
                                     </td>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         <span
                                             class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
                                             {{-- <span class="absolute inset-0 bg-{{$report->status_color}}-400 opacity-50 rounded-full"></span> --}}
@@ -113,14 +113,14 @@
                                         <span class="relative text-white"> {{ $report->status }} </span>
                                         </span>
                                     </td>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
                                             {{ \Carbon\Carbon::parse($report->created_at)->format('F d, Y') }}
                                             <p class="text-xs font-semibold text-gray-600">{{$report->created_at->diffForHumans()}}</p>
                                         </p>
                                     </td>
                                     
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         {{-- <div class="flex flex-row items-center">
                                             <div class="flex flex-col mb-2 ml-4 mt-1">
                                               <x-jet-dropdown align="left" width="48">
@@ -147,7 +147,7 @@
                                               </x-jet-dropdown>
                                             </div>
                                         </div> --}}
-                                        <a href="{{ route('view.report', $report->id) }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 uppercase text-xs font-bold rounded-lg px-4 py-1.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        <a href="{{ route('view.report', $report->id) }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 uppercase text-xs font-bold rounded-lg px-4 py-1.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-emerald-400dark:focus:ring-blue-800">
                                             View
                                             <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                         </a>
@@ -157,7 +157,7 @@
                                 @php($num++)
                                 @empty
                                     <tr>
-                                        <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                        <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                             There are no reports yet
                                         </td>
                                     </tr>

@@ -1,13 +1,13 @@
 <x-jet-form-section submit="submitForm">
   <x-slot name="title">
-      {{ __('Submit a Report') }}
+      {{ __('Incident Report') }}
   </x-slot>
   <x-slot name="description">
       {{ __('You can Submit a report here. Just make sure to inclue the important details.') }}
   </x-slot>
   <x-slot name="form">
-
     {{-- Selection of which type of inccident occurs --}}
+
 
     @error('reportType')
       <span class="m" role="alert">
@@ -40,7 +40,7 @@
                     <?php
                 }
             ?>
-            <option value="more than 20 suspects">more than 20 suspects</option>
+            <option value="more than 20 suspects">more than 20</option>
           </select>
         </div>
         <div class="grow">
@@ -55,7 +55,7 @@
                     <?php
                 }
             ?>
-            <option value="more than 20 victims">more than 20 victims</option>
+            <option value="more than 20 victims">more than 20</option>
           </select>
         </div>
       </div>
@@ -70,8 +70,9 @@
     @enderror
 
     <div>
-      <label for="event" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">Description <span class="text-gray-400">(optional)</span> <span class="text-[12px]">max letters 160</span></label>
+      <label for="event" class="block mb-2 mt-2 text-sm font-medium text-gray-900 dark:text-gray-500">Incident Details <span class="text-gray-400">(optional)</span> <span class="text-[12px]">max letters 160</span></label>
       <textarea id="event" name="event" rows="4" wire:model="event" maxlength="160" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description or other details of the incident ..." autocomplete="event"></textarea>
+      <span class="text-gray-400 text-[12px]"><i>How the incident occured. Factors leading to it. what took place. Be specific as possible.</i></p>
     </div>  
     {{-- end of textfield --}}  
 

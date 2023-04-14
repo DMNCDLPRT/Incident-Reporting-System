@@ -7,7 +7,7 @@
   <div class="rounded p-2 bg-slate-100 overflow-hidden shadow-lg ">
     <canvas class="p-4" id="chartBar"></canvas>
   </div>
-</div>
+
   
   <!-- Required chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -38,3 +38,4 @@
       configBarChart
     );
   </script>
+</div>

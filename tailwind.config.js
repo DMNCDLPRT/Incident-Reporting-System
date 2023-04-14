@@ -8,6 +8,7 @@ module.exports = {
             backgroundImage: {
                 'login': "url('../public/images/1.jpg')",
                 'sign-up': "url('../public/images/2.jpg')",
+                'background': "url('/public/images/DonCarlosPlaza.jpg')"
             }
         }
     },

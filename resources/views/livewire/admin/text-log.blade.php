@@ -29,19 +29,19 @@
                 <tbody>
                     @forelse ($textlogs as $logs)
                         <tr>
-                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ $logs->id }}</p>
                             </td>
-                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ $logs->department->department }}</p>
                             </td>
-                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ $logs->cell->number }}</p>
                             </td>
-                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ $logs->log }}</p>
                             </td>
-                            <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                            <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                 <p class="text-gray-900 whitespace-no-wrap">{{ \Carbon\Carbon::parse($logs->created_at)->format('F d, Y') }}</p>
                                 <p class="text-xs font-semibold text-gray-600">{{ $logs->created_at->diffForHumans() }}</p>
                             </td>

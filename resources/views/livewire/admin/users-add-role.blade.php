@@ -62,7 +62,7 @@
                     <tbody>
                         @forelse ($users as $user)
                         <tr>
-                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -71,7 +71,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -80,7 +80,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -89,7 +89,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3 pr-2">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -124,7 +124,7 @@
                                     @endrole
                                     </div>
                                 </td>
-                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                     <div class="flex items-center">
                                         <div class="ml-3">
                                             <p class="text-gray-900 whitespace-no-wrap">
@@ -133,7 +133,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                     <div class="flex flex-col mb-2 ml-4 mt-1">
                                     <x-jet-dropdown align="left" width="48">
                                         <x-slot name="trigger">
@@ -161,7 +161,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                     No users found
                                 </td>
                             </tr>

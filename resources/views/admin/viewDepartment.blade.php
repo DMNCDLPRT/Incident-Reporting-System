@@ -15,10 +15,10 @@
                             </thead>
                             <tbody lass="divide-y divide-gray-100">
                                 <tr>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         @livewire('assigned-contacts', ['cell' => $cell])
                                     </td>
-                                    <td class="px-5 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         @livewire('assigned-departments', ['assigns' => $assigns, 'values' => $values, 'incidents' => $incidents])
                                     </td>
                                 </tr>

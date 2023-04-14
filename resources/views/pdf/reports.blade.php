@@ -50,6 +50,7 @@
 <body>
     <header >
         <div class="header">
+
             <h4 class="">Republic of The Philippines</h4>
             <h4 class="">Provicen of Bukidnon</h4>
             <h4 class="">Minicipality of Don Carlos</h4>
@@ -62,7 +63,7 @@
 
     <main>
         <div class="logo">
-            <small class="pdf-fr">from: Incident Reporting System{{-- <img src="{{ asset('images/report incident.png') }}" class="pdf-img"> --}}</small>
+            <small class="pdf-fr">from: Incident Reporting System<img src="{{ asset('images/report incident.png') }}" class="pdf-img"></small>
             </div>
 <table id="customers" style="padding-top: 10px">
   <tr>
