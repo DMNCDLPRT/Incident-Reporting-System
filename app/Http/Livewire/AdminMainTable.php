@@ -11,7 +11,7 @@ use Livewire\WithPagination;
 
 class AdminMainTable extends Component
 {
-    use WithPagination;
+    /* use WithPagination;
 
     public $search = '';
 
@@ -56,9 +56,9 @@ class AdminMainTable extends Component
             }
         }
         return view('livewire.admin.admin-main-table', ['reports' => $reports, 'incidents' => $incidents]);
-    }
+    } */
 
-    /* use WithPagination;
+    use WithPagination;
 
     public $search = '';
 
@@ -103,5 +103,5 @@ class AdminMainTable extends Component
         }
 
         return view('livewire.admin.admin-main-table', ['reports' => $reports, 'incidents' => $incidents]);
-    } */
+    }
 }
