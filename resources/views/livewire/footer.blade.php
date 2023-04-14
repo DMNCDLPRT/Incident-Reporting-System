@@ -19,6 +19,6 @@
     </div>
  </footer>
  <p class="text-center font-bold text-sm text-gray-900 my-10">
-    &copy; 2022-2023 <a href="#" class="hover:underline" target="_blank">Quick-Respond</a>. All rights reserved.
+    &copy; 2023-2024 <a href="#" class="hover:underline" target="_blank">UIRS</a>. All rights reserved.
  </p>
  </div>

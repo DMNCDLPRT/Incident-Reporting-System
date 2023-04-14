@@ -4,10 +4,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title> {{ config('app.name', 'Laravel') }}</title>
-      <!-- Fonts -->
-      <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
       
-      {{-- <script src="https://kit.fontawesome.com/49ffc3c21b.js" crossorigin="anonymous"></script> --}}
       @vite(['resources/css/app.css', 'resources/js/app.js'])
 
       @livewireStyles
@@ -18,12 +15,12 @@
       <!-- component -->
       <div class="mx-auto max-w-[800px]"> 
         <div class="h-full bg-gray-50">
-          <nav class="p-2 pl-5 pr-5 flex flex-grow justify-between z-10 items-center mx-auto h-18 mb-8 bg-slate-100">
+          <nav class="p-2 pl-5 pr-5 flex flex-grow justify-between z-10 items-center mx-auto h-18 mb-5 bg-slate-100">
             <div class="inline-flex">
               <a href="/">
                 <div class="flex justify-center items-center space-x-4">
-                  <img src="{{ asset('images/cross -logo.png') }}" alt="Logo" class=" w-11 ">
-                  <h4 class="text-xl font-semibold  leading-tight truncate">Report Incident</h4> 
+                  <img src="{{ asset('images/uirs-website-favicon-color.svg') }}" alt="Logo" class=" w-11 ">
+                  <h4 class="text-xl font-semibold  leading-tight truncate">UIRS</h4> 
                 </div>
               </a>
             </div>
@@ -69,8 +66,8 @@
                       </x-slot>
                     </x-jet-dropdown>
                     @endif
-                    <div class="flex items-center lg:order-2">
-                     {{--  @if (Route::has('login'))
+                    {{-- <div class="flex items-center lg:order-2">
+                      @if (Route::has('login'))
                           @auth
                           @else
                           <a href="{{ route('register') }}" class="text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-emerald-400focus:outline-none dark:focus:ring-blue-800">
@@ -82,8 +79,8 @@
                               </a>
                               @endif
                           @endauth 
-                      @endif --}}
-                    </div>
+                      @endif
+                    </div> --}}
                   </div>
                 </div>
               </div>

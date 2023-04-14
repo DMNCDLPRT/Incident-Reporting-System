@@ -7,19 +7,16 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-        {{-- <script src="https://kit.fontawesome.com/49ffc3c21b.js" crossorigin="anonymous"></script> --}}
-
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-white dark:bg-gray-800">
-        <header>
-            <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-600">
+    <body class="antialiased bg-[url('/public/images/DonCarlosPlaza.jpg')] bg-top bg-local md:bg-fixed bg-no-repeat">
+        <div style="background: linear-gradient(184deg, rgb(6 120 153 / 27%) 35%, rgb(37 45 41 / 75%) 70%);">
+            <header class="fixed top-0 z-10 w-full bg-transparent shadow-2xl backdrop-blur-sm">
+                <nav class="bg-transparent px-4 lg:px-6 py-2.5 top-0">
                 <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <a href="{{ url('/') }}" class="flex items-center">
-                        <img src="{{ asset('images/cross -logo.png') }}" class="mr-3 h-6 sm:h-9" alt="Logo" />
+                        <img src="{{ asset('images/uirs-website-favicon-color.svg') }}" class="mr-3 h-6 sm:h-9" alt="Logo" />
                         <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Report Incident</span>
                     </a>
                     <div class="flex items-center lg:order-2">
@@ -79,8 +76,8 @@
                </a>
             </div>
          </footer>
-         <p class="text-center text-sm text-gray-600 my-10">
-            &copy; 2022-2023 <a href="#" class="hover:underline" target="_blank">Quick-Respond</a>. All rights reserved.
-         </p>
+         <p class="text-center text-sm text-white p-6">
+            &copy; 2023-2024 <a href="#" class="hover:underline" target="_blank">UIRS</a>. All rights reserved.
+        </p>
     </body>
 </html>

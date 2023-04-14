@@ -1,1 +1,1 @@
-<img src="{{ asset('images/cross -logo.png') }}" alt="Logo" class="w-10">
+<img src="{{ asset('images/uirs-website-favicon-color.svg') }}" alt="Logo" class="w-10">

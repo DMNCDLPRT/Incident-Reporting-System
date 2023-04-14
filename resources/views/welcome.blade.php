@@ -14,15 +14,21 @@
 
     </head>
     {{-- <body class="antialiased bg-white dark:bg-gradient-to-r from-[#1f3d46] to-[#34694a]"> --}}
-    <body class="antialiased bg-[url('/public/images/DonCarlosPlaza.jpg')] bg-center bg-local md:bg-fixed">
-        <div style="background: linear-gradient(203deg, rgb(3 140 180 / 22%) 0%, rgb(37 45 41 / 88%) 72%);">
+    <body class="antialiased bg-[url('/public/images/DonCarlosPlaza.jpg')] bg-top bg-local md:bg-fixed bg-no-repeat">
+        <div style="background: linear-gradient(184deg, rgb(6 120 153 / 27%) 35%, rgb(37 45 41 / 75%) 70%);">
             <header class="fixed top-0 z-10 w-full bg-transparent shadow-2xl backdrop-blur-sm">
                 <nav class="bg-transparent px-4 lg:px-6 py-2.5 top-0">
                     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                         <a href="{{ url('/') }}" class="flex items-center">
-                            <img src="{{ asset('images/cross -logo.png') }}" class="mr-3 h-6 sm:h-9" alt="Logo" />
+                            <img src="{{ asset('images/uirs-website-favicon-color.svg') }}" class="mr-3 h-6 sm:h-9" alt="Logo" />
                             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Report Incident</span>
                         </a>
+                        
+                        <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-600 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-500 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
+                            <span class="sr-only">Main Menu</span>
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                            <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </button>
                         <div class="flex items-center lg:order-2">
                             @if (Route::has('login'))
                                 @auth
@@ -38,7 +44,7 @@
                                 </a>
                                 @endrole
                                 @else
-                                <a href="{{ route('register') }}" class="text-white bg-emerald-500 shadow-2xl hover:bg-emerald-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-emerald-400focus:outline-none dark:focus:ring-blue-800">
+                                <a href="{{ route('register') }}" class="text-white bg-emerald-500 shadow-2xl hover:bg-emerald-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-emerald-500 dark:hover:bg-emerald-400focus:outline-none dark:focus:ring-blue-800">
                                     Sign-up
                                 </a>
                                     @if (Route::has('register'))
@@ -48,11 +54,6 @@
                                     @endif
                                 @endauth 
                             @endif
-                            <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-600 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-500 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
-                                <span class="sr-only">Main Menu</span>
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-                                <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                            </button>
                         </div>
                     </div>
                 </nav>
@@ -71,35 +72,35 @@
                                 @if(Route::has('login'))
                                     @auth
                                         @role('Admin|Department')
-                                            <a href="{{ url('/dashboard') }}" type="button" class="text-gray-900 shadow-2xl dark:white w-full lg:w-max px-4 py-3 bg-emerald-500 hover:bg-emerald-400 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
+                                            <a href="{{ url('/dashboard') }}" type="button" class="text-gray-900 shadow-md dark:white w-full lg:w-max px-4 py-3 bg-emerald-500 hover:bg-emerald-400 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
                                                 Home
                                             </a>
                                         @endrole
 
                                         @role('User')
-                                            <a href="{{ url('/portal/portal') }}" type="button" class="text-gray-900 shadow-2xl dark:text-white w-full lg:w-max px-4 py-3 bg-emerald-500 hover:bg-emerald-400 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
+                                            <a href="{{ url('/portal/portal') }}" type="button" class="text-gray-900 shadow-md dark:text-white w-full lg:w-max px-4 py-3 bg-emerald-500 hover:bg-emerald-400 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
                                                 Report Incident
                                             </a>
                                         @endrole 
 
                                 @else
-                                    <a href="{{ route('register') }}" type="button" class="text-gray-900 shadow-2xl dark:text-white w-full lg:w-max px-4 py-3 border bg-emerald-500 hover:bg-emerald-400 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
+                                    <a href="{{ route('register') }}" type="button" class="text-gray-900 shadow-md dark:text-white w-full lg:w-max px-4 py-3 border bg-emerald-500 hover:bg-emerald-400 hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
                                         Sign-up
                                     </a>
-                                    @if (Route::has('register'))hover:bg-emerald-600
-                                        <a href="{{ route('login') }}" type="button" class="text-gray-900 shadow-2xl dark:text-white w-full lg:w-max px-4 py-3 border   hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('login') }}" type="button" class="text-gray-800 dark:text-white bg-slate-400 shadow-md w-full lg:w-max px-4 py-3 border hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
                                             Sign-in
                                         </a>
                                     @endif
                                     @endauth
                                 @endif
-                                <a href="{{ route('portal-guest') }}" type="button" class="text-gray-400 w-full lg:w-max px-4 py-3 border hover:backdrop-blur-xl hover:text-white border-slate-200 hover:cursor-pointer font-medium rounded inline-flex items-center justify-center hover:shadow-zinc-50">
+                                <a href="{{ route('portal-guest') }}" type="button" class="text-gray-900 shadow-md dark:text-white w-full lg:w-max px-4 py-3 border hover:cursor-pointer font-medium rounded lg:mr-8 mb-4 lg:mb-0 inline-flex items-center justify-center hover:shadow-green-400">
                                     Report Incident - Report as Guest
                                 </a>
                             </div>
                         </div>
                         <div class="col-span-6 relative place-content-center" style="display:grid">
-                            <img src="{{ asset('images/don carlos logo.png') }}" class="max-w-sm m-0 rounded-full" alt="">
+                            <img src="{{ asset('images/don carlos logo.png') }}" class="max-w-sm m-0" alt="">
                         </div>
                     </section>
                     <footer class="md:flex md:items-center md:justify-between rounded-lg p-4 md:p-6 xl:p-8 my-6 mx-4 shadow-2xl shadow-gray-800 bg-transparent bg-slate-50">
@@ -123,7 +124,7 @@
                         </div>
                     </footer>
                     <p class="text-center text-sm text-white p-6">
-                        &copy; 2022-2023 <a href="#" class="hover:underline" target="_blank">Quick-Respond</a>. All rights reserved.
+                        &copy; 2023-2024 <a href="#" class="hover:underline" target="_blank">UIRS</a>. All rights reserved.
                     </p>
                     </div>
                 </div>
