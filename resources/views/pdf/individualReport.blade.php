@@ -75,23 +75,46 @@
           <div class="from">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This crime report is based on the data collected by the Ubiquitous Incident Reporting System (UIRS). The data is used to identify patterns and trends in incidents activity, which can help agencies to allocate resources more effectively and prevent future crimes. The UIRS system is essential in crime prevention and investigation, providing timely and accurate data to support law enforcement efforts.</p>
               <small class="pdf-fr">From: Ubiquitous Incident Reporting System</small>
-              <br>
-              <small class="pdf-fr">When: from {{ $weekStart }} to {{ $endWeek }}</small>
               </div>
         <table id="department" style="padding-top: 10px">
+            <tr>
+                <th>Report ID</th>
+                <td>{{ $report->id }}</td>
+
+            </tr>
+            <tr>
+                <th>Reported by</th>
+                @if ($reporter == null)
+                <td>Reported by Guest</td>
+            @else
+                <td>{{ $reporter[0]->name }}</td>
+            @endif
+            </tr>
+            <tr>
+                <th>Type of Incident</th>
+                <td>{{ $incident[0]->report_name }}</td>
+            </tr>
+            <tr>
+                <th>Victims</th>
+                <td>{{ $report->victims }}</td>
+            </tr>
+            <tr>
+                <th>Suspects</th>
+            <td>{{ $report->suspects }}</td>
+                
+            </tr>
+            <tr>
+                <th>Description</th>
+            <td>{{ $report->event }}</td>
+
+            </tr>
+            <tr>
+                <th>Date</th>
+            <td>{{ $createdAt }}</td>
+
+            </tr>
           <tr>
-            <th>Department</th>
-            <th>Number of Reports</th>
           </tr>
-           @php($i = 0)
-          @foreach ($count as $count)
-          <tr>
-            <td>{{$departments[$i]}}</td>
-            <td>{{ $count }}</td>
-          </tr>
-          @php($i = $i + 1)
-          @endforeach 
-          
         </table>
       </main>
       

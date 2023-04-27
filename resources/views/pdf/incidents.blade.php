@@ -72,24 +72,24 @@
           </div>
           <hr>
       <main>
-          <div class="from">
+        <div class="from">
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This crime report is based on the data collected by the Ubiquitous Incident Reporting System (UIRS). The data is used to identify patterns and trends in incidents activity, which can help agencies to allocate resources more effectively and prevent future crimes. The UIRS system is essential in crime prevention and investigation, providing timely and accurate data to support law enforcement efforts.</p>
               <small class="pdf-fr">From: Ubiquitous Incident Reporting System</small>
               <br>
-              <small class="pdf-fr">When: from {{ $weekStart }} to {{ $endWeek }}</small>
-              </div>
+              <small class="pdf-fr">When: Incidnets from {{ $weekStart }} to {{ $endWeek }}</small>
+        </div>
         <table id="department" style="padding-top: 10px">
           <tr>
-            <th>Department</th>
+            <th>Incident</th>
             <th>Number of Reports</th>
           </tr>
-           @php($i = 0)
-          @foreach ($count as $count)
-          <tr>
-            <td>{{$departments[$i]}}</td>
-            <td>{{ $count }}</td>
-          </tr>
-          @php($i = $i + 1)
+          @php($i = 0)
+          @forelse (array_unique($incident) as $incident)
+            <tr>
+                <td>{{ $incident[0]->report_name }}</td>
+                <td>{{ $count[$i] }}</td>
+            </tr>
+            @php($i++)
           @endforeach 
           
         </table>

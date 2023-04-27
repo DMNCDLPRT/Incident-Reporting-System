@@ -1,7 +1,7 @@
 <div class="bg-white shadow rounded-lg p-4 sm:p-6">
   <div class="grid justify-items-center">
     <h3 class="text-xl leading-none font-bold text-gray-900">Departments</h3>
-    <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400">Incidents Reported based on incidents assigned to the Department</p>
+    <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400">Incidents reported to a department this week</p>
     <a class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 hover:text-blue-600 mb-4" href="{{ route('download.pdf.reports') }}">Generate PDF</a>
   </div>
   <div class="rounded p-2 bg-slate-100 overflow-hidden shadow-lg ">

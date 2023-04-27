@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Reports;
 use Illuminate\Support\Facades\DB as FacadesDB;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class AdminTypesOfReportByPercent extends Component
 {
@@ -14,7 +15,10 @@ class AdminTypesOfReportByPercent extends Component
 
     public function mount($incident, $count, $sum)
     {
-        $reports = Reports::with('reports')->get();
+        // Get all reports created during the current week
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+        $reports = Reports::whereBetween('created_at', [$startOfWeek, $endOfWeek])->with('reports')->get();
 
         if($reports->isEmpty()){
             $reports = [];

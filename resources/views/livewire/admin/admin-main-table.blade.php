@@ -105,8 +105,8 @@
                                                 <span aria-hidden class="absolute inset-0 bg-red-700 opacity-50 rounded-full"></span>
                                             @elseif ($report->status_color == 'blue')
                                                 <span aria-hidden class="absolute inset-0 bg-blue-700 opacity-50 rounded-full"></span>
-                                            @elseif ($report->status_color == 'yellow')
-                                                <span aria-hidden class="absolute inset-0 bg-yellow-700 opacity-50 rounded-full"></span>
+                                            @elseif ($report->status_color == 'green')
+                                                <span aria-hidden class="absolute inset-0 bg-green-700 opacity-50 rounded-full"></span>
                                             @else
                                                 <span aria-hidden class="absolute inset-0 bg-gray-700 opacity-50 rounded-full"></span>
                                             @endif

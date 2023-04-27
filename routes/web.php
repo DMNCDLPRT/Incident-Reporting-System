@@ -135,6 +135,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
         Route::prefix('/admin/download/pdf/')->group(function () {
             Route::get('reports', 'exportAsPDF')->name('download.pdf.reports');
+            Route::get('individual-report/{id}', 'publishReport')->name('download.pdf.individual.report');
+            Route::get('incidents', 'incidentsReportedPDF')->name('download.pdf.incidents');
         });
 
         

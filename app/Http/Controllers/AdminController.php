@@ -237,15 +237,15 @@ class AdminController extends Controller
     --------------------------------------------------
     */
 
-    // Report Status Change to "Pending"
+    // Report Status Change to "Accepted" changed to acepted - before pending
     public function updateStatusPending($id){
         $report = Reports::where('id', $id)->first();
         $controller = new AdminController;
 
         if($report) {
-            $report->status = 'Pending';
+            $report->status = 'Accepted';
             $report->save();
-            session()->flash('flash_message','Report Status Updated Sucessfully - changed to Pending');
+            session()->flash('flash_message','Report Status Updated Sucessfully - changed to Accepted');
             return $controller->viewReport($id);
         }
 
@@ -348,8 +348,100 @@ class AdminController extends Controller
             return $reports->whereIn('report_id', $incidentIds)->count();
         })->toArray();
 
+        // Get the image file
+        $dclogo = public_path('images/don carlos logo.png');
+        $imageData = base64_encode(file_get_contents($dclogo));
+        $imageSrc1 = 'data:image/png;base64,' . $imageData;
+        
+        // Get the image file
+        $ndrrmc = public_path('images/NDRRMC_logo.svg');
+        $imageData = base64_encode(file_get_contents($ndrrmc));
+        $imageSrc2 = 'data:image/png;base64,' . $imageData;
+
+        $weekStart = \Carbon\Carbon::parse($startOfWeek)->format('F d, Y');
+        $endWeek = \Carbon\Carbon::parse($endOfWeek)->format('F d, Y');
+        
         // Generate and download the PDF report
-        $pdf = FacadePdf::loadView('pdf.reports', compact('departments', 'count'));
-        return $pdf->download('reports.pdf');
+        $pdf = FacadePdf::loadView('pdf.reports', compact('departments', 'count', 'imageSrc1', 'imageSrc2', 'weekStart', 'endWeek'));
+        return $pdf->download('reportsDeprartments.pdf');
+    }
+
+    public function publishReport($id) 
+    {
+        $report = Reports::where('id', $id)->first();
+        $location = FacadesDB::table('locations')->where('id', $report->location_id)->get();
+        $incident = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
+
+        if (isNull($report->userId)) {
+            $reporter = [];
+        } else {
+            $reporter = FacadesDB::table('users')->where('id', $report->userId)->get();
+        }
+
+        // dd($reporter);
+        if($report->status == 'processing') {
+            $report->status = 'Read';
+            $report->save();
+        }
+
+        // Get the image file
+        $dclogo = public_path('images/don carlos logo.png');
+        $imageData = base64_encode(file_get_contents($dclogo));
+        $imageSrc1 = 'data:image/png;base64,' . $imageData;
+        
+        // Get the image file
+        $ndrrmc = public_path('images/NDRRMC_logo.svg');
+        $imageData = base64_encode(file_get_contents($ndrrmc));
+        $imageSrc2 = 'data:image/png;base64,' . $imageData;
+
+        $createdAt = $report->created_at->format('d/m/Y');
+
+        // Generate and download the PDF report
+        $pdf = FacadePdf::loadView('pdf.individualReport', compact('report', 'location', 'incident', 'reporter', 'imageSrc1', 'imageSrc2', 'createdAt'));
+        return $pdf->download('individualReport.pdf');
+    }
+
+    public function incidentsReportedPDF(){
+        // Get all reports created during the current week
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+        $reports = Reports::whereBetween('created_at', [$startOfWeek, $endOfWeek])->with('reports')->get();
+
+        $weekStart = \Carbon\Carbon::parse($startOfWeek)->format('F d, Y');
+        $endWeek = \Carbon\Carbon::parse($endOfWeek)->format('F d, Y');
+
+        if($reports->isEmpty()){
+            $reports = [];
+            $incident = [];
+            $count = [];
+        }
+
+        foreach($reports as $report){
+            $incident[] = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
+        }
+
+        $uniques = array_unique($incident);     // $votes = Vote::where('vote_type',1)->where('something',$something)->count();
+      
+        $i = 0;
+        foreach($uniques as $unique){
+            $count[] = $reports->where('report_id', $unique[$i]->id)->count();
+            $i + 1;
+        }
+
+        $sum = array_sum($count);
+
+        // Get the image file
+        $dclogo = public_path('images/don carlos logo.png');
+        $imageData = base64_encode(file_get_contents($dclogo));
+        $imageSrc1 = 'data:image/png;base64,' . $imageData;
+        
+        // Get the image file
+        $ndrrmc = public_path('images/NDRRMC_logo.svg');
+        $imageData = base64_encode(file_get_contents($ndrrmc));
+        $imageSrc2 = 'data:image/png;base64,' . $imageData;
+
+        // Generate and download the PDF report
+        $pdf = FacadePdf::loadView('pdf.incidents', compact('weekStart', 'endWeek','imageSrc1', 'imageSrc2', 'reports', 'incident', 'count'));
+        return $pdf->download('incidents.pdf');
     }
 }

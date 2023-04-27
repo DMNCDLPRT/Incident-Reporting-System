@@ -16,23 +16,23 @@
                     </div>
                     <ul class="mt-4 text-gray-700">
                         <li class="flex border-y py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Report ID:</span>
+                            <span class="font-bold ">Report ID:</span>
                             <span class="text-gray-700">{{ $report->id}}</span>
                         </li>
                         <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Reported by:</span>
+                            <span class="font-bold ">Reported by:</span>
                             <span class="text-gray-700">{{ $reporter[0]->name }}</span>
                         </li>
                         <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Type of Incident:</span>
+                            <span class="font-bold ">Type of Incident:</span>
                             <span class="text-gray-700">{{ $incident[0]->report_name }}</span>
                         </li>
                         <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Description:</span>
+                            <span class="font-bold ">Description:</span>
                             <span class="text-gray-700">{{ $report->description }}</span>
                         </li>
                         <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Date:</span>
+                            <span class="font-bold ">Date:</span>
                             <span class="text-gray-700">{{$report->created_at->format('d/m/Y') }}</span>
                         </li>
                     </ul>

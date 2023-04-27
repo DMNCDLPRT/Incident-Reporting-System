@@ -1,6 +1,6 @@
 <div class="bg-white p-8 rounded-md w-full">
+    
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-        
         <div class="block w-full overflow-x-auto">
             <x-jet-action-section>
                 <x-slot name="title">
@@ -28,8 +28,11 @@
                     @endif
                    <div class="mb-5 rounded-md bg-[#F5F7FB] py-4 px-8">
                         <div class="flex-1 bg-white rounded-lg shadow-xl p-8">
-                            <h4 class="text-xl text-gray-900 font-bold">Incident Report Info</h4>
-                            <div class="flex ">
+                            <div class="flex justify-between content-center">
+                                <h4 class="text-xl text-gray-900 font-bold">Incident Report Info</h4>
+                                <a class="text-sm font-normal whitespace-nowrap  text-blue-400 hover:text-blue-600 mb-4" href=" {{ route('download.pdf.individual.report', $report->id) }} ">Publish as PDF</a>
+                            </div>
+                            <div class="flex content-start">
                                 <p class="text-gray-600 text-sm pr-2">
                                     {{ $report->created_at->diffForHumans() }} |
                                 </p>
@@ -48,7 +51,7 @@
                                             {{ __('Change Report Status') }}
                                         </div>
                                         <x-jet-dropdown-link href="{{ route('status.pending', $report->id) }}">
-                                            {{ __('Pending') }}
+                                            {{ __('Accepted') }}
                                         </x-jet-dropdown-link>
                                         <x-jet-dropdown-link href="{{ route('status.processing', $report->id) }}">
                                             {{ __('Processing') }}
@@ -60,48 +63,44 @@
                                 </x-jet-dropdown>
                             </div>
                             <ul class="mt-4 m-2 text-gray-700">
-                                <div class="flex ">
-                                    <li class="flex border-b py-2 hover:bg-slate-100 grow">
-                                        <span class="font-bold w-48">Report ID:</span>
-                                        <span class="text-gray-700">{{ $report->id}}</span>
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                        <span class="font-bold ">Report ID:</span>
+                                        <span class="text-gray-700">{{ $report->id }}</span>
                                     </li>
                                     @if ($reporter == null)
-                                        <li class="flex border-b py-2 hover:bg-slate-100 grow">
-                                            <span class="font-bold w-48">Reported by:</span>
+                                        <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                            <span class="font-bold ">Reported by:</span>
                                             <span class="text-gray-700">Guest</span>
                                         </li>
                                     @else
                                         
                                         <a class="hover:" href="{{ route('view.user', $reporter[0]->id) }}">
-                                            <li class="flex border-b py-2 hover:bg-slate-100">
-                                                <span class="font-bold w-48">Reported by:</span>
+                                            <li class="flex border-b py-2 hover:bg-slate-100 justify-between">
+                                                <span class="font-bold ">Reported by:</span>
                                                <span class="text-gray-700">{{ $reporter[0]->name }}</span>
                                            </li>
                                         </a>
                                     @endif
-                                </div>
-                                <li class="flex border-b py-2 hover:bg-slate-100 grow">
-                                    <span class="font-bold w-48">Type of Incident</span>
+                                <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                    <span class="font-bold ">Type of Incident</span>
                                     <span class="text-gray-700">{{ $incident[0]->report_name }}</span>
                                 </li>
-                                <div class="flex">
-                                    <li class="flex border-b py-2 hover:bg-slate-100 grow">
-                                        <span class="font-bold w-48">No. of Victim/s:</span>
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                        <span class="font-bold ">Victims:</span>
                                         <span class="text-gray-700">{{ $report->victims }}</span>
                                     </li>
-                                    <li class="flex border-b py-2 hover:bg-slate-100 grow">
-                                        <span class="font-bold w-48">No. of Suspect/s:</span>
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                        <span class="font-bold ">Suspects:</span>
                                         <span class="text-gray-700">{{ $report->suspects }}</span>
                                     </li>
-                                </div>
                                 <li>
-                                    <li class="flex border-b py-2 hover:bg-slate-100">
-                                        <span class="font-bold w-48">Description:</span>
+                                    <li class="flex border-b py-2 hover:bg-slate-100 justify-between">
+                                        <span class="font-bold ">Description:</span>
                                        <span class="text-gray-700">{{ $report->event }}</span>
                                    </li>
                                 </li>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Date:</span>
+                                <li class="flex border-b py-2 hover:bg-slate-100 justify-between">
+                                    <span class="font-bold ">Date:</span>
                                     <span class="text-gray-700">{{$report->created_at->format('d/m/Y') }}</span>
                                 </li>
                             </ul>

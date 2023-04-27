@@ -32,7 +32,7 @@ class Reports extends Model
 
     public function getStatusColorAttribute(){
         return[
-            'Pending'       => 'yellow',
+            'Accepted'       => 'green',
             'Processing'    => 'blue',
             'Rejected'      => 'red',
         ][$this->status]    ?? 'gray';

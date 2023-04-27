@@ -1,7 +1,8 @@
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
    <div class="grid justify-items-center">
       <h3 class="text-gray-700 font-bold text-lg">Incidents Reported</h3>
-         <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 mb-4">Total of Incidents Reported in each Incidents</p>
+      <p class="align-middle text-sm font-normal whitespace-nowrap text-blue-400">Total of Incidents Reported this week</p>
+      <a class="align-middle text-sm font-normal whitespace-nowrap text-blue-400 hover:text-blue-600 mb-4" href="{{ route('download.pdf.incidents') }}">Generate PDF</a>
    </div>
    <div class="block w-full overflow-x-auto shadow-lg rounded-md bg-slate-100">
       <table class="items-center w-full border-collapse ">
