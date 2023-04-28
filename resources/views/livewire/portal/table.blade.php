@@ -1,6 +1,6 @@
 <div>
     <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-        <div class="inline-block min-w-full shadow-xl shadow-cyan-500/50 rounded-lg overflow-hidden">
+        <div class="inline-block min-w-full shadow-xl shadow-gray-500/50 rounded-lg overflow-hidden">
             <table class="min-w-full leading-normal">
                 <thead>
                     <tr>
@@ -16,7 +16,7 @@
                     <tr>
                         <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                             <p class="text-gray-900 whitespace-no-wrap">
-                                {{$report->reports[0]->report_name}}
+                                {{ $report->reports->report_name }}
                             </p>
                         </td>
                         <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
@@ -28,8 +28,17 @@
                         <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                             <span
                                 class="relative inline-block px-3 py-1 font-semibold text-gray-900 leading-tight">
-                                <span aria-hidden class="absolute inset-0 bg-{{$report->status_color}}-200 opacity-50 rounded-full"></span>
-                            <span class="relative"> {{ $report->status }} </span>
+                                {{-- <span class="absolute inset-0 bg-{{$report->status_color}}-400 opacity-50 rounded-full"></span> --}}
+                                @if ($report->status_color == 'red')
+                                    <span aria-hidden class="absolute inset-0 bg-red-700 opacity-50 rounded-full"></span>
+                                @elseif ($report->status_color == 'blue')
+                                    <span aria-hidden class="absolute inset-0 bg-blue-700 opacity-50 rounded-full"></span>
+                                @elseif ($report->status_color == 'green')
+                                    <span aria-hidden class="absolute inset-0 bg-green-700 opacity-50 rounded-full"></span>
+                                @else
+                                    <span aria-hidden class="absolute inset-0 bg-gray-700 opacity-50 rounded-full"></span>
+                                @endif
+                            <span class="relative text-white"> {{ $report->status }} </span>
                             </span>
                         </td>
                         <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
@@ -70,28 +79,10 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- <div
-                class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-                <span class="text-xs xs:text-sm text-gray-900">
-                    Showing 1 to 4 of 50 Entries
-                </span>
-                <div class="inline-flex mt-2 xs:mt-0">
-                    <button
-                        class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l">
-                        Prev
-                    </button>
-                    &nbsp; &nbsp;
-                    <button
-                        class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">
-                        Next
-                    </button>
-                </div>
-                
-            </div> --}}
             <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
                 <nav id="Graphs">
-                    @if ($reports->count() < 5)
-                        showing {{$reports->count()}} out of {{$reports->count()}}
+                    @if (!$reports)
+                        showing 0 out of 0
                     @else
                         {{ $reports->links() }}
                     @endif

@@ -10,6 +10,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Http\Controllers\portalController;
 use App\Models\TextLog;
+use Intervention\Image\ImageManagerStatic as Image;
 
 use function PHPUnit\Framework\isNull;
 
@@ -164,7 +165,12 @@ class SubmitReport extends Component
             $submitReport['files'] = null;
         } else {
             $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
-            $submitReport['files']->storeAs('public/reports', $name);
+
+            $image = Image::make($submitReport['files']->getRealPath());
+            $image->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $image->save('public/reports', $name);
             $submitReport['files'] = $name;
         }
 

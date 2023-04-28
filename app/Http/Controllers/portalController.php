@@ -55,12 +55,11 @@ class portalController extends Controller
     public function userViewReport($id){
         $report = Reports::where('id', $id)->first();
 
-        $location = FacadesDB::table('locations')->where('id', $report->location_id)->get();
         $incident = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
         $reporter = FacadesDB::table('users')->where('id', $report->userId)->get();
 
         // dd($report, $location, $incident);
-        return view('portal.userViewReport')->with(['report' => $report, 'location' => $location, 'incident' => $incident, 'reporter' => $reporter]);
+        return view('portal.userViewReport')->with(['report' => $report,  'incident' => $incident, 'reporter' => $reporter]);
     }
 
     public function reports() {

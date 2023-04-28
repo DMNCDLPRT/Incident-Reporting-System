@@ -37,14 +37,20 @@
                         </li>
                     </ul>
                 </div>
+                
                 <div class="flex justify-center">
                     <div class="mt-8">
+                        @if ($report->files == null)
+                          No photo were uploaded  
+                        @else
+                            
                         <img src="{{ asset('storage/reports/'. $report->files) }}" alt="{{ $report->files }}">
                         <div class="flex items-center justify-between bg-[#e7e8ea] p-3 rounded-md mt-4">
                             <span class="truncate pr-3 text-base font-medium text-[#07074D]">
                                 {{ $report->files }}
                             </span>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -66,7 +66,7 @@ class Reports extends Model
 
     public function reports()
     {
-        return $this->hasMany(ReportType::class, 'id');
+        return $this->belongsTo(ReportType::class, 'report_id');
     }
 
     public function locations()

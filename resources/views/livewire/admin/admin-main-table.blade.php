@@ -54,8 +54,8 @@
                                 @forelse ($reports as $key => $report)
                                 <tr>
                                     <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm ">
-                                        <p class="hover:text-red-400 font-bold">
-                                            {{ $num }}.
+                                        <p class="font-bold">
+                                            {{ $key }}.
                                         </p>
                                     </td>
                                     <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
@@ -75,7 +75,8 @@
                                     </td>
                                     <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                                         <p class="text-gray-900 whitespace-no-wrap">
-                                            {{ $incidents[$i][0]->report_name }}
+                                            {{-- {{ $incidents[$i][0]->report_name }} --}}
+                                            {{ $report->reports->report_name }}
                                         </p>
                                     </td>
                                     <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">

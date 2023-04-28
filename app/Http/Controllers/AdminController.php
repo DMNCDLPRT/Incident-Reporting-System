@@ -152,23 +152,17 @@ class AdminController extends Controller
     {
         $user = User::where('id', $id)->get();
         $count = Reports::where('userId', $id)->get();
-        $reports = Reports::with('reports', 'locations')->where('userId', $id)->latest()->get();
+        $reports = Reports::with('reports')->where('userId', $id)->latest()->get();
 
         if($reports->isEmpty()){
-            $location = [];
             $incidents = [];
-            return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
+            return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'incidents' => $incidents]);
         }
-
-        foreach($reports as $report){
-            $location[] = FacadesDB::table('locations')->where('id', $report->location_id)->latest()->get();
-        }
-
         foreach($reports as $report){
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
         }
 
-        return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]); 
+        return view('admin.viewUser')->with(['user' => $user, 'count' => $count, 'reports' => $reports, 'incidents' => $incidents]); 
     }
 
     // Delete User - Route::middleware(rele:super-admin)->...

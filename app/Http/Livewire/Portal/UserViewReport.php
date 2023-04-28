@@ -8,14 +8,12 @@ class UserViewReport extends Component
 {
     public $report;
     public $incident;
-    public $location;
     public $reporter;
 
-    public function mount( $report, $incident, $location, $reporter) 
+    public function mount($report, $incident, $reporter) 
     {
         $this->report = $report;
         $this->incident = $incident;
-        $this->location = $location;
         $this->reporter = $reporter;
     }
     
