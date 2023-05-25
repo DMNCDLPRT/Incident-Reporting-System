@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Models\AssignedDepartment;
 
 class Reports extends Model
 {
@@ -31,10 +32,10 @@ class Reports extends Model
 
     public function getStatusColorAttribute(){
         return[
-            'Pending' => 'green',
-            'Processing' => 'blue',
-            'Rejected' => 'red',
-        ][$this->status] ?? 'gray';
+            'Accepted'       => 'green',
+            'Processing'    => 'blue',
+            'Rejected'      => 'red',
+        ][$this->status]    ?? 'gray';
     }
 
     protected $table = 'reports';
@@ -49,9 +50,11 @@ class Reports extends Model
     protected $fillable = [
         'userId',
         'report_id',
-        'location_id',
-        'specificLocation',
-        'description',
+        // 'location_id',
+        // 'specificLocation',
+        'victims',
+        'suspects',
+        'event',
         'status',
         'files',
     ];
@@ -63,11 +66,21 @@ class Reports extends Model
 
     public function reports()
     {
-        return $this->hasMany(ReportType::class, 'id');
+        return $this->belongsTo(ReportType::class, 'report_id');
     }
 
     public function locations()
     {
         return $this->hasMany(Location::class, 'id');
     }
+    public function userReport()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function assigns()
+    {
+        return $this->hasMany(AssignedDepartment::class, 'incidents_id');
+    }
+    
 }

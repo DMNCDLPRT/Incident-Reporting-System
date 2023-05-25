@@ -1,1 +1,1 @@
-<img src="{{ asset('images/report_incident_-_logo-nb.png') }}" alt="Logo" class="w-14">
+<img src="{{ asset('images/uirs-website-favicon-color.svg') }}" alt="Logo" class="w-10">

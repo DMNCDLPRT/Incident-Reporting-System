@@ -49,7 +49,7 @@
                 </x-jet-button>
             </div>
         </form>
-        <div class="flex justify-center items-center pt-2">
+        {{-- <div class="flex justify-center items-center pt-2">
             <span class="w-full border border-black"></span>
             <span class="px-4">Or</span>
             <span class="w-full border border-black"></span>
@@ -64,7 +64,7 @@
               </svg>
           </span>
           <span>Login with Google</span>
-        </a>
+        </a> --}}
         {{-- <a type="button" href="{{ url('auth/facebook') }}" class="flex items-center justify-center flex-none mt-3 px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black relative w-full hover:ring-gray-800">
             <span class="absolute left-4">
                 <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

@@ -38,6 +38,7 @@ class AssignDepartments extends Component
             ]); 
         }
 
+        $this->reset('incidents_id');
         session()->flash('message', 'Department successfuly assigned to incidents');
     }
 

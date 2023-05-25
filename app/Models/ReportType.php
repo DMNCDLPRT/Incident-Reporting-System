@@ -37,5 +37,9 @@ class ReportType extends Model
     {
         return $this->hasMany(Reports::class, 'id');
     } */
+    public function reportTypes()
+    {
+        return $this->hasMany(ReportType::class, 'id');
+    }
  
 }

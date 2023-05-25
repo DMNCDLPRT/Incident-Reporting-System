@@ -13,16 +13,16 @@
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
                 <input type="file" class="hidden"
-                            wire:model="photo"
-                            x-ref="photo"
-                            x-on:change="
-                                    photoName = $refs.photo.files[0].name;
-                                    const reader = new FileReader();
-                                    reader.onload = (e) => {
-                                        photoPreview = e.target.result;
-                                    };
-                                    reader.readAsDataURL($refs.photo.files[0]);
-                            " />
+                    wire:model="photo"
+                    x-ref="photo"
+                    x-on:change="
+                            photoName = $refs.photo.files[0].name;
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                photoPreview = e.target.result;
+                            };
+                            reader.readAsDataURL($refs.photo.files[0]);
+                    " />
 
                 <x-jet-label for="photo" value="{{ __('Photo') }}" />
 
@@ -82,27 +82,60 @@
             @endif
         </div>
 
+        <!-- Region -->
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="region" value="{{ __('Region') }}" />
+            <x-jet-input id="region" type="text" class="mt-1 block w-full" wire:model.defer="state.region" autocomplete="region" />
+            <x-jet-input-error for="region" class="mt-2" />
+        </div>
+
+        <!-- Province -->
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="province" value="{{ __('Province') }}" />
+            <x-jet-input id="province" type="text" class="mt-1 block w-full" wire:model.defer="state.province" autocomplete="province" />
+            <x-jet-input-error for="province" class="mt-2" />
+        </div>
+
+        <!-- City -->
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="city" value="{{ __('City') }}" />
+            <x-jet-input id="city" type="text" class="mt-1 block w-full" wire:model.defer="state.city" autocomplete="city" />
+            <x-jet-input-error for="city" class="mt-2" />
+        </div>
+
+        <!-- Barangay -->
+        <div class="col-span-6 sm:col-span-4 mt-2">
+            <x-jet-label for="barangay" value="{{ __('Barangay') }}" />
+            <x-jet-input id="barangay" type="text" class="mt-1 block w-full" wire:model.defer="state.barangay" autocomplete="barangay" />
+            <x-jet-input-error for="barangay" class="mt-2" />
+        </div>
+
+        <!-- Phone -->
         <div class="col-span-6 sm:col-span-4 mt-2">
             <div class="flex">
                 <x-jet-label for="phone" value="{{ __('Phone') }}" />
-                <i class="fa-sharp fa-solid fa-badge-check"></i>
+                @if ($this->user->phone !== null)
+                    @if ($this->user->phone_verified_at === null)
+                    <span class="ml-3 text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-600 text-white rounded-full">not verified</span>
+                    @else
+                        <span class="ml-3 text-xs inline-block py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-600 text-white rounded-full">verified</span>
+                    @endif
+                @endif
             </div>
             <x-jet-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" autocomplete="phone" />
             @if ($this->user->phone_verified_at == null)    
-                <a class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mt-2" type="button" href="{{ route('view.phone.verify') }}">
+                <a class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-600 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:text-gray-800 active:bg-gray-50 disabled:opacity-25 transition mt-2" type="button" href="{{ route('view.phone.verify') }}">
                     {{ __('Get Verified') }}
                 </a>
             @endif
             @if (session('message'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
-            </div>
-        @endif
+                <div class="mb-4 font-medium text-sm text-green-600">
+                    {{ __('A new verification link has been sent to the email address you provided in your profile settings.') }}
+                </div>
+            @endif
             <x-jet-input-error for="phone" class="mt-2" />
         </div>
     </x-slot>
-
-
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">

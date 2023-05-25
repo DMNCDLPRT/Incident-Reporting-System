@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\TextLog;
 
 class cellNumber extends Model
 {
@@ -27,5 +28,9 @@ class cellNumber extends Model
     public function incident()
     {
         return $this->belongsTo(Departments::class);
+    }
+    public function textLogs()
+    {
+        return $this->hasMany(TextLog::class, 'number');
     }
 }

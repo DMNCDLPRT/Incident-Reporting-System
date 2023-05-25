@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Reports;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -22,13 +23,23 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use HasRoles;
 
+
+    protected $guarded = [];
     /**
      * The attributes that are mass assignable.
      *
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password', 'google_id', 'facebook_id'
+        'name',
+        'email',
+        'phone',
+        'region',
+        'province',
+        'city',
+        'barangay',
+        'password',
+        'facebook_id'
     ];
     
     /**
@@ -60,7 +71,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
-    
+
+    public function reports()
+    {
+        return $this->hasMany(Reports::class);
+    }
+
 }
 
 

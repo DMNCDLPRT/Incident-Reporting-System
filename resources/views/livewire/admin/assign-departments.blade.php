@@ -1,15 +1,14 @@
-<div class="bg-white p-8 rounded-md w-full">
+<div class="bg-white p-8 rounded-md w-full mt-4" id="Assign-Department">
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-        
         <div class="block w-full overflow-x-auto">
-            <div>
+            <div >
                 <x-jet-form-section submit="addDepartment">
                     <x-slot name="form">
                         <x-slot name="title">
                             {{ __('Assign Department') }}
                         </x-slot>
                         <x-slot name="description">
-                            {{ __('You can Submit a report here. Just make sure to inclue the specific locatiodn, so that our responders can locate the incident quickly') }}
+                            {{ __('The "Assign Department" feature enables you to categorize tasks, incidents, or reports into different departments, making it easier to manage and prioritize your workflow. By assigning specific departments to each task, you can ensure that the right team or individual is responsible for handling it, streamlining the process and improving efficiency. This feature can help you stay organized and on top of your workload, while also ensuring that important tasks are not overlooked or delayed.') }}
                         </x-slot>
                         <div>
                             @if(session()->has('message'))
@@ -35,26 +34,34 @@
                                 </span>
                             @enderror
                             <x-jet-label for="department" value="{{ __('Department') }}"/>
-                            <select id="department_id" wire:model="department_id" name="department_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="department_id" autocomplete="department_id" autofocus>
+                            <select required id="department_id" wire:model="department_id" name="department_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="department_id" autocomplete="department_id" autofocus>
+                                <option name="department_id" value=""> Seletect Department </option>
                                 @forelse($numbers as $number)
                                     <option name="department_id" value="{{ $number->id }}"> {{ $number->department }} </option>
                                 @empty
                                     <option @disabled(true) @selected(true)>Add Emergency Department First</option>>
                                 @endforelse
                             </select>
-                            
-                            <h3 class="mb-4 font-semibold text-gray-900 pt-5">Identification</h3>
-                            <ul class=" text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            <div class="flex items-center justify-between py-4">
+                                <h3 class="font-semibold text-gray-900">Select Incidents below</h3>
+                                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"
+                                    type="button"
+                                    href="{{ route("remove.incident") }}"
+                                >
+                                    Edit Incidents
+                                </a>
+                            </div>
+                            <ul class=" text-sm font-medium text-gray-900 bg-white  rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                            
                                 @forelse ($incidents as $incident)
                                 <li class="w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600">
                                     <div class="flex items-center pl-3">
-                                        <input id="vue-checkbox" type="checkbox" wire:model="incidents_id" value="{{ $incident->id }}"  class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
-                                        <label for="vue-checkbox" class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">{{ $incident->report_name }}</label>
+                                        <input id="{{ $incident->id }}" name="{{ $incident->id  }}" type="checkbox" wire:model="incidents_id" value="{{ $incident->id }}"  class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label for="{{ $incident->id }}" class="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300">{{ $incident->report_name }}</label>
                                     </div>
                                 </li>
                                 @empty
-                                Please add run the DB:Seeder="ReportTypeSeeder"
+                                    <i>No incidents</i>
                                 @endforelse
                             </ul>
                         </div>
@@ -63,7 +70,7 @@
                             <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm Assign Department?');">
                                 {{ __('Assign Department') }}
                             </x-jet-button>   
-                          </x-slot>
+                        </x-slot>
                     </x-slot>
                 </x-jet-form-section>
             </div>

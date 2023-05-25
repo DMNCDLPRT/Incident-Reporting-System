@@ -3,22 +3,23 @@
 namespace App\Http\Livewire\Portal;
 
 use Livewire\Component;
+use Livewire\WithPagination;
+use App\Models\Reports;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class Table extends Component
 {
-    public $reports;
-    public $location;
-    public $incidents;
-
-    public function mount($reports, $location, $incidents)
-    {
-        $this->reports = $reports;
-        $this->location = $location;
-        $this->incidents =$incidents;
-    }
+    use WithPagination;
 
     public function render()
     {
-        return view('livewire.portal.table');
+        $user = auth()->user();
+
+        $reports = Reports::where('userId', $user->id)
+            ->with('reports')
+            ->latest()
+            ->paginate(5);
+
+        return view('livewire.portal.table', compact('reports'));
     }
 }

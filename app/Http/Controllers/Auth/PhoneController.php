@@ -8,19 +8,27 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\isNull;
+
 class PhoneController extends Controller
 {
     public function viewVerifyPhone() {
         $user = Auth()->user();
+
+        if($user->phone == null){
+            return view('profile.show')->with('message', 'Please save your Phone number before clicking get verifed');
+        }
         
-        if ($user->verification_code == null){
+        if (isNull($user->verification_code)){
             $verify = new PhoneController;
-            $verify;
+            $verify->sendVerification();
+            return view ('auth.verify-phone');
         }
 
         if ($user->phone_verified_at !== null){
             return view ('auth.verify-phone');
         }
+        return view ('auth.verify-phone');
     }
 
     public function sendVerification(){
@@ -35,12 +43,14 @@ class PhoneController extends Controller
             'verification_code' => $six_digit_random_number,
         ]);
 
+        $message = "Use this code {$six_digit_random_number}";
+
          // SEMAPHORE - text messagin API
          $ch = curl_init();
          $parameters = array(
              'apikey' => env('SEMAPHORE_API_KEY'), // YOUR SEMAPHORE API KEY
              'number' => $user->phone,
-             'message' => $six_digit_random_number,
+             'message' => $message,
              'sendername' => 'SEMAPHORE'
          );
 
@@ -68,6 +78,6 @@ class PhoneController extends Controller
             }
         }
 
-        return session('message', 'The Verification code di not match!');
+        return session('message', 'The Verification code did not match!');
     }
 }

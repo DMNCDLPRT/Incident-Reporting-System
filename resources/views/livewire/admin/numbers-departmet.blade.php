@@ -1,15 +1,15 @@
-<div class="bg-white p-8 rounded-md w-full">
+<div class="bg-white p-8 rounded-md w-full" id="numbers-department">
 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
     
     <div class="block w-full overflow-x-auto">
-        <div>
+        <div class="mb-10">
             <x-jet-form-section submit="addCellNum">
                 <x-slot name="form">
                     <x-slot name="title">
                         {{ __('Add Emergency Contact Number') }}
                     </x-slot>
                     <x-slot name="description">
-                        {{ __('You can Submit a report here. Just make sure to inclue the specific locatiodn, so that our responders can locate the incident quickly') }}
+                        {{ __('Assign a contact number to an emergency department, which will receive crucial information about any reported emergency on your website. This feature can help ensure that emergencies are addressed promptly, providing an added layer of safety for your users.') }}
                     </x-slot>
                     <div>
                         @if(session()->has('message'))
@@ -37,7 +37,8 @@
                         @enderror
 
                         <x-jet-label for="department" value="{{ __('Department') }}"/>
-                        <select id="department_id" name="department_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="department_id" autocomplete="department_id" autofocus>
+                        <select required id="department_id" name="department_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" wire:model="department_id" autocomplete="department_id" autofocus>
+                            <option name="department_id" value="">Select Department</option>
                             @forelse($numbers as $number)
                                 <option name="department_id" value="{{ $number->id }}"> {{ $number->department }} </option>
                             @empty
@@ -47,7 +48,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="mt-2">
                         @error('number')
                             <div class="mt-4"></div>
                             <span class="text-red-100 mt-5" role="alert">
@@ -67,7 +68,10 @@
 
             </x-jet-form-section>
         </div>
-        <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Assigned Contact Numbers</h3>
+
+        <hr id="Assigned-Contact-Numbers">
+
+        <h3 class="text-xl leading-none font-bold text-gray-900 mb-10 mt-10">Assigned Contact Numbers</h3>
         @if(session()->has('message-edit'))
             <div class="bg-gray-800 text-sm text-white rounded-md shadow-lg dark:bg-gray-900 mb-3" role="alert">
                 <div class="flex p-4">
@@ -115,26 +119,31 @@
             <tbody class="divide-y divide-gray-100">
                 @forelse ($numbers as $numbers)
                 <tr>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $numbers->department }}</p>
+                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
+                        <a href="{{ route('view', $numbers->id) }}" class="text-gray-900 whitespace-no-wrap hover:underline hover:text-blue-500">{{ $numbers->department }}</a>
                     </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                    <td class="px-4 py-3 border-b border-gray-300 bg-white text-sm">
                         <p class="text-gray-900 whitespace-no-wrap">
+                            @php($i = 1)
                             @forelse ($numbers->cellnum as $cellnum)
-                                {{ $cellnum->number }}
+                            <div class="flex">
+                                <p class="mr-2 text-gray-500">{{ $i }}.</p>
+                                <a href="{{ route('edit', $cellnum->id) }}" class="hover:underline hover:text-blue-500">{{ $cellnum->number }} </a> <br>
+                            </div>
+                            @php($i = $i + 1)
                             @empty
-                                empty
+                                Not assigned yet
                             @endforelse
                         </p>
                     </td>
                     <td>
-                        <p class="text-xs font-semibold text-gray-500">{{ $numbers->created_at->diffForHumans() }}</p>
+                        <p class="text-xs font-semibold text-gray-600">{{ $numbers->created_at->diffForHumans() }}</p>
                     </td>
                     <td>
-                        <p class="text-xs font-semibold text-gray-500">{{ $numbers->updated_at->diffForHumans() }}</p>
+                        <p class="text-xs font-semibold text-gray-600">{{ $numbers->updated_at->diffForHumans() }}</p>
                     </td>
                     <td>
-                        <div class="flex flex-row items-center">
+                        {{-- <div class="flex flex-row items-center">
                             <div class="flex flex-col mb-2 ml-4 mt-1">
                               <x-jet-dropdown align="left" width="16">
                                 <x-slot name="trigger">
@@ -144,25 +153,25 @@
                                 </x-slot>
                                   <x-slot name="content">
                                     <!-- Account Management -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage number') }}
+                                    <div class="block px-4 py-2 text-xs text-gray-500">
+                                        {{ __('Manage Department') }}
                                     </div>
 
                                     <x-jet-dropdown-link href="{{ route('view', $numbers->id) }}">
                                         {{ __('View') }}
                                       </x-jet-dropdown-link>
                   
-                                    <x-jet-dropdown-link href="{{ route('edit', $numbers->id) }}">
-                                      {{ __('Edit') }}
-                                    </x-jet-dropdown-link>
-                  
-                                    <x-jet-dropdown-link href="{{ route('delete', $numbers->id) }}">
+                                    <x-jet-dropdown-link href="{{ route('delete', $numbers->id) }}" onclick="return confirm('Are you sure you want to delete - {{ $numbers->department }}?');">
                                       {{ __('Delete') }}
                                     </x-jet-dropdown-link>
                                 </x-slot>
                               </x-jet-dropdown>
                             </div>
-                        </div>
+                        </div> --}}
+                        <a href="{{ route('view', $numbers->id) }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-emerald-400dark:focus:ring-blue-800">
+                            View
+                            <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        </a>
                     </td>
                     
                 </tr>

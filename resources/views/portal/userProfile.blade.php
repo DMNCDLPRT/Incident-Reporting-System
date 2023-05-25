@@ -7,5 +7,4 @@
         @livewire('portal.table', ['user' => $user, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents])
       </div>
     </section>
-    <div class="sticky bottom-0 w-full rounded-t-xl bg-white px-5 py-2 shadow-sm shadow-gray-300">
 </x-portal-layout>

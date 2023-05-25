@@ -1,4 +1,4 @@
-<div class="bg-white p-8 rounded-md w-full">
+<div class="bg-white p-8 rounded-md w-full mt-4" id="Add-incident">
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         
         <div class="block w-full overflow-x-auto">
@@ -9,7 +9,7 @@
                             {{ __('Add Incident') }}
                         </x-slot>
                         <x-slot name="description">
-                            {{ __('You can Submit a report here. Just make sure to inclue the specific locatiodn, so that our responders can locate the incident quickly') }}
+                            {{ __('With the "Add Incident" feature, you can assign incidents to specific departments and ensure that any emergency department assigned to the incident will receive prompt notifications or text messages from users reporting the incident. This feature can help streamline the incident management process, enabling departments to respond quickly and efficiently to any reported incidents. By providing a clear and organized way to manage incidents, you can improve safety and security on your website, while also enhancing the overall user experience.') }}
                         </x-slot>
                         <div>
                             @if(session()->has('message-incident'))

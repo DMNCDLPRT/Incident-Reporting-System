@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Livewire\AssignDepartments;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\TextLog;
 
 class Departments extends Model
 {
@@ -33,5 +34,9 @@ class Departments extends Model
     public function assignedTo()
     {
         return $this->hasManyThrough(AssignedDepartment::class, ReportType::class, 'assignedTo', 'id');
+    }
+    public function textLogs()
+    {
+        return $this->hasMany(TextLog::class);
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('userId')->index();
+            $table->unsignedBigInteger('userId')->index()->nullable();
             $table->foreign('userId')->references('id')->on('users');
             
             $table->unsignedBigInteger('report_id')->index();
@@ -26,17 +26,9 @@ return new class extends Migration
                 ->references('id')
                 ->on('report_types')
                 ->onDelete('cascade');
-
-            $table->unsignedBigInteger('location_id')->index();
-            $table->foreign('location_id')
-                ->references('id')
-                ->on('locations')
-                ->onDelete('cascade');
-
-            $table->text('specificLocation');
             
             $table->mediumText('files')->nullable();
-            $table->string('status')->default('processing');
+            $table->string('status')->default('Processing');
 
             $table->dateTime(Reports::CREATED_ON);
             $table->dateTime(Reports::UPDATED_ON);

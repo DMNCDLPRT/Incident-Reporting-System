@@ -1,4 +1,4 @@
-<div class="bg-white p-8 rounded-md w-full">
+<div class="bg-white p-8 rounded-md w-full mt-4" id="Add-Emergency-Departments">
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         
         <div class="block w-full overflow-x-auto">
@@ -9,7 +9,7 @@
                             {{ __('Add Emergency Department') }}
                         </x-slot>
                         <x-slot name="description">
-                            {{ __('You can Submit a report here. Just make sure to inclue the specific locatiodn, so that our responders can locate the incident quickly') }}
+                            {{ __('Adding an emergency department is an important safety feature that can help ensure that users receive the necessary assistance in the event of an emergency. By providing a clear and accessible way for users to report emergencies and receive help, you can create a safer and more secure online environment. This feature can help build trust and confidence among your users, and demonstrate your commitment to their well-being.') }}
                         </x-slot>
                         <div>
                             @if(session()->has('message-department'))
@@ -36,12 +36,12 @@
                                     <strong class="text-red-600"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</strong>
                                 </span>
                             @enderror
-                            <x-jet-label for="department" value="{{ __('Departmet Name') }}" />
+                            <x-jet-label for="department" value="{{ __('Department name') }}" />
                             <x-jet-input id="department" wire:model="department" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="department" name="department" :value="old('department')" placeholder="Emergency Department" autofocus />
                         </div>
 
                         <x-slot name="actions">
-                            <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm add Cell Number?');">
+                            <x-jet-button wire:loading.attr="disabled" onclick="return confirm('Confirm Add Department?');">
                                 {{ __('Add Emergency Department') }}
                             </x-jet-button>   
                           </x-slot>

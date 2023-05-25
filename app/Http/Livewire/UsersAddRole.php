@@ -4,25 +4,28 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Livewire\Component;
-
-
+use Livewire\WithPagination;
 class UsersAddRole extends Component
 {
 
-    public $users;
+    use WithPagination;
 
-    public $query;
-
-    public function search()
-    {
-        $this->users = User::where('name', 'like', "%{$this->query}%")
-                            ->orWhere('email', 'like', "%{$this->query}%")
-                            ->orWhere('id', 'like', "%{$this->query}%")
-                            ->get();
-    }
+    public $search = '';
 
     public function render()
     {
-        return view('livewire.admin.users-add-role');
+        $users = User::query()
+            ->when($this->search, function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('email', 'like', '%' . $this->search . '%')
+                    ->orWhere('id', 'like', '%' . $this->search . '%');
+            })
+            ->latest()
+            ->paginate(10);
+
+        if(!$users) {
+            session()->flash('message', 'No User found');
+        }
+        return view('livewire.admin.users-add-role', compact('users'));
     }
 }

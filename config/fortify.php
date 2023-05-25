@@ -144,4 +144,6 @@ return [
         ]),
     ],
 
+    'registration' => true,
+
 ];

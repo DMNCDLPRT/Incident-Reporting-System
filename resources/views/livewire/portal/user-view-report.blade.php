@@ -7,7 +7,7 @@
                 <div class="flex-1 bg-white rounded-lg shadow-xl p-8">
                     <h4 class="text-xl text-gray-900 font-bold">Incident Report Info</h4>
                     <div class="flex ">
-                        <p class="text-gray-500 text-sm pr-2">
+                        <p class="text-gray-600 text-sm pr-2">
                             {{ $report->created_at->diffForHumans() }} |
                         </p>
                         <p class="text-{{$report->status_color}}-500 text-sm pr-2">
@@ -16,43 +16,41 @@
                     </div>
                     <ul class="mt-4 text-gray-700">
                         <li class="flex border-y py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Report ID:</span>
+                            <span class="font-bold ">Report ID:</span>
                             <span class="text-gray-700">{{ $report->id}}</span>
                         </li>
                         <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Reported by:</span>
+                            <span class="font-bold ">Reported by:</span>
                             <span class="text-gray-700">{{ $reporter[0]->name }}</span>
                         </li>
                         <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Type of Incident:</span>
+                            <span class="font-bold ">Type of Incident:</span>
                             <span class="text-gray-700">{{ $incident[0]->report_name }}</span>
                         </li>
                         <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Description:</span>
+                            <span class="font-bold ">Description:</span>
                             <span class="text-gray-700">{{ $report->description }}</span>
                         </li>
                         <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Location:</span>
-                            <span class="text-gray-700">{{ $location[0]->location_name }}</span>
-                        </li>
-                        <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Specific Location:</span>
-                            <span class="text-gray-700">{{ $report->specificLocation }}</span>
-                        </li>
-                        <li class="flex border-b py-2 hover:bg-slate-100">
-                            <span class="font-bold w-48">Date:</span>
+                            <span class="font-bold ">Date:</span>
                             <span class="text-gray-700">{{$report->created_at->format('d/m/Y') }}</span>
                         </li>
                     </ul>
                 </div>
+                
                 <div class="flex justify-center">
                     <div class="mt-8">
+                        @if ($report->files == null)
+                          No photo were uploaded  
+                        @else
+                            
                         <img src="{{ asset('storage/reports/'. $report->files) }}" alt="{{ $report->files }}">
                         <div class="flex items-center justify-between bg-[#e7e8ea] p-3 rounded-md mt-4">
                             <span class="truncate pr-3 text-base font-medium text-[#07074D]">
                                 {{ $report->files }}
                             </span>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

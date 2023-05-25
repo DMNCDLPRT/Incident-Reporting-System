@@ -26,7 +26,7 @@ class portalController extends Controller
     public function user()
     {
         $user = auth()->user();
-        $reports = Reports::where('userId', $user->id)->get();
+        /* $reports = Reports::where('userId', $user->id)->get();
 
         if($reports->isEmpty())
         {
@@ -41,7 +41,13 @@ class portalController extends Controller
 
         foreach($reports as $report){
             $incidents[] = FacadesDB::table('report_types')->where('id', $report->id)->latest()->get();
-        }
+        } */
+       
+        $location = [];
+        $incidents = [];
+        $reports = [];
+
+        //dd($user, $reports, $location);
 
         return view('portal.userProfile')->with(['user' => $user, 'reports' => $reports, 'location' => $location, 'incidents' => $incidents]);
     }
@@ -49,11 +55,11 @@ class portalController extends Controller
     public function userViewReport($id){
         $report = Reports::where('id', $id)->first();
 
-        $location = FacadesDB::table('locations')->where('id', $report->location_id)->get();
         $incident = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
         $reporter = FacadesDB::table('users')->where('id', $report->userId)->get();
 
-        return view('portal.userViewReport')->with(['report' => $report, 'location' => $location, 'incident' => $incident, 'reporter' => $reporter]);
+        // dd($report, $location, $incident);
+        return view('portal.userViewReport')->with(['report' => $report,  'incident' => $incident, 'reporter' => $reporter]);
     }
 
     public function reports() {
@@ -62,6 +68,7 @@ class portalController extends Controller
         if($reports->isEmpty()){
             $reports = [];
             $incidents = [];
+            $count = [];
         }
 
         foreach($reports as $report){
@@ -71,7 +78,7 @@ class portalController extends Controller
         $uniques = array_unique($incidents);     // $votes = Vote::where('vote_type',1)->where('something',$something)->count();
       
         // dd($uniques, $reports);
-        // $count = [];
+        
         $i = 0;
         foreach($uniques as $unique){
             $count[] = $reports->where('report_id', $unique[$i]->id)->count();
@@ -103,20 +110,18 @@ class portalController extends Controller
         return $cell;
     }
 
-    public function message($words)
+    /* public function message($words)
     {
         $incidentId = (int)$words[0];
-        $locationId = (int)$words[2];
 
         $incident = FacadesDB::table('report_types')->where('id', $incidentId)->get();
-        $location = FacadesDB::table('locations')->where('id', $locationId)->get();
-        $time = Carbon::now()->toDateTimeString()/* ->format('d/m/y/') */;
+        $time = Carbon::now()->toDateTimeString(); //->format('d/m/y/')
 
         $words = [
             "Incident Type: ", $incident[0]->report_name,
-            "\nDescription: ", $words[1], 
-            "\nLocation: ", $location[0]->location_name,
-            "\n\nSpecific Location: ", $words[3],
+            "\nNumber of Victims: ", $words[1],
+            "\nIncident other info: ", $words[2], 
+            "\nNumber of Suspects: ", $words[3],
             "\nDate: ", $time
         ];
 
@@ -131,6 +136,42 @@ class portalController extends Controller
         $result = array_merge($result, join_words($words));
         $message = end($result);
 
+        return $message;
+    } */
+
+    public function message($words)
+    {
+        $incidentId = (int)$words[0];
+
+        $incident = FacadesDB::table('report_types')->where('id', $incidentId)->get();
+        $time = Carbon::now()->toDateTimeString()/* ->format('d/m/y/') */;
+        $dateFormat = \Carbon\Carbon::parse($time)->format('F d, Y');
+
+        /* $words = [
+            "Incident Type: ", $incident[0]->report_name ?? '',
+            "\nNumber of Victims: ", $words[1],
+            "\nIncident other info: ", $words[2], 
+            "\nNumber of Suspects: ", $words[3],
+            "\nDate: ", $time
+        ];
+
+        function join_words($words) {
+            $return = [];
+            for ($i=0; $i < count($words); $i++) {
+                $return[] = implode(' ', array_slice($words, 0, $i+1));
+            }
+            return $return;
+        }
+        $result = [];
+        $result = array_merge($result, join_words($words));
+        $message = end($result); */
+
+        $message = "Incident Type: " . ($incident ? $incident[0]->report_name : ''). "\n".
+            "Number of Victims: {$words[1]} \n" . 
+            "Incident other info: {$words[2]} \n" . 
+            "Number of Suspects: {$words[3]} \n" . 
+            "Date: $dateFormat ";
+        
         return $message;
     }
 }

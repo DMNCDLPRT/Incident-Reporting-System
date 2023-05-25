@@ -1,6 +1,6 @@
 <div class="bg-white p-8 rounded-md w-full">
+    
     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-        
         <div class="block w-full overflow-x-auto">
             <x-jet-action-section>
                 <x-slot name="title">
@@ -28,9 +28,12 @@
                     @endif
                    <div class="mb-5 rounded-md bg-[#F5F7FB] py-4 px-8">
                         <div class="flex-1 bg-white rounded-lg shadow-xl p-8">
-                            <h4 class="text-xl text-gray-900 font-bold">Incident Report Info</h4>
-                            <div class="flex ">
-                                <p class="text-gray-500 text-sm pr-2">
+                            <div class="flex justify-between content-center">
+                                <h4 class="text-xl text-gray-900 font-bold">Incident Report Info</h4>
+                                <a class="text-sm font-normal whitespace-nowrap  text-blue-400 hover:text-blue-600 mb-4" href=" {{ route('download.pdf.individual.report', $report->id) }} ">Publish as PDF</a>
+                            </div>
+                            <div class="flex content-start">
+                                <p class="text-gray-600 text-sm pr-2">
                                     {{ $report->created_at->diffForHumans() }} |
                                 </p>
                                 <p class="text-{{$report->status_color}}-500 text-sm pr-2">
@@ -44,11 +47,11 @@
                                     </x-slot>
                                     <x-slot name="content">
                                         <!-- Report Management -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                        <div class="block px-4 py-2 text-xs text-gray-500">
                                             {{ __('Change Report Status') }}
                                         </div>
                                         <x-jet-dropdown-link href="{{ route('status.pending', $report->id) }}">
-                                            {{ __('Pending') }}
+                                            {{ __('Accepted') }}
                                         </x-jet-dropdown-link>
                                         <x-jet-dropdown-link href="{{ route('status.processing', $report->id) }}">
                                             {{ __('Processing') }}
@@ -59,47 +62,62 @@
                                     </x-slot>
                                 </x-jet-dropdown>
                             </div>
-                            <ul class="mt-4 text-gray-700">
-                                <li class="flex border-y py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Report ID:</span>
-                                    <span class="text-gray-700">{{ $report->id}}</span>
-                                </li>
-                                <a class="hover:" href="{{ route('view.user', $reporter[0]->id) }}">
-                                    <li class="flex border-b py-2 hover:bg-slate-100">
-                                        <span class="font-bold w-48">Reported by:</span>
-                                        <span class="text-gray-700">{{ $reporter[0]->name }}</span>
+                            <ul class="mt-4 m-2 text-gray-700">
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                        <span class="font-bold ">Report ID:</span>
+                                        <span class="text-gray-700">{{ $report->id }}</span>
                                     </li>
-                                </a>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Type of Incident:</span>
+                                    @if ($reporter == null)
+                                        <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                            <span class="font-bold ">Reported by:</span>
+                                            <span class="text-gray-700">Guest</span>
+                                        </li>
+                                    @else
+                                        
+                                        <a class="hover:" href="{{ route('view.user', $reporter[0]->id) }}">
+                                            <li class="flex border-b py-2 hover:bg-slate-100 justify-between">
+                                                <span class="font-bold ">Reported by:</span>
+                                               <span class="text-gray-700">{{ $reporter[0]->name }}</span>
+                                           </li>
+                                        </a>
+                                    @endif
+                                <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                    <span class="font-bold ">Type of Incident</span>
                                     <span class="text-gray-700">{{ $incident[0]->report_name }}</span>
                                 </li>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Description:</span>
-                                    <span class="text-gray-700">{{ $report->description }}</span>
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                        <span class="font-bold ">Victims:</span>
+                                        <span class="text-gray-700">{{ $report->victims }}</span>
+                                    </li>
+                                    <li class="flex border-b py-2 hover:bg-slate-100 grow justify-between">
+                                        <span class="font-bold ">Suspects:</span>
+                                        <span class="text-gray-700">{{ $report->suspects }}</span>
+                                    </li>
+                                <li>
+                                    <li class="flex border-b py-2 hover:bg-slate-100 justify-between">
+                                        <span class="font-bold ">Description:</span>
+                                       <span class="text-gray-700">{{ $report->event }}</span>
+                                   </li>
                                 </li>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Location:</span>
-                                    <span class="text-gray-700">{{ $location[0]->location_name }}</span>
-                                </li>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Specific Location:</span>
-                                    <span class="text-gray-700">{{ $report->specificLocation }}</span>
-                                </li>
-                                <li class="flex border-b py-2 hover:bg-slate-100">
-                                    <span class="font-bold w-48">Date:</span>
+                                <li class="flex border-b py-2 hover:bg-slate-100 justify-between">
+                                    <span class="font-bold ">Date:</span>
                                     <span class="text-gray-700">{{$report->created_at->format('d/m/Y') }}</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="flex justify-center">
                             <div class="mt-8">
+                                @if ($report->files == null)
+                                  No photo were uploaded  
+                                @else
+                                    
                                 <img src="{{ asset('storage/reports/'. $report->files) }}" alt="{{ $report->files }}">
                                 <div class="flex items-center justify-between bg-[#e7e8ea] p-3 rounded-md mt-4">
                                     <span class="truncate pr-3 text-base font-medium text-[#07074D]">
                                         {{ $report->files }}
                                     </span>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

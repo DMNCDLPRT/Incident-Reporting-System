@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('reports', function (Blueprint $table) {
-            $table->text('description')->default('null')->nullable();
+        Schema::table('text_log', function (Blueprint $table) {
+            $table->unsignedBigInteger('number')->index();
+            $table->foreign('number')
+                ->references('id')
+                ->on('contacts')
+                ->onDelete('cascade');
         });
     }
 
@@ -25,7 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('reports', function (Blueprint $table) {
+        Schema::table('text_log', function (Blueprint $table) {
             //
         });
     }

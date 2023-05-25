@@ -27,7 +27,7 @@ class Departments extends Component
     {
         $validated = $this->validate();
 
-        ModelsDepartments::create([$validated]); 
+        ModelsDepartments::create($validated); 
         session()->flash('message-department', 'Emergency Department successfuly added');
     }
 
