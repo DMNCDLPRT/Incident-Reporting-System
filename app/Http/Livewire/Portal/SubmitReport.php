@@ -157,20 +157,23 @@ class SubmitReport extends Component
         $output = curl_exec( $ch );
         curl_close ($ch);
         // Show the server response
-        // echo $output;
+        // e    cho $output;
 
         // End of SEMAPHORE API Text messaging service
         
         if($submitReport['files'] == null){
             $submitReport['files'] = null;
         } else {
-            $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
+            /* $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
 
             $image = Image::make($submitReport['files']->getRealPath());
             $image->resize(300, null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $image->save('public/reports', $name);
+            $image->save('public/reports' . $name, 80);
+            $submitReport['files'] = $name; */
+            $name = $submitReport['files']->getClientOriginalName(); // getting the original image name
+            $submitReport['files']->storeAs('public/reports', $name);
             $submitReport['files'] = $name;
         }
 

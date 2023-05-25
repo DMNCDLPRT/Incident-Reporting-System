@@ -56,7 +56,6 @@
     "bytes": "^3.0.0",
     "call-bind": "^1.0.2",
     "camelcase-css": "^2.0.1",
-    "caniuse-lite": "^1.0.30001429",
     "chalk": "^2.4.1",
     "chokidar": "^3.5.3",
     "color-convert": "^1.9.3",

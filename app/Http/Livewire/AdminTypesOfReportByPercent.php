@@ -13,6 +13,9 @@ class AdminTypesOfReportByPercent extends Component
     public $count;
     public $sum;
 
+    public $startDate = "";
+    public $endDate = "";
+
     public function mount($incident, $count, $sum)
     {
         // Get all reports created during the current week
@@ -30,7 +33,7 @@ class AdminTypesOfReportByPercent extends Component
             $incident[] = FacadesDB::table('report_types')->where('id', $report->report_id)->get();
         }
 
-        $uniques = array_unique($incident);     // $votes = Vote::where('vote_type',1)->where('something',$something)->count();
+        $uniques = array_unique($incident);     //$votes = Vote::where('vote_type',1)->where('something',$something)->count();
       
         $i = 0;
         foreach($uniques as $unique){
